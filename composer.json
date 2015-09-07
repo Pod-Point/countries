@@ -1,0 +1,20 @@
+{
+    "name": "pod-point/countries",
+    "description": "A complete and partial list of countries with a Laravel service provider to load them into config",
+    "type": "library",
+    "require": {
+        "laravel/framework": "5.1.*"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Edward Coleridge Smith",
+            "email": "edward.smith@pod-point.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PodPoint\\Countries\\": "src/"
+        }
+    }
+}
