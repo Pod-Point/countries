@@ -10,32 +10,32 @@ This is a private package, so you need to add the repository to your `composer.j
 specified an access token for composer to access GitHub using your identity:
 
 ```javascript
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:pod-point/countries.git"
-        }
-    ]
+"repositories": [
+    {
+        "type": "git",
+        "url": "git@github.com:pod-point/countries.git"
+    }
+]
 ```
 
 Then require the package:
 
 ```javascript
-    "require": {
-        "pod-point/countries": "~1.0"
-    },
+"require": {
+    "pod-point/countries": "~1.0"
+},
 ```
 
 Then finally, if you're using Laravel, add the service provider to your `config/app.php` providers array:
 
 ```php
-    'providers' => [
-        PodPoint\Countries\CountriesServiceProvider::class
-    ]
+'providers' => [
+    PodPoint\Countries\CountriesServiceProvider::class
+]
 ```
 
 If you're using Lumen, add the following line to your `bootstrap/app.php` file:
 
 ```php
-    $app->register(PodPoint\Countries\CountriesServiceProvider::class);
+$app->register(PodPoint\Countries\CountriesServiceProvider::class);
 ```
