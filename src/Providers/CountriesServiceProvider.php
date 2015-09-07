@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class CountriesProvider extends ServiceProvider
+class CountriesServiceProvider extends ServiceProvider
 {
     /**
      * The configuration files to be loaded indexed by the configuration names.
