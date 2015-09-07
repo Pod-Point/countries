@@ -3,7 +3,9 @@
     "description": "A complete and partial list of countries with a Laravel service provider to load them into config",
     "type": "library",
     "require": {
-        "laravel/framework": "5.1.*"
+        "php": ">=5.5.9",
+        "illuminate/config": "5.1.*",
+        "illuminate/support": "5.1.*"
     },
     "license": "proprietary",
     "authors": [
