@@ -1,4 +1,4 @@
-<?php namespace PodPoint\Admin\Providers;
+<?php namespace PodPoint\Countries\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -10,8 +10,8 @@ class CountriesServiceProvider extends ServiceProvider
      * @var array
      */
     private $config = [
-        'countries'         => __DIR__ . '../config/countries.php',
-        'countries-partial' => __DIR__ . '../config/countries-partial.php'
+        'countries',
+        'countries-partial'
     ];
 
     /**
@@ -24,8 +24,8 @@ class CountriesServiceProvider extends ServiceProvider
         /** @var \Illuminate\Config\Repository $config */
         $config = $this->app['config'];
 
-        foreach ($this->config as $index => $filename) {
-            $config->set('countries', require $filename);
+        foreach ($this->config as $filename) {
+            $config->set($filename, require __DIR__ . '/../config/' . $filename . '.php');
         }
     }
 }
