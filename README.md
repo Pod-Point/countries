@@ -24,7 +24,7 @@ Then require the package:
 
 ```javascript
 "require": {
-    "pod-point/countries": "~1.0"
+    "pod-point/countries": "^1.0"
 },
 ```
 
