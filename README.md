@@ -1,6 +1,6 @@
 # Countries Package
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pod-Point/countries/badges/quality-score.png?b=master&s=1de994cf3d5d2d2e48110c4df8a9c666c48c615e)](https://scrutinizer-ci.com/g/Pod-Point/countries/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/Pod-Point/countries/badges/coverage.png?b=master&s=971f286b408e3bdb2cdfa1e15bfd97970dba83d3)](https://scrutinizer-ci.com/g/Pod-Point/countries/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/Pod-Point/countries/badges/build.png?b=master&s=dd155cf7a326ef4db6d5209d19a972e81528e4e0)](https://scrutinizer-ci.com/g/Pod-Point/countries/build-status/master)
+[ ![Codeship Status for Pod-Point/countries](https://codeship.com/projects/fa54fc40-9d10-0133-2068-4a8fb09a0dfa/status?branch=master)](https://codeship.com/projects/127375) [![Coverage Status](https://coveralls.io/repos/Pod-Point/countries/badge.svg?branch=remove-scrutinizer&service=github&t=EIcVQZ)](https://coveralls.io/github/Pod-Point/countries?branch=remove-scrutinizer) 
 
 This is a little package that provides Laravel and Lumen applications with full and partial lists of countries. The
 country lists are loaded into config using using the keys `countries` and `countries-partial`. The countries are indexed
