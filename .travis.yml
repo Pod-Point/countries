@@ -1,0 +1,24 @@
+sudo: false
+
+language: php
+
+php:
+  - '7.0'
+
+services:
+  - mysql
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer config -g github-oauth.github.com $COMPOSER_TOKEN
+  - composer install --prefer-source --no-interaction
+
+script:
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
