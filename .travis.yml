@@ -20,5 +20,5 @@ script:
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s build/logs/ https://codecov.io/bash)
 
