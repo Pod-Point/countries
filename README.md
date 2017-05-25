@@ -8,19 +8,7 @@ using their uppercase ISO code.
 
 ## Installation
 
-This is a private package, so you need to add the repository to your `composer.json` file and make sure that you have
-specified an access token for composer to access GitHub using your identity:
-
-```javascript
-"repositories": [
-    {
-        "type": "git",
-        "url": "git@github.com:pod-point/countries.git"
-    }
-]
-```
-
-Then require the package:
+Require the package in composer:
 
 ```javascript
 "require": {
