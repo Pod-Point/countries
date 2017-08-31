@@ -14,10 +14,10 @@
 return [
     'NO' => [
         'name' => 'Norway',
-        'diallingCode' => '47',
+        'diallingCode' => 47,
     ],
     'GB' => [
         'name' => 'United Kingdom',
-        'diallingCode' => '44',
+        'diallingCode' => 44,
     ],
 ];
