@@ -5,14 +5,15 @@
 | List of Countries
 |--------------------------------------------------------------------------
 |
-| A list of country names indexed by their uppercase ISO country code.
+| A list of country names and international dialling codes, indexed by their
+| uppercase ISO country code.
 |
 */
 
 return [
     'AF' => [
-    'name' => 'Afghanistan',
-    'diallingCode' => '93',
+        'name' => 'Afghanistan',
+        'diallingCode' => '93',
     ],
     'AL' => [
         'name' => 'Albania',
@@ -756,7 +757,7 @@ return [
     ],
     'RS' => [
         'name' => 'Serbia',
-        'diallingCode' => '381 p',
+        'diallingCode' => '381',
     ],
     'SC' => [
         'name' => 'Seychelles',
@@ -820,7 +821,7 @@ return [
     ],
     'SH' => [
         'name' => 'Saint Helena',
-        'diallingCode' => '290 n',
+        'diallingCode' => '290',
     ],
     'KN' => [
         'name' => 'Saint Kitts and Nevis',
@@ -972,7 +973,7 @@ return [
     ],
     'VA' => [
         'name' => 'Holy See',
-        'diallingCode' => '39-06',
+        'diallingCode' => '3906',
     ],
     'VE' => [
         'name' => 'Venezuela',
