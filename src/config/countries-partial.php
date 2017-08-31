@@ -12,6 +12,12 @@
 */
 
 return [
-    'NO' => 'Norway',
-    'GB' => 'United Kingdom'
+    'NO' => [
+        'name' => 'Norway',
+        'diallingCode' => '47',
+    ],
+    'GB' => [
+        'name' => 'United Kingdom',
+        'diallingCode' => '44',
+    ],
 ];
