@@ -933,7 +933,7 @@ return [
     ],
     'UM' => [
         'name' => 'United States Outlying Islands',
-        'diallingCode' => ,
+        'diallingCode' => null,
     ],
     'VI' => [
         'name' => 'United States Virgin Islands',

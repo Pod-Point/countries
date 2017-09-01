@@ -1,27 +1,29 @@
 <?php
 
-use Illuminate\Config\Repository;
-use Mockery as m;
-use PodPoint\Countries\Providers\CountriesServiceProvider;
-use Stubs\ApplicationStub;
+namespace PodPoint\Countries\Tests;
 
-class TestCountriesServiceProvider extends PHPUnit_Framework_TestCase
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
+use PodPoint\Countries\Providers\CountriesServiceProvider;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+
+class TestCountriesServiceProvider extends PHPUnitTestCase
 {
     /**
-     * Laravel application stub.
+     * Application mock.
      *
-     * @var ApplicationStub
+     * @var Application
      */
-    private $app;
+    private $appMock;
 
     /**
-     * Set up mocks.
+     * Set up tests.
      *
      * @return void
      */
     public function setUp()
     {
-        $this->app = new ApplicationStub();
+        $this->appMock = $this->getMockBuilder(Application::class)->getMock();
     }
 
     /**
@@ -31,7 +33,7 @@ class TestCountriesServiceProvider extends PHPUnit_Framework_TestCase
      */
     public function testCountriesServiceProviderCanBeInstantiated()
     {
-        $provider = new CountriesServiceProvider($this->app);
+        $provider = new CountriesServiceProvider($this->appMock);
 
         $this->assertInstanceOf(CountriesServiceProvider::class, $provider);
     }
@@ -43,11 +45,13 @@ class TestCountriesServiceProvider extends PHPUnit_Framework_TestCase
      */
     public function testCountriesConfigCanBeRegistered()
     {
-        $this->app['config'] = m::mock(Repository::class);
-        $this->app['config']->shouldReceive('set', require __DIR__ . '/../../src/config/countries.php')->once();
-        $this->app['config']->shouldReceive('set', require __DIR__ . '/../../src/config/countries-partial.php')->once();
+        $configMock = $this->getMockBuilder(Repository::class)->getMock();
+        $configMock->expects($this->at(0))->method('set')->with('countries', require __DIR__ . '/../../src/config/countries.php');
+        $configMock->expects($this->at(1))->method('set')->with('countries-partial', require __DIR__ . '/../../src/config/countries-partial.php');
 
-        $provider = new CountriesServiceProvider($this->app);
+        $this->appMock->config = $configMock;
+
+        $provider = new CountriesServiceProvider($this->appMock);
 
         $provider->register();
     }

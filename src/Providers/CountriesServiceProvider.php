@@ -1,4 +1,6 @@
-<?php namespace PodPoint\Countries\Providers;
+<?php
+
+namespace PodPoint\Countries\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +24,7 @@ class CountriesServiceProvider extends ServiceProvider
     public function register()
     {
         /** @var \Illuminate\Config\Repository $config */
-        $config = $this->app['config'];
+        $config = $this->app->config;
 
         foreach ($this->config as $filename) {
             $config->set($filename, require __DIR__ . '/../config/' . $filename . '.php');
