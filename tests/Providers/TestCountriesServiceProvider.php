@@ -4,7 +4,6 @@ namespace PodPoint\Countries\Tests;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
-use Mockery;
 use PodPoint\Countries\Providers\CountriesServiceProvider;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
@@ -13,7 +12,7 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
     /**
      * Application mock.
      *
-     * @var Mockery
+     * @var Application
      */
     private $appMock;
 
@@ -24,7 +23,7 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
      */
     public function setUp()
     {
-        $this->appMock = Mockery::mock(Application::class);
+        $this->appMock = $this->getMockBuilder(Application::class)->getMock();
     }
 
     /**
@@ -46,9 +45,10 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
      */
     public function testCountriesConfigCanBeRegistered()
     {
-        $configMock = Mockery::mock(Repository::class);
-        $configMock->shouldReceive('set', require __DIR__ . '/../../src/config/countries.php')->once();
-        $configMock->shouldReceive('set', require __DIR__ . '/../../src/config/countries-partial.php')->once();
+        $configMock = $this->getMockBuilder(Repository::class)->getMock();
+        $configMock->expects($this->at(0))->method('set')->with('countries', require __DIR__ . '/../../src/config/countries.php');
+        $configMock->expects($this->at(1))->method('set')->with('countries-partial', require __DIR__ . '/../../src/config/countries-partial.php');
+
         $this->appMock->config = $configMock;
 
         $provider = new CountriesServiceProvider($this->appMock);
