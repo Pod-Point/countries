@@ -16,12 +16,12 @@ return [
         'name' => 'Norway',
         'diallingCode' => 47,
         'locale' => 'no',
-        'languageSwitcherLabel' => 'NOR',
+        'shortLanguageLabel' => 'NOR',
     ],
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
         'locale' => 'en',
-        'languageSwitcherLabel' => 'ENG',
+        'shortLanguageLabel' => 'ENG',
     ],
 ];

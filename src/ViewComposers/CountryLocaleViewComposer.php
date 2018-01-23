@@ -27,7 +27,7 @@ class CountryLocaleViewComposer
         $countriesLocaleOptions = [];
 
         foreach ($countriesPartial as $countryCode => $country) {
-            $countriesLocaleOptions[$country['locale']] = $country['languageSwitcherLabel'];
+            $countriesLocaleOptions[$country['locale']] = $country['shortLanguageLabel'];
         }
 
         return $countriesLocaleOptions;
