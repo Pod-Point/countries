@@ -3,9 +3,27 @@
 namespace PodPoint\Countries\ViewComposers;
 
 use Illuminate\View\View;
+use Illuminate\Config\Repository;
 
 class CountryLocaleViewComposer
 {
+    /**
+     * Instance of Config Repository.
+     *
+     * @var Repository
+     */
+    protected $config;
+
+    /**
+     * CountryLocaleViewComposer constructor.
+     *
+     * @param Repository $config
+     */
+    public function __construct(Repository $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * Binds the data to the view.
      *
@@ -23,11 +41,11 @@ class CountryLocaleViewComposer
      */
     private function countryLocaleOptions()
     {
-        $countriesPartial = config('countries-partial');
+        $countriesPartial = $this->config->get('countries-partial');
         $countriesLocaleOptions = [];
 
         foreach ($countriesPartial as $countryCode => $country) {
-            $countriesLocaleOptions[$country['locale']] = $country['shortLanguageLabel'];
+            $countriesLocaleOptions[$country['locale']] = $countryCode;
         }
 
         return $countriesLocaleOptions;
