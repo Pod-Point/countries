@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCountryLocaleViewComposer extends PHPUnitTestCase
 {
+    /**
+     * Makes sure every methods of the view composer are called properly.
+     */
     public function testCompose()
     {
         /** @var Repository|\PHPUnit_Framework_MockObject_MockObject $configMock */
