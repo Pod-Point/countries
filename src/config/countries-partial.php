@@ -15,9 +15,13 @@ return [
     'NO' => [
         'name' => 'Norway',
         'diallingCode' => 47,
+        'locale' => 'no',
+        'languageSwitcherLabel' => 'NOR',
     ],
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
+        'locale' => 'en',
+        'languageSwitcherLabel' => 'ENG',
     ],
 ];
