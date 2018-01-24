@@ -38,11 +38,13 @@ class TestCountryLocaleViewComposer extends PHPUnitTestCase
                     'name' => 'Norway',
                     'diallingCode' => 47,
                     'locale' => 'no',
+                    'language' => 'NOR',
                 ],
                 'GB' => [
                     'name' => 'United Kingdom',
                     'diallingCode' => 44,
                     'locale' => 'en',
+                    'language' => 'ENG',
                 ],
             ]);
 
