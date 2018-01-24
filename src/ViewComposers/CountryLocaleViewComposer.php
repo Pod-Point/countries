@@ -45,7 +45,7 @@ class CountryLocaleViewComposer
         $countriesLocaleOptions = [];
 
         foreach ($countriesPartial as $countryCode => $country) {
-            $countriesLocaleOptions[$country['locale']] = $countryCode;
+            $countriesLocaleOptions[$country['locale']] = $country['language'];
         }
 
         return $countriesLocaleOptions;
