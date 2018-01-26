@@ -17,11 +17,13 @@ return [
         'diallingCode' => 47,
         'locale' => 'no',
         'language' => 'NOR',
+        'tld' => 'no',
     ],
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
         'locale' => 'en',
         'language' => 'ENG',
+        'tld' => 'com',
     ],
 ];
