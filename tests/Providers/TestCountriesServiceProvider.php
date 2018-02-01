@@ -18,8 +18,6 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
 
     /**
      * Set up tests.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -28,8 +26,6 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
 
     /**
      * Tests that the countries service provider can be instantiated.
-     *
-     * @return void
      */
     public function testCountriesServiceProviderCanBeInstantiated()
     {
@@ -40,14 +36,18 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
 
     /**
      * Tests that countries config gets loaded into the application.
-     *
-     * @return void
      */
     public function testCountriesConfigCanBeRegistered()
     {
         $configMock = $this->getMockBuilder(Repository::class)->getMock();
-        $configMock->expects($this->at(0))->method('set')->with('countries', require __DIR__ . '/../../src/config/countries.php');
-        $configMock->expects($this->at(1))->method('set')->with('countries-partial', require __DIR__ . '/../../src/config/countries-partial.php');
+
+        $configMock->expects($this->at(0))
+            ->method('set')
+            ->with('countries');
+
+        $configMock->expects($this->at(1))
+            ->method('set')
+            ->with('countries-partial');
 
         $this->appMock->config = $configMock;
 
