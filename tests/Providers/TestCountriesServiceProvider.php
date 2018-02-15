@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Countries\Tests;
+namespace PodPoint\Countries\Tests\Providers;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;

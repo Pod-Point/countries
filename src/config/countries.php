@@ -666,6 +666,9 @@ return [
     'NO' => [
         'name' => 'Norway',
         'diallingCode' => 47,
+        'locale' => 'no',
+        'language' => 'NOR',
+        'tld' => 'no',
     ],
     'OM' => [
         'name' => 'Oman',
@@ -942,6 +945,9 @@ return [
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
+        'locale' => 'en',
+        'language' => 'ENG',
+        'tld' => 'com',
     ],
     'US' => [
         'name' => 'United States',

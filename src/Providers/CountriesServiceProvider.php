@@ -2,6 +2,7 @@
 
 namespace PodPoint\Countries\Providers;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use League\ISO3166\ISO3166;
 
@@ -26,28 +27,18 @@ class CountriesServiceProvider extends ServiceProvider
     {
         /** @var \Illuminate\Config\Repository $config */
         $config = $this->app->config;
-        $countryConfigFiles = ['countries', 'countries-partial'];
 
-        foreach ($this->config as $filename) {
-            $data = require __DIR__ . '/../config/' . $filename . '.php';
-
-            if (in_array($filename, $countryConfigFiles)) {
-                $data = $this->addIsoInfoToCountryConfig($data, $filename);
-            }
-
-            $config->set($filename, $data);
-        }
+        $this->setCountryConfig($config);
     }
 
     /**
      * Adds ISO country information to our existing country configuration.
      *
      * @param array $data
-     * @param string $filename
      *
      * @return array
      */
-    private function addIsoInfoToCountryConfig(array $data, string $filename)
+    private function addIsoInfoToCountryConfig(array $data)
     {
         $isoCountries = (new ISO3166())->all();
 
@@ -55,13 +46,44 @@ class CountriesServiceProvider extends ServiceProvider
             $countryCode = $isoData['alpha2'];
             $configData = array_get($data, $countryCode, []);
 
-            if ($filename === 'countries-partial' && !$configData) {
-                continue;
-            }
-
             array_set($data, $countryCode, array_merge($configData, $isoData));
         }
 
         return $data;
+    }
+
+    /**
+     * Sets the country configuration.
+     *
+     * @param Repository $config
+     */
+    private function setCountryConfig(Repository $config)
+    {
+        $countries = require __DIR__ . '/../config/countries.php';
+        $countries = $this->addIsoInfoToCountryConfig($countries);
+
+        $config->set('countries', $countries);
+
+        $this->setPartialCountryConfig($config, $countries);
+    }
+
+    /**
+     * Sets the partial country configuration.
+     *
+     * @param Repository $config
+     * @param array $countries
+     */
+    private function setPartialCountryConfig(Repository $config, array $countries)
+    {
+        $partialCountryList = require __DIR__ . '/../config/countries-partial.php';
+        $partialCountryConfig = array_filter(
+            $countries,
+            function ($countryCode) use ($partialCountryList) {
+                return in_array($countryCode, $partialCountryList);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        $config->set('countries-partial', $partialCountryConfig);
     }
 }
