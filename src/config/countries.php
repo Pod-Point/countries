@@ -667,6 +667,7 @@ return [
         'name' => 'Norway',
         'diallingCode' => 47,
         'locale' => 'no',
+        'systemLocale' => 'nb_NO.UTF-8',
         'language' => 'NOR',
         'tld' => 'no',
     ],
