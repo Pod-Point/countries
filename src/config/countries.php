@@ -670,6 +670,7 @@ return [
         'systemLocale' => 'nb_NO.UTF-8',
         'language' => 'NOR',
         'tld' => 'no',
+        'timezone' => 'Europe/Oslo',
     ],
     'OM' => [
         'name' => 'Oman',
@@ -949,6 +950,7 @@ return [
         'locale' => 'en',
         'language' => 'ENG',
         'tld' => 'com',
+        'timezone' => 'Europe/London',
     ],
     'US' => [
         'name' => 'United States',
