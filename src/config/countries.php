@@ -947,6 +947,7 @@ return [
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
+        'systemLocale' => 'en_GB.UTF-8',
         'locale' => 'en',
         'language' => 'ENG',
         'tld' => 'com',
