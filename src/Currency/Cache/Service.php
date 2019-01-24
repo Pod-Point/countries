@@ -32,7 +32,7 @@ class Service implements CurrencyService
     }
 
     /**
-     * Fetches the exchange rates from the another service if they don't already exist in cache.
+     * Fetches the exchange rates from another service if they don't already exist in cache.
      *
      * @param string $base
      * @param string[] $currencies

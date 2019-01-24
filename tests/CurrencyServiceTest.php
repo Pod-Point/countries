@@ -46,7 +46,7 @@ class CurrencyServiceTest extends TestCase
     private $cachedService;
 
     /**
-     * Creates mocked cache, config and OpenExchangeRates client & service instanxes .
+     * Creates mocked cache, config and OpenExchangeRates client & service instances.
      */
     public function setUp()
     {
@@ -77,10 +77,6 @@ class CurrencyServiceTest extends TestCase
             'base' => $base,
             'symbols' => implode(',', $currencies),
         ]);
-
-        $this->mockCache->expects($this->any())
-            ->method('has')
-            ->willReturn(false);
 
         $this->mockConfig->expects($this->once())
             ->method('get')
@@ -129,10 +125,6 @@ class CurrencyServiceTest extends TestCase
             'base' => $base,
             'symbols' => implode(',', $currencies),
         ]);
-
-        $this->mockCache->expects($this->any())
-            ->method('has')
-            ->willReturn(false);
 
         $this->mockConfig->expects($this->once())
             ->method('get')
