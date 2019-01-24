@@ -1,20 +1,20 @@
 <?php
 
-namespace PodPoint\Countries\Tests\ViewComposers;
+namespace PodPoint\I18n\Tests\ViewComposers;
 
-use PodPoint\Countries\ViewComposers\CountryLocaleViewComposer;
+use PHPUnit\Framework\TestCase;
+use PodPoint\I18n\ViewComposers\CountryLocaleViewComposer;
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-class TestCountryLocaleViewComposer extends PHPUnitTestCase
+class TestCountryLocaleViewComposer extends TestCase
 {
     /**
      * Makes sure every methods of the view composer are called properly.
      */
     public function testCompose()
     {
-        /** @var Repository|\PHPUnit_Framework_MockObject_MockObject $configMock */
+        /** @var Repository|\PHPUnit\Framework\MockObject\MockObject $configMock */
         $configMock = $this->getMockBuilder(Repository::class)
             ->disableOriginalConstructor()
             ->setMethods(['get'])

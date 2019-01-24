@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Countries\Providers;
+namespace PodPoint\I18n\Providers;
 
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
