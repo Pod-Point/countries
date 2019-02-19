@@ -64,6 +64,7 @@ class CurrencyHelper extends Helper
      * Return system locale from locale. (en => en_GB.UTF-8)
      *
      * @param string $locale
+     *
      * @return string
      */
     protected function getSystemLocale(string $locale)
