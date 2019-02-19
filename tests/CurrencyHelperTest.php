@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
 
-class TestCurrencyHelper extends TestCase
+class CurrencyHelperTest extends TestCase
 {
     /**
      * Data provider for testToFormat.
