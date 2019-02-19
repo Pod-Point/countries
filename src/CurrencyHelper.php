@@ -35,11 +35,8 @@ class CurrencyHelper extends Helper
      */
     public function toFormat(float $value, string $locale = 'en', string $currencyCode = 'GBP')
     {
-        $country = $this->countryHelper->findBy('locale', $locale);
-        $systemLocale = $country['systemLocale'];
-
         $formatter = new NumberFormatter(
-            $systemLocale,
+            $this->getSystemLocale($locale),
             NumberFormatter::CURRENCY
         );
 
@@ -55,14 +52,24 @@ class CurrencyHelper extends Helper
      */
     public function getSymbol(string $locale = 'en')
     {
-        $country = $this->countryHelper->findBy('locale', $locale);
-        $systemLocale = $country['systemLocale'];
-
         $formatter = new NumberFormatter(
-            $systemLocale,
+            $this->getSystemLocale($locale),
             NumberFormatter::CURRENCY
         );
 
         return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+    }
+
+    /**
+     * Return system locale from locale. (en => en_GB.UTF-8)
+     *
+     * @param string $locale
+     * @return string
+     */
+    protected function getSystemLocale(string $locale)
+    {
+        $country = $this->countryHelper->findBy('locale', $locale);
+
+        return $country['systemLocale'];
     }
 }
