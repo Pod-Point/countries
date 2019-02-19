@@ -64,5 +64,5 @@ class CurrencyHelper extends Helper
         );
 
         return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
-   }
+    }
 }
