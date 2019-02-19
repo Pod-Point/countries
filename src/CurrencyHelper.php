@@ -25,7 +25,7 @@ class CurrencyHelper extends Helper
     }
 
     /**
-     * Return a value formatted in the right currency and locale.
+     * Return a float value formatted in the right currency and locale.
      *
      * @param float $value
      * @param string $locale
