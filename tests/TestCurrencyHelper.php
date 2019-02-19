@@ -72,11 +72,13 @@ class TestCurrencyHelper extends TestCase
     public function providerTestGetSymbol()
     {
         return [
-            CurrencyCode::POUND_STERLING => [
+            'Pound Sterling' => [
+                CurrencyCode::POUND_STERLING,
                 'en',
                 '£',
             ],
-            CurrencyCode::NORWEGIAN_KRONE => [
+            'Norwegian Krone' => [
+                CurrencyCode::NORWEGIAN_KRONE,
                 'no',
                 'kr',
             ],
@@ -88,10 +90,11 @@ class TestCurrencyHelper extends TestCase
      *
      * @dataProvider providerTestGetSymbol
      *
+     * @param string $currencyCode
      * @param string $locale
      * @param string $expected
      */
-    public function testGetSymbol(string $locale, string $expected)
+    public function testGetSymbol(string $currencyCode, string $locale, string $expected)
     {
         $config = $this->createMock(Repository::class);
         $currencyHelper = new CurrencyHelper($config);
@@ -102,7 +105,7 @@ class TestCurrencyHelper extends TestCase
             ->with('countries')
             ->willReturn($countries);
 
-        $actual = $currencyHelper->getSymbol($locale);
+        $actual = $currencyHelper->getSymbol($currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
     }

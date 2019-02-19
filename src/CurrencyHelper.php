@@ -50,10 +50,10 @@ class CurrencyHelper extends Helper
      *
      * @return string
      */
-    public function getSymbol(string $locale = 'en')
+    public function getSymbol(string $currencyCode = 'GBP', string $locale = 'en')
     {
         $formatter = new NumberFormatter(
-            $this->getSystemLocale($locale),
+            $this->getSystemLocale($locale) . "@currency=$currencyCode",
             NumberFormatter::CURRENCY
         );
 
