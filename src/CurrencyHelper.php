@@ -2,12 +2,30 @@
 
 namespace PodPoint\I18n;
 
+use Illuminate\Config\Repository;
 use NumberFormatter;
 
 class CurrencyHelper extends Helper
 {
     /**
-     * Return a value in the given currency and locale format.
+     * Instance of the CountryHelper.
+     *
+     * @var CountryHelper
+     */
+    protected $countryHelper;
+
+    /**
+     * @param Repository $config
+     */
+    public function __construct(Repository $config)
+    {
+        parent::__construct($config);
+
+        $this->countryHelper = new CountryHelper($this->config);
+    }
+
+    /**
+     * Return a value formatted in the right currency and locale.
      *
      * @param float $value
      * @param string $locale
@@ -17,16 +35,34 @@ class CurrencyHelper extends Helper
      */
     public function toFormat(float $value, string $locale = 'en', string $currencyCode = 'GBP')
     {
-        $countryHelper = new CountryHelper($this->config);
-
-        $userCountry = $countryHelper->findBy('locale', $locale);
-        $userSystemLocale = $userCountry['systemLocale'];
+        $country = $this->countryHelper->findBy('locale', $locale);
+        $systemLocale = $country['systemLocale'];
 
         $formatter = new NumberFormatter(
-            $userSystemLocale,
+            $systemLocale,
             NumberFormatter::CURRENCY
         );
 
         return $formatter->formatCurrency($value, $currencyCode);
     }
+
+    /**
+     * Return a currency symbol formatted in the right locale.
+     *
+     * @param string $locale
+     *
+     * @return string
+     */
+    public function getSymbol(string $locale = 'en')
+    {
+        $country = $this->countryHelper->findBy('locale', $locale);
+        $systemLocale = $country['systemLocale'];
+
+        $formatter = new NumberFormatter(
+            $systemLocale,
+            NumberFormatter::CURRENCY
+        );
+
+        return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+   }
 }
