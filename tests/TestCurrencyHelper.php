@@ -21,14 +21,14 @@ class TestCurrencyHelper extends TestCase
         return [
             'pound sterling in english' => [
                 $value,
-                'en',
                 CurrencyCode::POUND_STERLING,
+                'en',
                 '£1,500.50',
             ],
             'pound sterling in norwegian' => [
                 $value,
-                'no',
                 CurrencyCode::POUND_STERLING,
+                'no',
                 '£ 1 500,50',
             ],
         ];
@@ -40,11 +40,11 @@ class TestCurrencyHelper extends TestCase
      * @dataProvider providerTestToFormat
      *
      * @param float $value
-     * @param string $locale
      * @param string $currencyCode
+     * @param string $locale
      * @param string $expected
      */
-    public function testToFormat(float $value, string $locale, string $currencyCode, string $expected)
+    public function testToFormat(float $value, string $currencyCode, string $locale, string $expected)
     {
         $config = $this->createMock(Repository::class);
         $currencyHelper = new CurrencyHelper($config);
