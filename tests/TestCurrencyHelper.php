@@ -35,7 +35,7 @@ class TestCurrencyHelper extends TestCase
     }
 
     /**
-     * Tests that to Format returns values properly formatted according to locale and currency.
+     * Tests that it returns float values properly formatted according to locale and currency.
      *
      * @dataProvider providerTestToFormat
      *
@@ -86,7 +86,7 @@ class TestCurrencyHelper extends TestCase
     }
 
     /**
-     * Tests that get symbol return the currency symbol from locale.
+     * Tests that it returns a currency symbol.
      *
      * @dataProvider providerTestGetSymbol
      *
