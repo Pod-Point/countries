@@ -57,8 +57,8 @@ class TestCurrencyHelper extends TestCase
 
         $actual = $currencyHelper->toFormat(
             $value,
-            $locale,
-            $currencyCode
+            $currencyCode,
+            $locale
         );
 
         $this->assertEquals($expected, $actual);

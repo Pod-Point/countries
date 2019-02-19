@@ -13,7 +13,7 @@ use PodPoint\I18n\Currency\Cache\Service as CacheService;
 use PodPoint\I18n\Currency\OpenExchangeRates\Client;
 use PodPoint\I18n\Currency\OpenExchangeRates\Service;
 
-class CurrencyServiceTest extends TestCase
+class TestCurrencyService extends TestCase
 {
     /**
      * @var Cache|MockObject

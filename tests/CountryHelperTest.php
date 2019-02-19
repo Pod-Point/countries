@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\CountryHelper;
 
-class TestCountryHelper extends TestCase
+class CountryHelperTest extends TestCase
 {
     /**
      * Tests that the find by method works by trying it with a locale.

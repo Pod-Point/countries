@@ -25,15 +25,15 @@ class CurrencyHelper extends Helper
     }
 
     /**
-     * Return a float value formatted in the right currency and locale.
+     * Return a value in the given currency formatted for the given locale.
      *
-     * @param float $value
-     * @param string $locale
+     * @param float|int $value
      * @param string $currencyCode
+     * @param string $locale
      *
      * @return string
      */
-    public function toFormat(float $value, string $locale = 'en', string $currencyCode = 'GBP')
+    public function toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
     {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
@@ -50,7 +50,7 @@ class CurrencyHelper extends Helper
      *
      * @return string
      */
-    public function getSymbol(string $currencyCode = 'GBP', string $locale = 'en')
+    public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
     {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale) . "@currency=$currencyCode",
