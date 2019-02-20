@@ -53,7 +53,7 @@ class CurrencyHelper extends Helper
     public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
     {
         $formatter = new NumberFormatter(
-            $this->getSystemLocale($locale) . "@currency=$currencyCode",
+            "{$this->getSystemLocale($locale)}@currency={$currencyCode}",
             NumberFormatter::CURRENCY
         );
 
