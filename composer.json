@@ -4,6 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.1",
+        "ext-intl": "*",
         "illuminate/config": "5.*",
         "illuminate/support": "5.*",
         "illuminate/view": "5.*",

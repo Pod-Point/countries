@@ -20,12 +20,12 @@ Then finally, if you're using Laravel, add the service provider to your `config/
 
 ```php
 'providers' => [
-    PodPoint\Countries\Providers\CountriesServiceProvider::class
+    PodPoint\I18n\Providers\CountriesServiceProvider::class
 ]
 ```
 
 If you're using Lumen, add the following line to your `bootstrap/app.php` file:
 
 ```php
-$app->register(PodPoint\Countries\Providers\CountriesServiceProvider::class);
+$app->register(PodPoint\I18n\Providers\CountriesServiceProvider::class);
 ```
