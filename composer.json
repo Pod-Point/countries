@@ -25,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "PodPoint\\I18n\\": "src/"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
