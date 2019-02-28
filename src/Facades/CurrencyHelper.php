@@ -17,6 +17,6 @@ class CurrencyHelper extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return CurrencyHelper::class;
+        return 'currency.helper';
     }
 }
