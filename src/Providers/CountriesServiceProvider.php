@@ -5,7 +5,7 @@ namespace PodPoint\I18n\Providers;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use League\ISO3166\ISO3166;
-use PodPoint\I18n\Facades\CurrencyHelper;
+use PodPoint\I18n\CurrencyHelper;
 
 class CountriesServiceProvider extends ServiceProvider
 {
@@ -30,6 +30,10 @@ class CountriesServiceProvider extends ServiceProvider
         $config = $this->app->config;
 
         $this->setCountryConfig($config);
+
+        $this->app->singleton('currency.helper', function ($app) {
+            return new CurrencyHelper($this->app->config);
+        });
 
         $this->app->alias('currency.helper', CurrencyHelper::class);
     }
