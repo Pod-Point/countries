@@ -62,7 +62,6 @@ class CurrencyHelperTest extends TestCase
         );
 
         $this->assertEquals($expected, $actual);
-        $this->assertEquals($expected, moneyFormat($currencyCode, $locale));
     }
 
     /**
@@ -109,6 +108,5 @@ class CurrencyHelperTest extends TestCase
         $actual = $currencyHelper->getSymbol($currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
-        $this->assertEquals($expected, getCurrencySymbol($currencyCode, $locale));
     }
 }
