@@ -64,7 +64,9 @@ class Service implements CurrencyService
                     $this->cache->forever($key, $exchangeRate->rate);
                 });
 
-                $exchangeRate = $rates->firstWhere('currency', $currency);
+                $exchangeRate = $rates->first(function (ExchangeRate $rate) use ($currency) {
+                    return $rate->currency === $currency;
+                });
             }
 
             $exchangeRates->push($exchangeRate);
