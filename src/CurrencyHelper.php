@@ -47,6 +47,7 @@ class CurrencyHelper extends Helper
      * Return a currency symbol formatted in the right locale.
      *
      * @param string $locale
+     * @param string $currencyCode
      *
      * @return string
      */
