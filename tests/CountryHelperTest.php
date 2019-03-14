@@ -1,21 +1,21 @@
 <?php
 
-namespace PodPoint\Countries\Tests;
+namespace PodPoint\I18n\Tests;
 
 use Illuminate\Config\Repository;
 use PHPUnit\Framework\TestCase;
-use PodPoint\Countries\CountryCode;
-use PodPoint\Countries\CountryHelper;
+use PodPoint\I18n\CountryCode;
+use PodPoint\I18n\CountryHelper;
 
-class TestCountryHelper extends TestCase
+class CountryHelperTest extends TestCase
 {
     /**
      * Tests that the find by method works by trying it with a locale.
      */
     public function testFindByLocale()
     {
-        /** @var \PHPUnit_Framework_MockObject_MockObject|Repository $config */
-        $config = $this->getMock(Repository::class);
+        /** @var \PHPUnit\Framework\MockObject\MockObject|Repository $config */
+        $config = $this->createMock(Repository::class);
         $countryHelper = new CountryHelper($config);
         $countries = require __DIR__ . '/../src/config/countries-partial.php';
 

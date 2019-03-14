@@ -1,13 +1,13 @@
 <?php
 
-namespace PodPoint\Countries\Tests\Providers;
+namespace PodPoint\I18n\Tests\Providers;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
-use PodPoint\Countries\Providers\CountriesServiceProvider;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use PHPUnit\Framework\TestCase;
+use PodPoint\I18n\Providers\CountriesServiceProvider;
 
-class TestCountriesServiceProvider extends PHPUnitTestCase
+class TestCountriesServiceProvider extends TestCase
 {
     /**
      * Application mock.
@@ -21,7 +21,7 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
      */
     public function setUp()
     {
-        $this->appMock = $this->getMockBuilder(Application::class)->getMock();
+        $this->appMock = $this->createMock(Application::class);
     }
 
     /**
@@ -39,7 +39,7 @@ class TestCountriesServiceProvider extends PHPUnitTestCase
      */
     public function testCountriesConfigCanBeRegistered()
     {
-        $configMock = $this->getMockBuilder(Repository::class)->getMock();
+        $configMock = $this->createMock(Repository::class);
 
         $configMock->expects($this->at(0))
             ->method('set')

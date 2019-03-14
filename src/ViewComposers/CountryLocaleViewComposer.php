@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Countries\ViewComposers;
+namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Config\Repository;

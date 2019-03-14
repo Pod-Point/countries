@@ -1,28 +1,9 @@
 <?php
 
-namespace PodPoint\Countries;
+namespace PodPoint\I18n;
 
-use Illuminate\Config\Repository;
-
-class CountryHelper
+class CountryHelper extends Helper
 {
-    /**
-     * The config repository instance.
-     *
-     * @var Repository
-     */
-    private $config;
-
-    /**
-     * CountryHelper constructor.
-     *
-     * @param Repository $config
-     */
-    public function __construct(Repository $config)
-    {
-        $this->config = $config;
-    }
-
     /**
      * Returns the first country matching the given property/value pair.
      *

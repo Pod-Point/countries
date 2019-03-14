@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Countries;
+namespace PodPoint\I18n;
 
 class CountryCode
 {

@@ -11,7 +11,7 @@
 |
 */
 
-use PodPoint\Countries\CountryCode;
+use PodPoint\I18n\CountryCode;
 
 return [
     CountryCode::NORWAY,
