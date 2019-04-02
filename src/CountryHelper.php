@@ -19,7 +19,7 @@ class CountryHelper extends Helper
         return array_first(
             $countries,
             function ($country) use ($property, $value) {
-                return array_get($country, $property) === $value;
+                return array_get($country[$country], $property) === $value;
             }
         );
     }
