@@ -16,12 +16,12 @@ class CountryHelper extends Helper
     {
         $countries = $this->config->get('countries');
 
-        foreach ($countries as $country){
-            if(array_get($country, $property) === $value){
+        foreach ($countries as $country) {
+            if (array_get($country, $property) === $value) {
                 return $country;
             }
         }
 
-       return null;
+        return null;
     }
 }
