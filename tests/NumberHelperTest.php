@@ -13,7 +13,7 @@ class NumberHelperTest extends TestCase
      *
      * @return array
      */
-    public function providerTestFormat()
+    public function providerTestToFormat()
     {
         $value = 1500.5;
 
@@ -34,13 +34,13 @@ class NumberHelperTest extends TestCase
     /**
      * Tests that it returns float values properly formatted according to locale and currency.
      *
-     * @dataProvider providerTestFormat
+     * @dataProvider providerTestToFormat
      *
      * @param float $value
      * @param string $locale
      * @param string $expected
      */
-    public function testFormat(float $value, string $locale, string $expected)
+    public function testToFormat(float $value, string $locale, string $expected)
     {
         $config = $this->createMock(Repository::class);
         $currencyHelper = new NumberHelper($config);
@@ -51,7 +51,7 @@ class NumberHelperTest extends TestCase
             ->with('countries')
             ->willReturn($countries);
 
-        $actual = $currencyHelper->format(
+        $actual = $currencyHelper->toFormat(
             $value,
             $locale
         );

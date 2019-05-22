@@ -14,7 +14,7 @@ class NumberHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function format($value, string $locale = 'en')
+    public function toFormat($value, string $locale = 'en')
     {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
