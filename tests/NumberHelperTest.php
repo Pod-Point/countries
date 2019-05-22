@@ -32,7 +32,7 @@ class NumberHelperTest extends TestCase
     }
 
     /**
-     * Tests that it returns float values properly formatted according to locale and currency.
+     * Tests that it returns float values properly formatted according to a given locale.
      *
      * @dataProvider providerTestToFormat
      *
