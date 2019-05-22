@@ -18,7 +18,7 @@ class NumberHelper extends LocalizedHelper
     {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
-            NumberFormatter::DECIMAL
+            NumberFormatter::DEFAULT_STYLE
         );
 
         return $formatter->format($value);
