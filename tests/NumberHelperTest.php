@@ -15,18 +15,18 @@ class NumberHelperTest extends TestCase
      */
     public function providerTestToFormat()
     {
-        $value = 1500.5;
+        $value = 1500.51254567890;
 
         return [
             'number in english format' => [
                 $value,
                 'en',
-                '1,500.5',
+                '1,500.513',
             ],
             'number in norwegian format' => [
                 $value,
                 'no',
-                '1 500,5',
+                '1 500,513',
             ],
         ];
     }
