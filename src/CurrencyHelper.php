@@ -2,28 +2,10 @@
 
 namespace PodPoint\I18n;
 
-use Illuminate\Config\Repository;
 use NumberFormatter;
 
-class CurrencyHelper extends Helper
+class CurrencyHelper extends LocalizedHelper
 {
-    /**
-     * Instance of the CountryHelper.
-     *
-     * @var CountryHelper
-     */
-    protected $countryHelper;
-
-    /**
-     * @param Repository $config
-     */
-    public function __construct(Repository $config)
-    {
-        parent::__construct($config);
-
-        $this->countryHelper = new CountryHelper($this->config);
-    }
-
     /**
      * Return a value in the given currency formatted for the given locale.
      *
@@ -59,19 +41,5 @@ class CurrencyHelper extends Helper
         );
 
         return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
-    }
-
-    /**
-     * Return system locale from locale. (en => en_GB.UTF-8)
-     *
-     * @param string $locale
-     *
-     * @return string
-     */
-    protected function getSystemLocale(string $locale)
-    {
-        $country = $this->countryHelper->findBy('locale', $locale);
-
-        return $country['systemLocale'];
     }
 }
