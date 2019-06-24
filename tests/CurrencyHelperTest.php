@@ -111,7 +111,7 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
-     * Tests that helper function return formatted value from cents.
+     * Tests that it returns formatted value from cents.
      */
     public function testToFormatFromCents()
     {
