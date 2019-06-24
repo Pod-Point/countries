@@ -20,6 +20,23 @@ if (!function_exists('moneyFormat')) {
     }
 }
 
+if (!function_exists('moneyFormatFromCents')) {
+
+    /**
+     * Return a value in the given currency formatted for the given locale from cents.
+     *
+     * @param float|int $valueInCents
+     * @param string $currencyCode
+     * @param string $locale
+     *
+     * @return string
+     */
+    function moneyFormatFromCents($valueInCents, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    {
+        return CurrencyHelper::toFormatFromCents($valueInCents, $currencyCode, $locale);
+    }
+}
+
 if (!function_exists('getCurrencySymbol')) {
 
     /**

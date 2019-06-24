@@ -109,4 +109,24 @@ class CurrencyHelperTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * Tests that helper function return formatted value from cents.
+     */
+    public function testToFormatFromCents()
+    {
+        $config = $this->createMock(Repository::class);
+        $currencyHelper = new CurrencyHelper($config);
+        $countries = require __DIR__ . '/../src/config/countries.php';
+
+        $config->expects($this->once())
+            ->method('get')
+            ->with('countries')
+            ->willReturn($countries);
+
+        $expected = '£15.50';
+        $actual = $currencyHelper->toFormatFromCents('1550');
+
+        $this->assertEquals($expected, $actual);
+    }
 }
