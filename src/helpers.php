@@ -23,7 +23,7 @@ if (!function_exists('moneyFormat')) {
 if (!function_exists('moneyFormatFromCents')) {
 
     /**
-     * Return a value in the given currency formatted for the given locale from cents.
+     * Return a value in the given currency formatted for the given locale from integer amount.
      *
      * @param float|int $valueInCents
      * @param string $currencyCode
@@ -31,9 +31,9 @@ if (!function_exists('moneyFormatFromCents')) {
      *
      * @return string
      */
-    function moneyFormatFromCents($valueInCents, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    function toFormatFromInt($valueInCents, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
     {
-        return CurrencyHelper::toFormatFromCents($valueInCents, $currencyCode, $locale);
+        return CurrencyHelper::toFormatFromInt($valueInCents, $currencyCode, $locale);
     }
 }
 

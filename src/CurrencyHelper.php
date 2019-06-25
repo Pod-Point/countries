@@ -26,17 +26,17 @@ class CurrencyHelper extends LocalizedHelper
     }
 
     /**
-     * Return a value in the given currency formatted for the given locale from cents.
+     * Return a value in the given currency formatted for the given locale from integer amount.
      *
-     * @param int $valueInCents
+     * @param int $value
      * @param string $currencyCode
      * @param string $locale
      *
      * @return string
      */
-    public function toFormatFromCents(int $valueInCents, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    public function toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
     {
-        return $this->toFormat($valueInCents / 100, $currencyCode, $locale);
+        return $this->toFormat($value / 100, $currencyCode, $locale);
     }
 
     /**
