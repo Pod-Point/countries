@@ -20,7 +20,7 @@ if (!function_exists('moneyFormat')) {
     }
 }
 
-if (!function_exists('moneyFormatFromCents')) {
+if (!function_exists('moneyFormatFromInt')) {
 
     /**
      * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
