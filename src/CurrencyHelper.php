@@ -26,7 +26,8 @@ class CurrencyHelper extends LocalizedHelper
     }
 
     /**
-     * Return a value in the given currency formatted for the given locale from integer amount.
+     * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
+     * with the right currency symbol and the right localised format for the parameters respectively given.
      *
      * @param int $value
      * @param string $currencyCode
