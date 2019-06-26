@@ -26,6 +26,21 @@ class CurrencyHelper extends LocalizedHelper
     }
 
     /**
+     * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
+     * with the right currency symbol and the right localised format for the parameters respectively given.
+     *
+     * @param int $value
+     * @param string $currencyCode
+     * @param string $locale
+     *
+     * @return string
+     */
+    public function toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    {
+        return $this->toFormat($value / 100, $currencyCode, $locale);
+    }
+
+    /**
      * Return a currency symbol formatted in the right locale.
      *
      * @param string $locale

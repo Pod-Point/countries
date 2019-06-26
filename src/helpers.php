@@ -20,6 +20,24 @@ if (!function_exists('moneyFormat')) {
     }
 }
 
+if (!function_exists('moneyFormatFromInt')) {
+
+    /**
+     * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
+     * with the right currency symbol and the right localised format for the parameters respectively given.
+     *
+     * @param int $value
+     * @param string $currencyCode
+     * @param string $locale
+     *
+     * @return string
+     */
+    function moneyFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    {
+        return CurrencyHelper::toFormatFromInt($value, $currencyCode, $locale);
+    }
+}
+
 if (!function_exists('getCurrencySymbol')) {
 
     /**
