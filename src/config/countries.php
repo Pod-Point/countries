@@ -434,6 +434,11 @@ return [
     'IE' => [
         'name' => 'Ireland',
         'diallingCode' => 353,
+        'systemLocale' => 'en_IE.UTF-8',
+        'locale' => 'ie',
+        'language' => 'ENG',
+        'tld' => 'com',
+        'timezone' => 'Europe/London',
     ],
     'IM' => [
         'name' => 'Isle of Man',
