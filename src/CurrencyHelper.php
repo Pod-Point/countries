@@ -22,6 +22,10 @@ class CurrencyHelper extends LocalizedHelper
             NumberFormatter::CURRENCY
         );
 
+        // NumberFormatter will round up with 2 decimals only by default.
+        // Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
+        $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
+
         return $formatter->formatCurrency($value, $currencyCode);
     }
 

@@ -111,7 +111,7 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
-     * Tests that it returns formatted value from cents.
+     * Tests that it returns formatted value fractional monetary values.
      */
     public function testToFormatFromInt()
     {
@@ -126,6 +126,26 @@ class CurrencyHelperTest extends TestCase
 
         $expected = '£15.50';
         $actual = $currencyHelper->toFormatFromInt('1550');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that it returns formatted value with up to six decimals from fractional monetary values.
+     */
+    public function testToFormatCanDisplayUpToSixDecimals()
+    {
+        $config = $this->createMock(Repository::class);
+        $currencyHelper = new CurrencyHelper($config);
+        $countries = require __DIR__ . '/../src/config/countries.php';
+
+        $config->expects($this->once())
+            ->method('get')
+            ->with('countries')
+            ->willReturn($countries);
+
+        $expected = '£0.106544';
+        $actual = $currencyHelper->toFormat('0.106544');
 
         $this->assertEquals($expected, $actual);
     }

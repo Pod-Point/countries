@@ -53,7 +53,7 @@ class CountriesServiceProvider extends ServiceProvider
             $countryCode = $isoData['alpha2'];
             $configData = array_get($data, $countryCode, []);
 
-            array_set($data, $countryCode, array_merge($configData, $isoData));
+            array_set($data, $countryCode, array_merge($isoData, $configData));
         }
 
         return $data;

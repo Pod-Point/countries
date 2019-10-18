@@ -12,7 +12,7 @@ Require the package in composer:
 
 ```javascript
 "require": {
-    "pod-point/countries": "^2.0"
+    "pod-point/countries": "^3.0"
 },
 ```
 
