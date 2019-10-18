@@ -432,7 +432,7 @@ return [
         'diallingCode' => 964,
     ],
     'IE' => [
-        'name' => 'Ireland',
+        'name' => 'Republic of Ireland',
         'diallingCode' => 353,
         'systemLocale' => 'en_IE.UTF-8',
         'locale' => 'ie',
