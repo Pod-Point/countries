@@ -437,8 +437,8 @@ return [
         'systemLocale' => 'en_IE.UTF-8',
         'locale' => 'ie',
         'language' => 'ENG',
-        'tld' => 'com',
-        'timezone' => 'Europe/London',
+        'tld' => 'ie',
+        'timezone' => 'Europe/Dublin',
     ],
     'IM' => [
         'name' => 'Isle of Man',
