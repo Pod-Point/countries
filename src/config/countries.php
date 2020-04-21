@@ -432,8 +432,13 @@ return [
         'diallingCode' => 964,
     ],
     'IE' => [
-        'name' => 'Ireland',
+        'name' => 'Republic of Ireland',
         'diallingCode' => 353,
+        'systemLocale' => 'en_IE.UTF-8',
+        'locale' => 'ie',
+        'language' => 'ENG',
+        'tld' => 'ie',
+        'timezone' => 'Europe/Dublin',
     ],
     'IM' => [
         'name' => 'Isle of Man',

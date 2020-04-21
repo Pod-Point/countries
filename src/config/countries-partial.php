@@ -16,4 +16,5 @@ use PodPoint\I18n\CountryCode;
 return [
     CountryCode::NORWAY,
     CountryCode::UNITED_KINGDOM,
+    CountryCode::IRELAND,
 ];
