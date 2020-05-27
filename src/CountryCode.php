@@ -2,7 +2,9 @@
 
 namespace PodPoint\I18n;
 
-class CountryCode
+use MyCLabs\Enum\Enum;
+
+class CountryCode extends Enum
 {
     const UNITED_KINGDOM = 'GB';
     const NORWAY = 'NO';
