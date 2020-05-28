@@ -6,5 +6,12 @@ use PodPoint\I18n\CountryCode;
 
 interface Service
 {
-    public function getVatRate(CountryCode $countryCode): ?VatRate;
+    /**
+     * Returns vat rate for a specific country.
+     *
+     * @param CountryCode $countryCode
+     *
+     * @return VatRate
+     */
+    public function getVatRate(CountryCode $countryCode): VatRate;
 }

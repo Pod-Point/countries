@@ -10,7 +10,8 @@
         "illuminate/view": "5.*",
         "league/iso3166": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
-        "myclabs/php-enum": "^1.7"
+        "myclabs/php-enum": "^1.7",
+        "league/flysystem-aws-s3-v3": "~1.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",
