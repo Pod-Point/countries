@@ -2,10 +2,10 @@
 
 namespace PodPoint\I18n\Providers;
 
-use Illuminate\Config\Repository;
-use Illuminate\Support\ServiceProvider;
 use League\ISO3166\ISO3166;
+use Illuminate\Config\Repository;
 use PodPoint\I18n\CurrencyHelper;
+use Illuminate\Support\ServiceProvider;
 
 class CountriesServiceProvider extends ServiceProvider
 {
@@ -47,16 +47,9 @@ class CountriesServiceProvider extends ServiceProvider
      */
     private function addIsoInfoToCountryConfig(array $data)
     {
-        $isoCountries = (new ISO3166())->all();
-
-        foreach ($isoCountries as $isoData) {
-            $countryCode = $isoData['alpha2'];
-            $configData = array_get($data, $countryCode, []);
-
-            array_set($data, $countryCode, array_merge($isoData, $configData));
-        }
-
-        return $data;
+        return collect($data)->transform(function ($country, $countryCode) {
+            return array_merge($country, (new ISO3166)->alpha2($countryCode));
+        })->sortBy('alpha2')->toArray();
     }
 
     /**
@@ -67,6 +60,7 @@ class CountriesServiceProvider extends ServiceProvider
     private function setCountryConfig(Repository $config)
     {
         $countries = require __DIR__ . '/../config/countries.php';
+
         $countries = $this->addIsoInfoToCountryConfig($countries);
 
         $config->set('countries', $countries);

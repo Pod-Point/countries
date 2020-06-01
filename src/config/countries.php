@@ -435,7 +435,7 @@ return [
         'name' => 'Republic of Ireland',
         'diallingCode' => 353,
         'systemLocale' => 'en_IE.UTF-8',
-        'locale' => 'ie',
+        'locale' => 'en',
         'language' => 'ENG',
         'tld' => 'ie',
         'timezone' => 'Europe/Dublin',
