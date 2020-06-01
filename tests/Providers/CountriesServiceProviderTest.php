@@ -7,7 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use PHPUnit\Framework\TestCase;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
 
-class TestCountriesServiceProvider extends TestCase
+class CountriesServiceProviderTest extends TestCase
 {
     /**
      * Application mock.

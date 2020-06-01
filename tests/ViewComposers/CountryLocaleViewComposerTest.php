@@ -7,7 +7,7 @@ use PodPoint\I18n\ViewComposers\CountryLocaleViewComposer;
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
 
-class TestCountryLocaleViewComposer extends TestCase
+class CountryLocaleViewComposerTest extends TestCase
 {
     /**
      * Makes sure every methods of the view composer are called properly.
