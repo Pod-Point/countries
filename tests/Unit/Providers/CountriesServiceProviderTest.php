@@ -6,6 +6,7 @@ use PodPoint\I18n\CountryCode;
 use Illuminate\Config\Repository;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
+use PodPoint\I18n\CurrencyHelper;
 
 class CountriesServiceProviderTest extends TestCase
 {
@@ -38,7 +39,8 @@ class CountriesServiceProviderTest extends TestCase
 
         $this->app->expects($this->at(0))
             ->method('singleton')
-            ->with('currency.helper');
+            ->with('currency.helper')
+            ->willReturn(new CurrencyHelper($this->app->config));
 
         $this->app->expects($this->at(1))
             ->method('alias')

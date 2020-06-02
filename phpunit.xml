@@ -10,19 +10,19 @@
          stopOnFailure="false">
     <filter>
         <whitelist>
-            <directory suffix=".php">./src</directory>
+            <directory suffix=".php">src</directory>
             <exclude>
-                <directory>./src/config</directory>
-                <directory>./src/Facades</directory>
-                <directory>./vendor</directory>
-                <directory>./tests</directory>
-                <file>./src/helpers.php</file>
+                <directory suffix=".php">src/config</directory>
+                <directory suffix=".php">tests</directory>
+                <directory suffix=".php">vendor</directory>
+                <file>src/helpers.php</file>
+                <file>src/Facades/CurrencyHelper.php</file>
             </exclude>
         </whitelist>
     </filter>
     <testsuites>
         <testsuite name="unit">
-            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
