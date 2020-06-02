@@ -16,6 +16,7 @@
                 <directory>./src/Facades</directory>
                 <directory>./vendor</directory>
                 <directory>./tests</directory>
+                <file>./src/helpers.php</file>
             </exclude>
         </whitelist>
     </filter>
