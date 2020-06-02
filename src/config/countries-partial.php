@@ -2,19 +2,40 @@
 
 /*
 |--------------------------------------------------------------------------
-| Partial List of Countries
+| Partial List of Supported Countries
 |--------------------------------------------------------------------------
 |
-| A partial list of country names and international dialling codes, indexed by their
-| uppercase ISO country code; to be used when we don't need to display a full list of
-| countries to the end user.
+| A partial list of supported country uppercase ISO country code (alpha2).
+| This so we can:
+| * Define the limited supported countries for our system.
+| * Add any miscellaneous information to a specific Country.
+|
+| Note: this will also end up merged within the main `countries` config entries.
 |
 */
 
 use PodPoint\I18n\CountryCode;
 
 return [
-    CountryCode::NORWAY,
-    CountryCode::UNITED_KINGDOM,
-    CountryCode::IRELAND,
+    CountryCode::UNITED_KINGDOM => [
+        'systemLocale' => 'en_GB.UTF-8',
+        'locale' => 'en',
+        'language' => 'ENG',
+        'tld' => 'com',
+        'timezone' => 'Europe/London',
+    ],
+    CountryCode::IRELAND => [
+        'systemLocale' => 'en_IE.UTF-8',
+        'locale' => 'en',
+        'language' => 'ENG',
+        'tld' => 'ie',
+        'timezone' => 'Europe/Dublin',
+    ],
+    CountryCode::NORWAY => [
+        'locale' => 'no',
+        'systemLocale' => 'nb_NO.UTF-8',
+        'language' => 'NOR',
+        'tld' => 'no',
+        'timezone' => 'Europe/Oslo',
+    ],
 ];

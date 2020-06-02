@@ -1,11 +1,11 @@
 <?php
 
-namespace PodPoint\I18n\Tests\ViewComposers;
+namespace PodPoint\I18n\Tests\Unit\ViewComposers;
 
-use PHPUnit\Framework\TestCase;
-use PodPoint\I18n\ViewComposers\CountryLocaleViewComposer;
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
+use PodPoint\I18n\Tests\TestCase;
+use PodPoint\I18n\ViewComposers\CountryLocaleViewComposer;
 
 class CountryLocaleViewComposerTest extends TestCase
 {
