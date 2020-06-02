@@ -25,6 +25,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         $this->app = $this->createMock(Application::class);
+        $this->app->config = new Repository();
     }
 
     /**
