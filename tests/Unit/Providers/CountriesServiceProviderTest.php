@@ -36,6 +36,14 @@ class CountriesServiceProviderTest extends TestCase
 
         $this->app->config = $configMock;
 
+        $this->app->expects($this->at(0))
+            ->method('singleton')
+            ->with('currency.helper');
+
+        $this->app->expects($this->at(1))
+            ->method('alias')
+            ->with('currency.helper');
+
         $this->loadCountriesServiceProvider();
     }
 

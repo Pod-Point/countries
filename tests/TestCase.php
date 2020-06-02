@@ -4,6 +4,7 @@ namespace PodPoint\I18n\Tests;
 
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
+use PHPUnit\Framework\MockObject\MockObject;
 use Illuminate\Contracts\Foundation\Application;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -13,7 +14,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Application mock.
      *
-     * @var Application
+     * @var Application|MockObject
      */
     protected $app;
 
