@@ -3,24 +3,20 @@
 namespace PodPoint\I18n\Tests\Unit\ViewComposers;
 
 use Illuminate\View\View;
-use Illuminate\Config\Repository;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\ViewComposers\CountryLocaleViewComposer;
 
 class CountryLocaleViewComposerTest extends TestCase
 {
     /**
-     * Makes sure every methods of the view composer are called properly.
+     * Makes sure CountryLocaleViewComposer returns the supported languages/locales options within
+     * the `countryLocalesOptions` view variable.
      */
     public function testCompose()
     {
-        /** @var Repository|\PHPUnit\Framework\MockObject\MockObject $configMock */
-        $configMock = $this->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['get'])
-            ->getMock();
+        $this->loadConfiguration()->loadServiceProvider();
 
-        $countryLocaleViewComposer = new CountryLocaleViewComposer($configMock);
+        $countryLocaleViewComposer = new CountryLocaleViewComposer($this->app->config);
 
         /** @var View|\PHPUnit_Framework_MockObject_MockObject $viewMock */
         $viewMock = $this->getMockBuilder(View::class)
@@ -29,22 +25,11 @@ class CountryLocaleViewComposerTest extends TestCase
             ->getMock();
 
         $viewMock->expects($this->once())
-            ->method('with');
-
-        $configMock->expects($this->once())
-            ->method('get')
-            ->willReturn([
-                'NO' => [
-                    'name' => 'Norway',
-                    'diallingCode' => 47,
-                    'locale' => 'no',
-                    'language' => 'NOR',
-                ],
-                'GB' => [
-                    'name' => 'United Kingdom',
-                    'diallingCode' => 44,
-                    'locale' => 'en',
-                    'language' => 'ENG',
+            ->method('with')
+            ->with([
+                'countryLocalesOptions' => [
+                    'en' => 'ENG',
+                    'no' => 'NOR',
                 ],
             ]);
 

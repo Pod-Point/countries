@@ -3,7 +3,6 @@
 namespace PodPoint\I18n\Tests\Unit\ViewComposers;
 
 use Illuminate\View\View;
-use Illuminate\Config\Repository;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\ViewComposers\CountryCodeViewComposer;
 
@@ -14,13 +13,9 @@ class CountryCodeViewComposerTest extends TestCase
      */
     public function testCompose()
     {
-        /** @var Repository|\PHPUnit\Framework\MockObject\MockObject $configMock */
-        $configMock = $this->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['get'])
-            ->getMock();
+        $this->loadConfiguration()->loadServiceProvider();
 
-        $countryLocaleViewComposer = new CountryCodeViewComposer($configMock);
+        $countryLocaleViewComposer = new CountryCodeViewComposer($this->app->config);
 
         /** @var View|\PHPUnit_Framework_MockObject_MockObject $viewMock */
         $viewMock = $this->getMockBuilder(View::class)
@@ -29,25 +24,14 @@ class CountryCodeViewComposerTest extends TestCase
             ->getMock();
 
         $viewMock->expects($this->once())
-            ->method('with');
-
-        $configMock->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn([
-                'NO' => [
-                    'name' => 'Norway',
-                    'diallingCode' => 47,
-                    'locale' => 'no',
-                    'language' => 'NOR',
-                ],
-                'GB' => [
-                    'name' => 'United Kingdom',
-                    'diallingCode' => 44,
-                    'locale' => 'en',
-                    'language' => 'ENG',
-                ],
-            ]);
+            ->method('with')
+            ->with($this->callback(function ($array) {
+                return $this->isJson()->evaluate(
+                    $array['countryCodeOptions'],
+                    'countryCodeOptions returned by CountryCodeViewComposer is not a valid json string.',
+                    true
+                );
+            }));
 
         $countryLocaleViewComposer->compose($viewMock);
     }
