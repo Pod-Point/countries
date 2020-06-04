@@ -41,7 +41,7 @@ class NumberHelperTest extends TestCase
      */
     public function testToFormat(float $value, string $locale, string $expected)
     {
-        $this->loadConfiguration()->loadCountriesServiceProvider();
+        $this->loadConfiguration()->loadServiceProvider();
 
         $currencyHelper = new NumberHelper($this->app->config);
 

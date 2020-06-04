@@ -51,7 +51,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Execute the package service provider and load the final configuration onto the Application Mock.
      */
-    public function loadCountriesServiceProvider()
+    public function loadServiceProvider()
     {
         (new CountriesServiceProvider($this->app))->register();
 

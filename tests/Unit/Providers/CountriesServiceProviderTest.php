@@ -46,7 +46,7 @@ class CountriesServiceProviderTest extends TestCase
             ->method('alias')
             ->with('currency.helper');
 
-        $this->loadCountriesServiceProvider();
+        $this->loadServiceProvider();
     }
 
     /**
@@ -74,7 +74,7 @@ class CountriesServiceProviderTest extends TestCase
         $this->assertArrayNotHasKey('numeric', $countryWithBasicInfo);
         $this->assertArrayNotHasKey('currency', $countryWithBasicInfo);
 
-        $this->loadCountriesServiceProvider();
+        $this->loadServiceProvider();
 
         collect([
             $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM),
@@ -100,7 +100,7 @@ class CountriesServiceProviderTest extends TestCase
      */
     public function testPartialCountriesConfigHasOnlySupportedCountriesAndLocales()
     {
-        $this->loadConfiguration()->loadCountriesServiceProvider();
+        $this->loadConfiguration()->loadServiceProvider();
 
         $countryCodes = array_keys($this->app->config->get('supported-countries'));
 
