@@ -39,7 +39,7 @@ class CountryLocaleViewComposer
      */
     public function compose(View $view)
     {
-        $countryLocalesOptions = collect($this->config->get('countries-partial', []))
+        $countryLocalesOptions = collect($this->config->get('supported-countries', []))
             ->pluck('language', 'locale')
             ->toArray();
 

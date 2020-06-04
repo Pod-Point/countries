@@ -36,7 +36,7 @@ class CountriesServiceProvider extends ServiceProvider
     {
         $countries = collect(require __DIR__ . '/../config/countries.php');
 
-        $partialCountries = collect(require __DIR__ . '/../config/countries-partial.php');
+        $partialCountries = collect(require __DIR__ . '/../config/supported-countries.php');
 
         /** @var Collection $enhancedCountries */
         $enhancedCountries = $countries->pipe(function ($countries) {
@@ -49,7 +49,7 @@ class CountriesServiceProvider extends ServiceProvider
 
         $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
 
-        $this->app->config->set('countries-partial', $onlySupportedCountries->toArray());
+        $this->app->config->set('supported-countries', $onlySupportedCountries->toArray());
     }
 
     /**
