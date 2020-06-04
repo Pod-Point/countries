@@ -8,15 +8,11 @@ use Illuminate\Config\Repository;
 class CountryCodeViewComposer
 {
     /**
-     * Instance of Config Repository.
-     *
      * @var Repository
      */
-    protected $config;
+    private $config;
 
     /**
-     * CountryLocaleViewComposer constructor.
-     *
      * @param Repository $config
      */
     public function __construct(Repository $config)

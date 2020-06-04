@@ -3,13 +3,8 @@
 namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
-use League\ISO3166\ISO3166;
-use PodPoint\I18n\CountryCode;
 use Illuminate\Config\Repository;
 
-/**
- * @property array $countryLocalesOptions
- */
 class CountryLocaleViewComposer
 {
     /**
