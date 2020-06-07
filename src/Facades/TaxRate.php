@@ -15,6 +15,6 @@ class TaxRate extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'taxrate';
+        return 'i18n.taxrate';
     }
 }

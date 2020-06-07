@@ -38,10 +38,10 @@ class CountriesServiceProvider extends ServiceProvider
         });
         $this->app->alias('currency.helper', CurrencyHelper::class);
 
-        $this->app->singleton('tax.rate', function ($app) {
+        $this->app->singleton('i18n.taxrate', function ($app) {
             return new TaxRate(new VatCalculator($app->config));
         });
-        $this->app->alias('tax.rate', TaxRate::class);
+        $this->app->alias('i18n.taxrate', TaxRate::class);
     }
 
     /**
