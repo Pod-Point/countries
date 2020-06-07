@@ -35,5 +35,12 @@
         "psr-4": {
             "PodPoint\\I18n\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "mpociot/vat-calculator"
+            ]
+        }
     }
 }
