@@ -39,10 +39,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         try {
             $this->app->config = new Repository([
                 'countries' => $filesystem->getRequire(__DIR__ . '/../src/config/countries.php'),
-                'supported-countries' => $filesystem->getRequire(__DIR__ . '/../src/config/supported-countries.php'),
+                'countries-partial' => $filesystem->getRequire(__DIR__ . '/../src/config/countries-partial.php'),
             ]);
         } catch (FileNotFoundException $e) {
-            die("Package configuration files ['src/config/countries', 'src/config/supported-countries'] not found.");
+            die("Package configuration files ['src/config/countries', 'src/config/countries-partial'] not found.");
         }
 
         return $this;

@@ -33,7 +33,7 @@ class CountriesServiceProviderTest extends TestCase
 
         $configMock->expects($this->at(1))
             ->method('set')
-            ->with('supported-countries');
+            ->with('countries-partial');
 
         $this->app->config = $configMock;
 
@@ -52,8 +52,8 @@ class CountriesServiceProviderTest extends TestCase
     /**
      * Make sure the additional info from `league/iso3166` package is automatically merged and
      * loaded with our `countries` configuration file as well as our miscellaneous bespoke
-     * Laravel data from `supported-countries` config. Both should have the same data in
-     * the end, `supported-countries` will just but a filtered version with only the
+     * Laravel data from `countries-partial` config. Both should have the same data in
+     * the end, `countries-partial` will just but a filtered version with only the
      * supported countries.
      */
     public function testCountriesConfigIsEnhancedWithAdditionalInfo()
@@ -78,7 +78,7 @@ class CountriesServiceProviderTest extends TestCase
 
         collect([
             $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM),
-            $this->app->config->get('supported-countries.' . CountryCode::UNITED_KINGDOM),
+            $this->app->config->get('countries-partial.' . CountryCode::UNITED_KINGDOM),
         ])->each(function ($enhancedCountry) {
             $this->assertArrayHasKey('name', $enhancedCountry);
             $this->assertArrayHasKey('diallingCode', $enhancedCountry);
@@ -102,7 +102,7 @@ class CountriesServiceProviderTest extends TestCase
     {
         $this->loadConfiguration()->loadServiceProvider();
 
-        $countryCodes = array_keys($this->app->config->get('supported-countries'));
+        $countryCodes = array_keys($this->app->config->get('countries-partial'));
 
         $this->assertEquals([
              CountryCode::UNITED_KINGDOM,
@@ -110,7 +110,7 @@ class CountriesServiceProviderTest extends TestCase
              CountryCode::NORWAY,
         ], $countryCodes);
 
-        collect($this->app->config->get('supported-countries'))->each(function ($country) {
+        collect($this->app->config->get('countries-partial'))->each(function ($country) {
             $supportedLocales = ['en', 'no'];
 
             if (isset($country['locale'])) {
