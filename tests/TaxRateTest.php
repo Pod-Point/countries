@@ -109,4 +109,45 @@ class TaxRateTest extends TestCase
     {
         $this->assertEquals($vatPrice, $this->taxRate->calculate($netPrice, $countryCode));
     }
+
+    /**
+     * Data Provider for testWeCanCalculatePriceExcludingVat()
+     *
+     * @return array
+     */
+    public function supportedCountriesExclusionDataProvider()
+    {
+        return [
+            [
+                $countryCode = CountryCode::IRELAND,
+                $grossPrice = 123.00,
+                $exVatPrice = 100.00,
+            ],
+            [
+                $countryCode = CountryCode::NORWAY,
+                $grossPrice = 125.00,
+                $exVatPrice = 100.00,
+            ],
+            [
+                $countryCode = CountryCode::UNITED_KINGDOM,
+                $grossPrice = 120.00,
+                $exVatPrice = 100.00,
+            ],
+        ];
+    }
+
+    /**
+     * Make sure we can calculate the price before tax (excluding VAT) based on a gross price, after tax,
+     * for a specific country. We only test the supported countries through a Data Provider.
+     *
+     * @param string $countryCode
+     * @param float $grossPrice
+     * @param float $exVatPrice
+     *
+     * @dataProvider supportedCountriesExclusionDataProvider
+     */
+    public function testWeCanCalculatePriceExcludingVat(string $countryCode, float $grossPrice, float $exVatPrice)
+    {
+        $this->assertEquals($exVatPrice, $this->taxRate->exclude($grossPrice, $countryCode));
+    }
 }

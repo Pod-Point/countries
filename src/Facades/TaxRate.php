@@ -5,6 +5,7 @@ namespace PodPoint\I18n\Facades;
 /**
  * @method static float get(string $countryCode)
  * @method static float calculate(int|float $netPrice, string $countryCode, string|null $postalCode, bool|null $company, string|null $type)
+ * @method static float exclude(int|float $netPrice, string $countryCode, string|null $postalCode, bool|null $company, string|null $type)
  */
 class TaxRate extends \Illuminate\Support\Facades\Facade
 {
