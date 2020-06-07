@@ -2,10 +2,12 @@
 
 namespace PodPoint\I18n\Providers;
 
-use Illuminate\Config\Repository;
-use Illuminate\Support\ServiceProvider;
+use PodPoint\I18n\TaxRate;
 use League\ISO3166\ISO3166;
 use PodPoint\I18n\CurrencyHelper;
+use Illuminate\Config\Repository;
+use Illuminate\Support\ServiceProvider;
+use Mpociot\VatCalculator\VatCalculator;
 
 class CountriesServiceProvider extends ServiceProvider
 {
@@ -32,10 +34,14 @@ class CountriesServiceProvider extends ServiceProvider
         $this->setCountryConfig($config);
 
         $this->app->singleton('currency.helper', function ($app) {
-            return new CurrencyHelper($this->app->config);
+            return new CurrencyHelper($app->config);
         });
-
         $this->app->alias('currency.helper', CurrencyHelper::class);
+
+        $this->app->singleton('tax.rate', function ($app) {
+            return new TaxRate(new VatCalculator($app->config));
+        });
+        $this->app->alias('tax.rate', TaxRate::class);
     }
 
     /**

@@ -2,11 +2,7 @@
 
 namespace PodPoint\I18n\Facades;
 
-/**
- * @method static string getSymbol()
- * @method static string toFormat()
- */
-class CurrencyHelper extends \Illuminate\Support\Facades\Facade
+class TaxRate extends \Illuminate\Support\Facades\Facade
 {
     /**
      * Get the registered name of the component.
@@ -15,6 +11,6 @@ class CurrencyHelper extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'currency.helper';
+        return 'taxrate';
     }
 }
