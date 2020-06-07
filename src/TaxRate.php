@@ -17,25 +17,30 @@ class TaxRate
     }
 
     /**
+     * Returns the tax rate for the given country code.
+     *
      * @param string $countryCode
      *
      * @return float
      */
     public function get(string $countryCode): float
     {
-        return (float) $this->vatCalculator->getTaxRateForLocation($countryCode);
+        return (float) $this->vatCalculator->getTaxRateForCountry($countryCode);
     }
 
     /**
-     * @param int|float $netPrice
-     * @param string|null $countryCode
-     * @param null $postalCode
-     * @param null $company
-     * @param null $type
+     * Calculate the VAT based on the net price, country code and indication if the
+     * customer is a company or not.
+     *
+     * @param int|float $netPrice The net price to use for the calculation
+     * @param string $countryCode The country code to use for the rate lookup
+     * @param string|null $postalCode The postal code to use for the rate exception lookup
+     * @param bool|null $company Whether or not the customer is a company
+     * @param string|null $type The type can be low or high
      *
      * @return float
      */
-    public function calculate($netPrice, string $countryCode = null, $postalCode = null, $company = null, $type = null): float
+    public function calculate($netPrice, string $countryCode, $postalCode = null, $company = null, $type = null): float
     {
         return (float) $this->vatCalculator->calculate($netPrice, $countryCode, $postalCode, $company, $type);
     }
