@@ -5,6 +5,7 @@ namespace PodPoint\I18n\Providers;
 use PodPoint\I18n\TaxRate;
 use League\ISO3166\ISO3166;
 use PodPoint\I18n\CurrencyHelper;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Mpociot\VatCalculator\VatCalculator;
 
@@ -17,17 +18,25 @@ class CountriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadConfiguration();
+        $this->mergeConfig();
 
-        $this->app->singleton('currency.helper', function ($app) {
-            return new CurrencyHelper($app->config);
-        });
-        $this->app->alias('currency.helper', CurrencyHelper::class);
+        $this->registerBindings();
 
-        $this->app->singleton('i18n.taxrate', function ($app) {
-            return new TaxRate(new VatCalculator($app->config));
-        });
-        $this->app->alias('i18n.taxrate', TaxRate::class);
+        $this->registerFacades();
+    }
+
+    /**
+     * Merges user's and teamwork's configs.
+     *
+     * @return void
+     */
+    protected function mergeConfig()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/countries.php', 'countries');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/countries-partial.php', 'countries-partial');
+
+        $this->enhanceConfig();
     }
 
     /**
@@ -37,11 +46,10 @@ class CountriesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function loadConfiguration()
+    protected function enhanceConfig()
     {
-        $countries = collect(require __DIR__ . '/../config/countries.php');
-
-        $partialCountries = collect(require __DIR__ . '/../config/countries-partial.php');
+        $countries = collect($this->app['config']->get('countries'));
+        $partialCountries = collect($this->app['config']->get('countries-partial'));
 
         /** @var Collection $enhancedCountries */
         $enhancedCountries = $countries->pipe(function ($countries) {
@@ -50,11 +58,10 @@ class CountriesServiceProvider extends ServiceProvider
             return $this->addPartialInfoToCountryConfig($countries, $partialCountries);
         });
 
-        $this->app->config->set('countries', $enhancedCountries->toArray());
-
         $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
 
-        $this->app->config->set('countries-partial', $onlySupportedCountries->toArray());
+        $this->app['config']->set('countries', $enhancedCountries->toArray());
+        $this->app['config']->set('countries-partial', $onlySupportedCountries->toArray());
     }
 
     /**
@@ -64,7 +71,7 @@ class CountriesServiceProvider extends ServiceProvider
      *
      * @return Collection
      */
-    private function addIsoInfoToCountryConfig(Collection $countries)
+    protected function addIsoInfoToCountryConfig(Collection $countries)
     {
         return $countries->transform(function ($countryDefinition, $countryCode) {
             return array_merge((new ISO3166)->alpha2($countryCode), $countryDefinition);
@@ -80,10 +87,41 @@ class CountriesServiceProvider extends ServiceProvider
      *
      * @return Collection
      */
-    private function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries)
+    protected function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries)
     {
         return $countries->transform(function ($countryDefinition, $alpha2) use ($partialCountries) {
             return array_merge($countryDefinition, $partialCountries->get($alpha2) ?? []);
+        });
+    }
+
+    /**
+     * Register the application bindings.
+     *
+     * @return void
+     */
+    protected function registerBindings()
+    {
+        $this->app->bind('currency.helper', CurrencyHelper::class);
+        $this->app->singleton(CurrencyHelper::class, function ($app) {
+            return new CurrencyHelper($app->config);
+        });
+
+        $this->app->bind('i18n.taxrate', TaxRate::class);
+        $this->app->singleton(TaxRate::class, function ($app) {
+            return new TaxRate(new VatCalculator($app->config));
+        });
+    }
+
+    /**
+     * Register the facades without the user having to add it to the app.php file.
+     *
+     * @return void
+     */
+    protected function registerFacades()
+    {
+        $this->app->booting(function () {
+            $this->app->alias('currency.helper', CurrencyHelper::class);
+            $this->app->alias('i18n.taxrate', TaxRate::class);
         });
     }
 }
