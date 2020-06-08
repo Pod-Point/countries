@@ -26,15 +26,22 @@ class CountriesServiceProvider extends ServiceProvider
     }
 
     /**
-     * Merges user's and teamwork's configs.
+     * Merges user's and application's configs before injecting additional information
+     * into the loaded configs (enhancing).
      *
      * @return void
      */
     protected function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/countries.php', 'countries');
-
-        $this->mergeConfigFrom(__DIR__ . '/../config/countries-partial.php', 'countries-partial');
+        collect([
+            'countries',
+            'countries-partial',
+        ])->each(function ($key) {
+            $this->app->config->set($key, array_merge(
+                require __DIR__ . "/../config/$key.php",
+                $this->app->config->get($key, [])
+            ));
+        });
 
         $this->enhanceConfig();
     }
@@ -48,8 +55,8 @@ class CountriesServiceProvider extends ServiceProvider
      */
     protected function enhanceConfig()
     {
-        $countries = collect($this->app['config']->get('countries'));
-        $partialCountries = collect($this->app['config']->get('countries-partial'));
+        $countries = collect($this->app->config->get('countries'));
+        $partialCountries = collect($this->app->config->get('countries-partial'));
 
         /** @var Collection $enhancedCountries */
         $enhancedCountries = $countries->pipe(function ($countries) {
@@ -60,8 +67,8 @@ class CountriesServiceProvider extends ServiceProvider
 
         $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
 
-        $this->app['config']->set('countries', $enhancedCountries->toArray());
-        $this->app['config']->set('countries-partial', $onlySupportedCountries->toArray());
+        $this->app->config->set('countries', $enhancedCountries->toArray());
+        $this->app->config->set('countries-partial', $onlySupportedCountries->toArray());
     }
 
     /**
