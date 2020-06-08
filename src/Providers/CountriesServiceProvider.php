@@ -108,13 +108,11 @@ class CountriesServiceProvider extends ServiceProvider
      */
     protected function registerBindings()
     {
-        $this->app->bind('currency.helper', CurrencyHelper::class);
-        $this->app->singleton(CurrencyHelper::class, function ($app) {
+        $this->app->singleton('currency.helper', function ($app) {
             return new CurrencyHelper($app->config);
         });
 
-        $this->app->bind('i18n.taxrate', TaxRate::class);
-        $this->app->singleton(TaxRate::class, function ($app) {
+        $this->app->singleton('i18n.taxrate', function ($app) {
             return new TaxRate(new VatCalculator($app->config));
         });
     }
