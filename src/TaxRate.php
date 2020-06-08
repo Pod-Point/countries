@@ -25,7 +25,7 @@ class TaxRate
      */
     public function get(string $countryCode): float
     {
-        return (float) $this->vatCalculator->getTaxRateForCountry($countryCode);
+        return $this->vatCalculator->getTaxRateForCountry($countryCode);
     }
 
     /**
@@ -40,9 +40,9 @@ class TaxRate
      *
      * @return float
      */
-    public function calculate($netPrice, string $countryCode, $postalCode = null, $company = null, $type = null): float
+    public function calculate($netPrice, string $countryCode, string $postalCode = null, bool $company = null, string $type = null): float
     {
-        return (float) $this->vatCalculator->calculate($netPrice, $countryCode, $postalCode, $company, $type);
+        return $this->vatCalculator->calculate($netPrice, $countryCode, $postalCode, $company, $type);
     }
 
     /**
@@ -57,8 +57,8 @@ class TaxRate
      *
      * @return float
      */
-    public function exclude($grossPrice, string $countryCode, $postalCode = null, $company = null, $type = null): float
+    public function exclude($grossPrice, string $countryCode, string $postalCode = null, bool $company = null, string $type = null): float
     {
-        return (float) $this->vatCalculator->calculateNet($grossPrice, $countryCode, $postalCode, $company, $type);
+        return $this->vatCalculator->calculateNet($grossPrice, $countryCode, $postalCode, $company, $type);
     }
 }
