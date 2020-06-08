@@ -14,14 +14,8 @@ class CountryHelper extends Helper
      */
     public function findBy(string $property, $value)
     {
-        $countries = $this->config->get('countries');
-
-        foreach ($countries as $country) {
-            if (array_get($country, $property) === $value) {
-                return $country;
-            }
-        }
-
-        return null;
+        return collect($this->config->get('countries'))
+            ->where($property, $value)
+            ->first();
     }
 }

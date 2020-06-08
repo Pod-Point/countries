@@ -5,22 +5,11 @@ namespace PodPoint\I18n\Providers;
 use PodPoint\I18n\TaxRate;
 use League\ISO3166\ISO3166;
 use PodPoint\I18n\CurrencyHelper;
-use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Mpociot\VatCalculator\VatCalculator;
 
 class CountriesServiceProvider extends ServiceProvider
 {
-    /**
-     * The configuration files to be loaded indexed by the configuration names.
-     *
-     * @var array
-     */
-    private $config = [
-        'countries',
-        'countries-partial'
-    ];
-
     /**
      * Register any application services.
      *
@@ -28,10 +17,7 @@ class CountriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        /** @var \Illuminate\Config\Repository $config */
-        $config = $this->app->config;
-
-        $this->setCountryConfig($config);
+        $this->loadConfiguration();
 
         $this->app->singleton('currency.helper', function ($app) {
             return new CurrencyHelper($app->config);
@@ -45,58 +31,59 @@ class CountriesServiceProvider extends ServiceProvider
     }
 
     /**
+     * Here we'll merge the standard countries config file with additional information from
+     * 'league/iso3166' package as well as some miscellaneous data we manually add for
+     * Laravel support, like the `locale` for example.
+     *
+     * @return void
+     */
+    private function loadConfiguration()
+    {
+        $countries = collect(require __DIR__ . '/../config/countries.php');
+
+        $partialCountries = collect(require __DIR__ . '/../config/countries-partial.php');
+
+        /** @var Collection $enhancedCountries */
+        $enhancedCountries = $countries->pipe(function ($countries) {
+            return $this->addIsoInfoToCountryConfig($countries);
+        })->pipe(function ($countries) use ($partialCountries) {
+            return $this->addPartialInfoToCountryConfig($countries, $partialCountries);
+        });
+
+        $this->app->config->set('countries', $enhancedCountries->toArray());
+
+        $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
+
+        $this->app->config->set('countries-partial', $onlySupportedCountries->toArray());
+    }
+
+    /**
      * Adds ISO country information to our existing country configuration.
      *
-     * @param array $data
+     * @param Collection $countries
      *
-     * @return array
+     * @return Collection
      */
-    private function addIsoInfoToCountryConfig(array $data)
+    private function addIsoInfoToCountryConfig(Collection $countries)
     {
-        $isoCountries = (new ISO3166())->all();
-
-        foreach ($isoCountries as $isoData) {
-            $countryCode = $isoData['alpha2'];
-            $configData = array_get($data, $countryCode, []);
-
-            array_set($data, $countryCode, array_merge($isoData, $configData));
-        }
-
-        return $data;
+        return $countries->transform(function ($countryDefinition, $countryCode) {
+            return array_merge((new ISO3166)->alpha2($countryCode), $countryDefinition);
+        })->sortBy('alpha2');
     }
 
     /**
-     * Sets the country configuration.
+     * Adds miscellaneous country information, like the Laravel locale for each country for example,
+     * to our existing country configuration.
      *
-     * @param Repository $config
-     */
-    private function setCountryConfig(Repository $config)
-    {
-        $countries = require __DIR__ . '/../config/countries.php';
-        $countries = $this->addIsoInfoToCountryConfig($countries);
-
-        $config->set('countries', $countries);
-
-        $this->setPartialCountryConfig($config, $countries);
-    }
-
-    /**
-     * Sets the partial country configuration.
+     * @param Collection $countries
+     * @param Collection $partialCountries
      *
-     * @param Repository $config
-     * @param array $countries
+     * @return Collection
      */
-    private function setPartialCountryConfig(Repository $config, array $countries)
+    private function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries)
     {
-        $partialCountryList = require __DIR__ . '/../config/countries-partial.php';
-        $partialCountryConfig = array_filter(
-            $countries,
-            function ($countryCode) use ($partialCountryList) {
-                return in_array($countryCode, $partialCountryList);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
-
-        $config->set('countries-partial', $partialCountryConfig);
+        return $countries->transform(function ($countryDefinition, $alpha2) use ($partialCountries) {
+            return array_merge($countryDefinition, $partialCountries->get($alpha2) ?? []);
+        });
     }
 }

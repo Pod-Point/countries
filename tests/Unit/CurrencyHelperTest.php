@@ -1,11 +1,10 @@
 <?php
 
-namespace PodPoint\I18n\Tests;
+namespace PodPoint\I18n\Tests\Unit;
 
-use Illuminate\Config\Repository;
-use PHPUnit\Framework\TestCase;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
+use PodPoint\I18n\Tests\TestCase;
 
 class CurrencyHelperTest extends TestCase
 {
@@ -46,16 +45,9 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormat(float $value, string $currencyCode, string $locale, string $expected)
     {
-        $config = $this->createMock(Repository::class);
-        $currencyHelper = new CurrencyHelper($config);
-        $countries = require __DIR__ . '/../src/config/countries.php';
+        $this->loadConfiguration()->loadServiceProvider();
 
-        $config->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn($countries);
-
-        $actual = $currencyHelper->toFormat(
+        $actual = (new CurrencyHelper($this->app->config))->toFormat(
             $value,
             $currencyCode,
             $locale
@@ -96,16 +88,9 @@ class CurrencyHelperTest extends TestCase
      */
     public function testGetSymbol(string $currencyCode, string $locale, string $expected)
     {
-        $config = $this->createMock(Repository::class);
-        $currencyHelper = new CurrencyHelper($config);
-        $countries = require __DIR__. '/../src/config/countries.php';
+        $this->loadConfiguration()->loadServiceProvider();
 
-        $config->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn($countries);
-
-        $actual = $currencyHelper->getSymbol($currencyCode, $locale);
+        $actual = (new CurrencyHelper($this->app->config))->getSymbol($currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
     }
@@ -115,17 +100,10 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormatFromInt()
     {
-        $config = $this->createMock(Repository::class);
-        $currencyHelper = new CurrencyHelper($config);
-        $countries = require __DIR__ . '/../src/config/countries.php';
-
-        $config->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn($countries);
+        $this->loadConfiguration()->loadServiceProvider();
 
         $expected = '£15.50';
-        $actual = $currencyHelper->toFormatFromInt('1550');
+        $actual = (new CurrencyHelper($this->app->config))->toFormatFromInt('1550');
 
         $this->assertEquals($expected, $actual);
     }
@@ -135,17 +113,10 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormatCanDisplayUpToSixDecimals()
     {
-        $config = $this->createMock(Repository::class);
-        $currencyHelper = new CurrencyHelper($config);
-        $countries = require __DIR__ . '/../src/config/countries.php';
-
-        $config->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn($countries);
+        $this->loadConfiguration()->loadServiceProvider();
 
         $expected = '£0.106544';
-        $actual = $currencyHelper->toFormat('0.106544');
+        $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
 
         $this->assertEquals($expected, $actual);
     }

@@ -3,9 +3,23 @@
 namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
+use Illuminate\Config\Repository;
 
 class CountryCodeViewComposer
 {
+    /**
+     * @var Repository
+     */
+    private $config;
+
+    /**
+     * @param Repository $config
+     */
+    public function __construct(Repository $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * Binds the data to the view.
      *
@@ -13,46 +27,9 @@ class CountryCodeViewComposer
      */
     public function compose(View $view)
     {
-        $view->with(['countryCodeOptions' => $this->countryCodeOptions()]);
-    }
+        $countryCodeOptions = $this->countryCodeOptions();
 
-    /**
-     * Get the country-code options by looping the countries in the config, while also adding the flag emojis.
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return string
-     */
-    private function countryCodeOptions()
-    {
-        $countries = config('countries');
-        $choices = [];
-        foreach ($countries as $countryCode => $country) {
-            $choices[] = $this->countryChoice($countryCode, $country);
-        }
-
-        $defaultCountries = [
-            'GB' => $countries['GB'],
-        ];
-        $defaultChoices = [];
-        foreach ($defaultCountries as $countryCode => $country) {
-            $defaultChoices[] = $this->countryChoice($countryCode, $country, true);
-        }
-
-        $countryGroups = [
-            [
-                'id' => 1,
-                'label' => '',
-                'choices' => $defaultChoices,
-            ],
-            [
-                'id' => 2,
-                'label' => '',
-                'choices' => $choices,
-            ],
-        ];
-
-        return \GuzzleHttp\json_encode($countryGroups);
+        $view->with(compact('countryCodeOptions'));
     }
 
     /**
@@ -73,6 +50,47 @@ class CountryCodeViewComposer
                 'description' => $country['name'],
             ],
         ];
+    }
+
+    /**
+     * Get the country-code options by looping the countries in the config, while also adding the flag emojis.
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return string
+     */
+    private function countryCodeOptions()
+    {
+        $countries = $this->config->get('countries');
+
+        $choices = [];
+        foreach ($countries as $countryCode => $country) {
+            $choices[] = $this->countryChoice($countryCode, $country);
+        }
+
+        $defaultCountries = [
+            'GB' => $countries['GB'],
+        ];
+
+        $defaultChoices = [];
+        foreach ($defaultCountries as $countryCode => $country) {
+            $defaultChoices[] = $this->countryChoice($countryCode, $country, true);
+        }
+
+        $countryGroups = [
+            [
+                'id' => 1,
+                'label' => '',
+                'choices' => $defaultChoices,
+            ],
+            [
+                'id' => 2,
+                'label' => '',
+                'choices' => $choices,
+            ],
+        ];
+
+        return \GuzzleHttp\json_encode($countryGroups);
     }
 
     /**
@@ -100,7 +118,7 @@ class CountryCodeViewComposer
      */
     private function countryNameMarkup(string $name, bool $defaultChoice = false)
     {
-        return '&nbsp;<span class="country-name ' . ($defaultChoice ? 'country-name--heading' : '') . '">' . $name . '</span>';
+        return '&nbsp;<span class="country-name' . ($defaultChoice ? ' country-name--heading' : '') . '">' . $name . '</span>';
     }
 
     /**
@@ -117,7 +135,7 @@ class CountryCodeViewComposer
             return '';
         }
 
-        return '&nbsp;<span class="country-dialling-code ' . ($defaultChoice ? 'country-dialling-code--heading' : '') . '">(+' . $diallingCode . ')</span>';
+        return '&nbsp;<span class="country-dialling-code' . ($defaultChoice ? ' country-dialling-code--heading' : '') . '">(+' . $diallingCode . ')</span>';
     }
 
     /**
@@ -129,10 +147,9 @@ class CountryCodeViewComposer
      */
     private function emojiFlag(string $countryCode)
     {
-        $letters = str_split($countryCode);
-
         $character = '';
-        foreach ($letters as $letter) {
+
+        foreach (str_split($countryCode) as $letter) {
             $character .= $this->unicodeCharacter($letter);
         }
 
@@ -178,6 +195,7 @@ class CountryCodeViewComposer
         ];
 
         $letter = strtolower($letter);
+
         if (array_key_exists($letter, $codes)) {
             return mb_convert_encoding('&#x' . $codes[$letter] . ';', 'UTF-8', 'HTML-ENTITIES');
         }

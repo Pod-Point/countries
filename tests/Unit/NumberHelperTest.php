@@ -1,10 +1,9 @@
 <?php
 
-namespace PodPoint\I18n\Tests;
+namespace PodPoint\I18n\Tests\Unit;
 
-use Illuminate\Config\Repository;
-use PHPUnit\Framework\TestCase;
 use PodPoint\I18n\NumberHelper;
+use PodPoint\I18n\Tests\TestCase;
 
 class NumberHelperTest extends TestCase
 {
@@ -42,19 +41,11 @@ class NumberHelperTest extends TestCase
      */
     public function testToFormat(float $value, string $locale, string $expected)
     {
-        $config = $this->createMock(Repository::class);
-        $currencyHelper = new NumberHelper($config);
-        $countries = require __DIR__ . '/../src/config/countries.php';
+        $this->loadConfiguration()->loadServiceProvider();
 
-        $config->expects($this->once())
-            ->method('get')
-            ->with('countries')
-            ->willReturn($countries);
+        $currencyHelper = new NumberHelper($this->app->config);
 
-        $actual = $currencyHelper->toFormat(
-            $value,
-            $locale
-        );
+        $actual = $currencyHelper->toFormat($value, $locale);
 
         $this->assertEquals($expected, $actual);
     }

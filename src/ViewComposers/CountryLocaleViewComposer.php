@@ -25,29 +25,19 @@ class CountryLocaleViewComposer
     }
 
     /**
-     * Binds the data to the view.
+     * Fetches the supported application locales for Laravel and their "Display names" from the
+     * enhanced configuration array and binds the data to the view.
      *
      * @param View $view
+     *
+     * @see \PodPoint\I18n\Providers\CountriesServiceProvider::addIsoInfoToCountryConfig()
      */
     public function compose(View $view)
     {
-        $view->with(['countryLocalesOptions' => $this->countryLocaleOptions()]);
-    }
+        $countryLocalesOptions = collect($this->config->get('countries-partial', []))
+            ->pluck('language', 'locale')
+            ->toArray();
 
-    /**
-     * Get the country-locale options by looping the countries-partial in the config.
-     *
-     * @return array
-     */
-    private function countryLocaleOptions()
-    {
-        $countriesPartial = $this->config->get('countries-partial');
-        $countriesLocaleOptions = [];
-
-        foreach ($countriesPartial as $countryCode => $country) {
-            $countriesLocaleOptions[$country['locale']] = $country['language'];
-        }
-
-        return $countriesLocaleOptions;
+        $view->with(compact('countryLocalesOptions'));
     }
 }
