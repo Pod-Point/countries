@@ -17,4 +17,3 @@ script:
 
 after_success:
   - bash <(curl -s build/logs/ https://codecov.io/bash)
-
