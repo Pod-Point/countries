@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 |
 | A list of country names and international dialling codes, indexed by their
-| uppercase ISO country code.
+| uppercase ISO country code (alpha2).
 |
 */
 
@@ -434,11 +434,6 @@ return [
     'IE' => [
         'name' => 'Republic of Ireland',
         'diallingCode' => 353,
-        'systemLocale' => 'en_IE.UTF-8',
-        'locale' => 'ie',
-        'language' => 'ENG',
-        'tld' => 'ie',
-        'timezone' => 'Europe/Dublin',
     ],
     'IM' => [
         'name' => 'Isle of Man',
@@ -671,11 +666,6 @@ return [
     'NO' => [
         'name' => 'Norway',
         'diallingCode' => 47,
-        'locale' => 'no',
-        'systemLocale' => 'nb_NO.UTF-8',
-        'language' => 'NOR',
-        'tld' => 'no',
-        'timezone' => 'Europe/Oslo',
     ],
     'OM' => [
         'name' => 'Oman',
@@ -952,11 +942,6 @@ return [
     'GB' => [
         'name' => 'United Kingdom',
         'diallingCode' => 44,
-        'systemLocale' => 'en_GB.UTF-8',
-        'locale' => 'en',
-        'language' => 'ENG',
-        'tld' => 'com',
-        'timezone' => 'Europe/London',
     ],
     'US' => [
         'name' => 'United States',
