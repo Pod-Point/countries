@@ -41,7 +41,7 @@ class Service implements CurrencyService
      * @return Collection|ExchangeRate[]
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null)
+    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null): Collection
     {
         if (!$timestamp) {
             $timestamp = Carbon::now();
@@ -86,7 +86,7 @@ class Service implements CurrencyService
      * @return string
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    private function getCacheKey(string $base, string $currency, Carbon $timestamp)
+    private function getCacheKey(string $base, string $currency, Carbon $timestamp): string
     {
         $key = "rates.{$base}.{$currency}.{$timestamp->format('Y-m-d')}";
 

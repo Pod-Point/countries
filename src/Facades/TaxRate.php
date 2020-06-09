@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static float get(string $countryCode)
- * @method static float calculate(int|float $netPrice, string $countryCode, string|null $postalCode, bool|null $company, string|null $type)
- * @method static float exclude(int|float $netPrice, string $countryCode, string|null $postalCode, bool|null $company, string|null $type)
+ * @method static float calculate(int|float $netPrice, string $countryCode, string|null $postalCode = null, bool|null $company = null, string|null $type = null)
+ * @method static float exclude(int|float $netPrice, string $countryCode, string|null $postalCode = null, bool|null $company = null, string|null $type = null)
  */
 class TaxRate extends Facade
 {
@@ -16,7 +16,7 @@ class TaxRate extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'i18n.taxrate';
     }

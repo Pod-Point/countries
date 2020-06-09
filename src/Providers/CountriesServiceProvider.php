@@ -82,7 +82,7 @@ class CountriesServiceProvider extends ServiceProvider
      *
      * @return Collection
      */
-    protected function addIsoInfoToCountryConfig(Collection $countries)
+    protected function addIsoInfoToCountryConfig(Collection $countries): Collection
     {
         return $countries->transform(function ($countryDefinition, $countryCode) {
             return array_merge((new ISO3166)->alpha2($countryCode), $countryDefinition);
@@ -98,7 +98,7 @@ class CountriesServiceProvider extends ServiceProvider
      *
      * @return Collection
      */
-    protected function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries)
+    protected function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries): Collection
     {
         return $countries->transform(function ($countryDefinition, $alpha2) use ($partialCountries) {
             return array_merge($countryDefinition, $partialCountries->get($alpha2) ?? []);

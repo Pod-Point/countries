@@ -14,7 +14,7 @@ if (!function_exists('moneyFormat')) {
      *
      * @return string
      */
-    function moneyFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    function moneyFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         return CurrencyHelper::toFormat($value, $currencyCode, $locale);
     }
@@ -32,7 +32,7 @@ if (!function_exists('moneyFormatFromInt')) {
      *
      * @return string
      */
-    function moneyFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    function moneyFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         return CurrencyHelper::toFormatFromInt($value, $currencyCode, $locale);
     }
@@ -48,7 +48,7 @@ if (!function_exists('getCurrencySymbol')) {
      *
      * @return string
      */
-    function getCurrencySymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    function getCurrencySymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         return CurrencyHelper::getSymbol($currencyCode, $locale);
     }

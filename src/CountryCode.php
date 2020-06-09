@@ -16,7 +16,7 @@ class CountryCode
      *
      * @return array
      */
-    public static function all()
+    public static function all(): array
     {
         return [
             self::UNITED_KINGDOM,
