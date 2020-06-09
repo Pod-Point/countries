@@ -21,35 +21,6 @@ class CountriesServiceProviderTest extends TestCase
     }
 
     /**
-     * Tests that countries config gets loaded into the application.
-     */
-    public function testCountriesConfigCanBeRegistered()
-    {
-        $configMock = $this->createMock(Repository::class);
-
-        $configMock->expects($this->at(0))
-            ->method('set')
-            ->with('countries');
-
-        $configMock->expects($this->at(1))
-            ->method('set')
-            ->with('countries-partial');
-
-        $this->app->config = $configMock;
-
-        $this->app->expects($this->at(0))
-            ->method('singleton')
-            ->with('currency.helper')
-            ->willReturn(new CurrencyHelper($this->app->config));
-
-        $this->app->expects($this->at(1))
-            ->method('alias')
-            ->with('currency.helper');
-
-        $this->loadServiceProvider();
-    }
-
-    /**
      * Make sure the additional info from `league/iso3166` package is automatically merged and
      * loaded with our `countries` configuration file as well as our miscellaneous bespoke
      * Laravel data from `countries-partial` config. Both should have the same data in
@@ -91,6 +62,7 @@ class CountriesServiceProviderTest extends TestCase
             $this->assertArrayHasKey('alpha3', $enhancedCountry);
             $this->assertArrayHasKey('numeric', $enhancedCountry);
             $this->assertArrayHasKey('currency', $enhancedCountry);
+            $this->assertIsArray($enhancedCountry['currency']);
         });
     }
 
@@ -104,11 +76,7 @@ class CountriesServiceProviderTest extends TestCase
 
         $countryCodes = array_keys($this->app->config->get('countries-partial'));
 
-        $this->assertEquals([
-             CountryCode::UNITED_KINGDOM,
-             CountryCode::IRELAND,
-             CountryCode::NORWAY,
-        ], $countryCodes);
+        $this->assertEquals(CountryCode::all(), $countryCodes);
 
         collect($this->app->config->get('countries-partial'))->each(function ($country) {
             $supportedLocales = ['en', 'no'];

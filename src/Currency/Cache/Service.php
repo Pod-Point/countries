@@ -3,10 +3,11 @@
 namespace PodPoint\I18n\Currency\Cache;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Cache\Repository as Cache;
+use PodPoint\I18n\CurrencyCode;
 use Illuminate\Support\Collection;
-use PodPoint\I18n\Currency\Service as CurrencyService;
 use PodPoint\I18n\Currency\ExchangeRate;
+use Illuminate\Contracts\Cache\Repository as Cache;
+use PodPoint\I18n\Currency\Service as CurrencyService;
 use PodPoint\I18n\Currency\Service as ServiceInterface;
 
 class Service implements CurrencyService
@@ -39,10 +40,11 @@ class Service implements CurrencyService
      * @param Carbon|null $timestamp
      *
      * @return Collection|ExchangeRate[]
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null): Collection
+    public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], ?Carbon $timestamp = null): Collection
     {
-        if (!$timestamp) {
+        if (! $timestamp) {
             $timestamp = Carbon::now();
         }
 
@@ -83,6 +85,7 @@ class Service implements CurrencyService
      * @param Carbon $timestamp
      *
      * @return string
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     private function getCacheKey(string $base, string $currency, Carbon $timestamp): string
     {

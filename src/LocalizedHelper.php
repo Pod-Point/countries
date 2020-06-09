@@ -30,7 +30,7 @@ abstract class LocalizedHelper extends Helper
      *
      * @return string
      */
-    protected function getSystemLocale(string $locale)
+    protected function getSystemLocale(string $locale): string
     {
         $country = $this->countryHelper->findBy('locale', $locale);
 

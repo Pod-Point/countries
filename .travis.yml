@@ -5,9 +5,6 @@ language: php
 php:
   - '7.1'
 
-services:
-  - mysql
-
 cache:
   directories:
     - $HOME/.composer/cache
@@ -20,4 +17,3 @@ script:
 
 after_success:
   - bash <(curl -s build/logs/ https://codecov.io/bash)
-

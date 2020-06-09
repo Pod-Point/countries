@@ -9,7 +9,8 @@
         "illuminate/support": "5.*",
         "illuminate/view": "5.*",
         "league/iso3166": "^2.1",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "mpociot/vat-calculator": "^2.4"
     },
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",
@@ -33,6 +34,13 @@
     "autoload-dev": {
         "psr-4": {
             "PodPoint\\I18n\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "mpociot/vat-calculator"
+            ]
         }
     }
 }

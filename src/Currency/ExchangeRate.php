@@ -3,6 +3,8 @@
 namespace PodPoint\I18n\Currency;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use PodPoint\I18n\CurrencyCode;
 
 class ExchangeRate
 {
@@ -39,9 +41,12 @@ class ExchangeRate
      */
     public function __construct(array $attributes = [])
     {
-        $this->base = array_get($attributes, 'base', 'GBP');
-        $this->currency = array_get($attributes, 'currency');
-        $this->rate = array_get($attributes, 'rate');
-        $this->timestamp = array_get($attributes, 'timestamp', Carbon::now());
+        $this->base = Arr::get($attributes, 'base', CurrencyCode::POUND_STERLING);
+
+        $this->currency = Arr::get($attributes, 'currency');
+
+        $this->rate = Arr::get($attributes, 'rate');
+
+        $this->timestamp = Arr::get($attributes, 'timestamp', Carbon::now());
     }
 }

@@ -15,7 +15,7 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    public function toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
@@ -39,7 +39,7 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    public function toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         return $this->toFormat($value / 100, $currencyCode, $locale);
     }
@@ -52,7 +52,7 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+    public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         $formatter = new NumberFormatter(
             "{$this->getSystemLocale($locale)}@currency={$currencyCode}",

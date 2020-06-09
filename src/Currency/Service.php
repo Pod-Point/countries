@@ -3,6 +3,7 @@
 namespace PodPoint\I18n\Currency;
 
 use Carbon\Carbon;
+use PodPoint\I18n\CurrencyCode;
 use Illuminate\Support\Collection;
 
 interface Service
@@ -18,5 +19,5 @@ interface Service
      *
      * @return Collection|ExchangeRate[]
      */
-    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null): Collection;
+    public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], ?Carbon $timestamp = null): Collection;
 }

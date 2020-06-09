@@ -4,6 +4,7 @@ namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
+use PodPoint\I18n\CountryCode;
 
 class CountryCodeViewComposer
 {
@@ -41,7 +42,7 @@ class CountryCodeViewComposer
      *
      * @return array
      */
-    public function countryChoice(string $countryCode, array $country, bool $defaultChoice = false)
+    public function countryChoice(string $countryCode, array $country, bool $defaultChoice = false): array
     {
         return [
             'value' => $countryCode,
@@ -59,7 +60,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function countryCodeOptions()
+    private function countryCodeOptions(): string
     {
         $countries = $this->config->get('countries');
 
@@ -69,7 +70,7 @@ class CountryCodeViewComposer
         }
 
         $defaultCountries = [
-            'GB' => $countries['GB'],
+            CountryCode::UNITED_KINGDOM => $countries[CountryCode::UNITED_KINGDOM],
         ];
 
         $defaultChoices = [];
@@ -103,9 +104,13 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function countryLabel(string $countryCode, string $countryName, $diallingCode, bool $defaultChoice = false)
+    private function countryLabel(string $countryCode, string $countryName, $diallingCode, bool $defaultChoice = false): string
     {
-        return $this->emojiFlag($countryCode) . $this->countryNameMarkup($countryName, $defaultChoice) . $this->dialingCodeMarkup($diallingCode, $defaultChoice);
+        return implode('', [
+            $this->emojiFlag($countryCode),
+            $this->countryNameMarkup($countryName, $defaultChoice),
+            $this->dialingCodeMarkup($diallingCode, $defaultChoice),
+        ]);
     }
 
     /**
@@ -116,7 +121,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function countryNameMarkup(string $name, bool $defaultChoice = false)
+    private function countryNameMarkup(string $name, bool $defaultChoice = false): string
     {
         return '&nbsp;<span class="country-name' . ($defaultChoice ? ' country-name--heading' : '') . '">' . $name . '</span>';
     }
@@ -129,7 +134,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function dialingCodeMarkup($diallingCode, bool $defaultChoice = false)
+    private function dialingCodeMarkup(?int $diallingCode = null, bool $defaultChoice = false): string
     {
         if (is_null($diallingCode)) {
             return '';
@@ -145,7 +150,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function emojiFlag(string $countryCode)
+    private function emojiFlag(string $countryCode): string
     {
         $character = '';
 
@@ -163,7 +168,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function unicodeCharacter(string $letter)
+    private function unicodeCharacter(string $letter): string
     {
         $codes = [
             'a' => '1F1E6',
