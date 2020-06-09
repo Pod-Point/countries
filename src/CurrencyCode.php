@@ -8,8 +8,8 @@ namespace PodPoint\I18n;
 class CurrencyCode
 {
     const EURO = 'EUR';
-    const NORWEGIAN_KRONE = 'NOK';
     const POUND_STERLING = 'GBP';
+    const NORWEGIAN_KRONE = 'NOK';
 
     /**
      * Retrieves all supported currency codes.
@@ -20,8 +20,8 @@ class CurrencyCode
     {
         return [
             self::EURO,
-            self::NORWEGIAN_KRONE,
             self::POUND_STERLING,
+            self::NORWEGIAN_KRONE,
         ];
     }
 }

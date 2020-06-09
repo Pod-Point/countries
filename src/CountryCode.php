@@ -7,9 +7,9 @@ namespace PodPoint\I18n;
  */
 class CountryCode
 {
+    const UNITED_KINGDOM = 'GB';
     const IRELAND = 'IE';
     const NORWAY = 'NO';
-    const UNITED_KINGDOM = 'GB';
 
     /**
      * Retrieves all supported country codes.
@@ -19,9 +19,9 @@ class CountryCode
     public static function all()
     {
         return [
+            self::UNITED_KINGDOM,
             self::IRELAND,
             self::NORWAY,
-            self::UNITED_KINGDOM,
         ];
     }
 }

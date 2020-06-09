@@ -67,8 +67,12 @@ class CountriesServiceProvider extends ServiceProvider
 
         $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
 
-        $this->app->config->set('countries', $enhancedCountries->toArray());
-        $this->app->config->set('countries-partial', $onlySupportedCountries->toArray());
+        $this->app->config->set('countries', $enhancedCountries
+            ->sortBy(function ($country, $key) { return $key; })
+            ->toArray());
+        $this->app->config->set('countries-partial', $onlySupportedCountries
+            ->sortBy(function ($country, $key) { return $key; })
+            ->toArray());
     }
 
     /**
