@@ -62,6 +62,7 @@ class CountriesServiceProviderTest extends TestCase
             $this->assertArrayHasKey('alpha3', $enhancedCountry);
             $this->assertArrayHasKey('numeric', $enhancedCountry);
             $this->assertArrayHasKey('currency', $enhancedCountry);
+            $this->assertIsArray($enhancedCountry['currency']);
         });
     }
 

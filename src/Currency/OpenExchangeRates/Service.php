@@ -39,7 +39,7 @@ class Service implements CurrencyService
      *
      * @return Collection|ExchangeRate[]
      */
-    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null): Collection
+    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null)
     {
         $appId = $this->config->get('services.oxr.appId');
 

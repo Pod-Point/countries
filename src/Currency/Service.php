@@ -18,5 +18,5 @@ interface Service
      *
      * @return Collection|ExchangeRate[]
      */
-    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null): Collection;
+    public function getExchangeRates(string $base = 'GBP', array $currencies = [], Carbon $timestamp = null);
 }
