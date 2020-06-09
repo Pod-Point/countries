@@ -8,11 +8,11 @@ class CountryHelper extends Helper
      * Returns the first country matching the given property/value pair.
      *
      * @param string $property
-     * @param $value
+     * @param mixed $value
      *
      * @return array|null
      */
-    public function findBy(string $property, $value)
+    public function findBy(string $property, $value): ?array
     {
         return collect($this->config->get('countries'))
             ->where($property, $value)

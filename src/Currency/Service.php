@@ -19,5 +19,5 @@ interface Service
      *
      * @return Collection|ExchangeRate[]
      */
-    public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], Carbon $timestamp = null): Collection;
+    public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], ?Carbon $timestamp = null): Collection;
 }

@@ -4,6 +4,7 @@ namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
+use PodPoint\I18n\CountryCode;
 
 class CountryCodeViewComposer
 {
@@ -69,7 +70,7 @@ class CountryCodeViewComposer
         }
 
         $defaultCountries = [
-            'GB' => $countries['GB'],
+            CountryCode::UNITED_KINGDOM => $countries[CountryCode::UNITED_KINGDOM],
         ];
 
         $defaultChoices = [];
@@ -133,7 +134,7 @@ class CountryCodeViewComposer
      *
      * @return string
      */
-    private function dialingCodeMarkup($diallingCode, bool $defaultChoice = false): string
+    private function dialingCodeMarkup(?int $diallingCode = null, bool $defaultChoice = false): string
     {
         if (is_null($diallingCode)) {
             return '';

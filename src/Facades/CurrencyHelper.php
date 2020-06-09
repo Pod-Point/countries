@@ -2,8 +2,8 @@
 
 namespace PodPoint\I18n\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use PodPoint\I18n\CurrencyCode;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
