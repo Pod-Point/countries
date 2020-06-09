@@ -20,7 +20,7 @@ Then finally, if you're using Laravel, add the service provider to your `config/
 
 ```php
 'providers' => [
-    PodPoint\I18n\Providers\CountriesServiceProvider::class
+    PodPoint\I18n\Providers\CountriesServiceProvider::class,
 ]
 ```
 
