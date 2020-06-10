@@ -131,7 +131,7 @@ class CountriesServiceProvider extends ServiceProvider
             return new TaxRate(new VatCalculator($app->config));
         });
 
-        $this->app->singleton('i18n.locale', function ($app) {
+        $this->app->singleton('i18n.language', function ($app) {
             return new Language($app->config, $app->translator);
         });
     }
