@@ -5,6 +5,7 @@ namespace PodPoint\I18n\Tests\Unit\ViewComposers;
 use Illuminate\View\View;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\ViewComposers\CountryCodeViewComposer;
+use PodPoint\I18n\CountryCode;
 
 class CountryCodeViewComposerTest extends TestCase
 {
@@ -43,7 +44,7 @@ class CountryCodeViewComposerTest extends TestCase
     {
         $countryLocaleViewComposer = new CountryCodeViewComposer($this->app->config);
 
-        $actual = $countryLocaleViewComposer->countryChoice('GB', [
+        $actual = $countryLocaleViewComposer->countryChoice(CountryCode::UNITED_KINGDOM, [
             'name' => 'United Kingdom',
             'diallingCode' => 44,
             'locale' => 'en',
@@ -51,7 +52,7 @@ class CountryCodeViewComposerTest extends TestCase
         ]);
 
         $expected = [
-            "value" => "GB",
+            "value" => CountryCode::UNITED_KINGDOM,
             "label" => '🇬🇧&nbsp;<span class="country-name">United Kingdom</span>&nbsp;<span class="country-dialling-code">(+44)</span>',
             "customProperties" => [
                 "description" => "United Kingdom",
@@ -68,7 +69,7 @@ class CountryCodeViewComposerTest extends TestCase
     {
         $countryLocaleViewComposer = new CountryCodeViewComposer($this->app->config);
 
-        $actual = $countryLocaleViewComposer->countryChoice('GB', [
+        $actual = $countryLocaleViewComposer->countryChoice(CountryCode::UNITED_KINGDOM, [
             'name' => 'United Kingdom',
             'diallingCode' => 44,
             'locale' => 'en',
@@ -76,7 +77,7 @@ class CountryCodeViewComposerTest extends TestCase
         ], true);
 
         $expected = [
-            "value" => "GB",
+            "value" => CountryCode::UNITED_KINGDOM,
             "label" => '🇬🇧&nbsp;<span class="country-name country-name--heading">United Kingdom</span>&nbsp;<span class="country-dialling-code country-dialling-code--heading">(+44)</span>',
             "customProperties" => [
                 "description" => "United Kingdom",

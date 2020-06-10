@@ -32,8 +32,8 @@ return [
         'timezone' => 'Europe/Dublin',
     ],
     CountryCode::NORWAY => [
-        'locale' => 'no',
         'systemLocale' => 'nb_NO.UTF-8',
+        'locale' => 'no',
         'language' => 'NOR',
         'tld' => 'no',
         'timezone' => 'Europe/Oslo',

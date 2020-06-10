@@ -88,6 +88,8 @@ class CountriesServiceProviderTest extends TestCase
     }
 
     /**
+     * Data provider for testCountryNamesAreCorrect().
+     *
      * @return array
      */
     public function countryNamesDataProvider()
@@ -109,6 +111,8 @@ class CountriesServiceProviderTest extends TestCase
     }
 
     /**
+     * Tests country names are correct within the loaded configuration.
+     *
      * @dataProvider countryNamesDataProvider
      *
      * @param string $countryCode

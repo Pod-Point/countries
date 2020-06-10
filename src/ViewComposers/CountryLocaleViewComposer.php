@@ -4,6 +4,7 @@ namespace PodPoint\I18n\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
+use PodPoint\I18n\Facades\Locale;
 
 class CountryLocaleViewComposer
 {
@@ -34,9 +35,7 @@ class CountryLocaleViewComposer
      */
     public function compose(View $view)
     {
-        $countryLocalesOptions = collect($this->config->get('countries-partial', []))
-            ->pluck('language', 'locale')
-            ->toArray();
+        $countryLocalesOptions = Locale::all();
 
         $view->with(compact('countryLocalesOptions'));
     }
