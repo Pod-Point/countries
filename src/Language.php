@@ -7,6 +7,9 @@ use Illuminate\Contracts\Translation\Translator;
 
 class Language
 {
+    const ENGLISH = 'en';
+    const NORWEGIAN = 'no';
+
     /**
      * The config repository instance.
      *
