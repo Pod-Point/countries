@@ -86,4 +86,39 @@ class CountriesServiceProviderTest extends TestCase
             }
         });
     }
+
+    /**
+     * @return array
+     */
+    public function countryNamesDataProvider()
+    {
+        return [
+            [
+                $countryCode = CountryCode::IRELAND,
+                $expectedCountryName = 'Ireland',
+            ],
+            [
+                $countryCode = CountryCode::NORWAY,
+                $expectedCountryName = 'Norway',
+            ],
+            [
+                $countryCode = CountryCode::UNITED_KINGDOM,
+                $expectedCountryName = 'United Kingdom',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider countryNamesDataProvider
+     *
+     * @param string $countryCode
+     * @param string $expectedCountryName
+     */
+    public function testCountryNamesAreCorrect(string $countryCode, string $expectedCountryName)
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $this->assertEquals($expectedCountryName, $this->app->config->get("countries.$countryCode.name"));
+        $this->assertEquals($expectedCountryName, $this->app->config->get("countries-partial.$countryCode.name"));
+    }
 }
