@@ -2,10 +2,12 @@
 
 namespace PodPoint\I18n\Facades;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array all(string $translateIn = null)
+ * @method static Collection all()
+ * @method static Collection except(string $localeToReject)
  */
 class Language extends Facade
 {

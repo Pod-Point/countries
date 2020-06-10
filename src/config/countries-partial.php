@@ -14,24 +14,25 @@
 |
 */
 
+use PodPoint\I18n\Language;
 use PodPoint\I18n\CountryCode;
 
 return [
     CountryCode::UNITED_KINGDOM => [
         'systemLocale' => 'en_GB.UTF-8',
-        'locale' => 'en',
+        'locale' => Language::ENGLISH,
         'tld' => 'com',
         'timezone' => 'Europe/London',
     ],
     CountryCode::IRELAND => [
         'systemLocale' => 'en_IE.UTF-8',
-        'locale' => 'en',
+        'locale' => Language::ENGLISH,
         'tld' => 'ie',
         'timezone' => 'Europe/Dublin',
     ],
     CountryCode::NORWAY => [
         'systemLocale' => 'nb_NO.UTF-8',
-        'locale' => 'no',
+        'locale' => Language::NORWEGIAN,
         'tld' => 'no',
         'timezone' => 'Europe/Oslo',
     ],

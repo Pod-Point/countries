@@ -30,6 +30,16 @@ class LanguageTest extends TestCase
         $this->assertEquals([
             'en' => 'English',
             'no' => 'Norwegian',
-        ], $this->language->all());
+        ], $this->language->all()->toArray());
    }
+
+    /**
+     * Tests we can filter out one particular language from all supported ones.
+     */
+    public function testWeCanFilterOutOneParticularLanguageFromAllSupportedOnes()
+    {
+        $this->assertEquals([
+            'en' => 'English',
+        ], $this->language->except('no')->toArray());
+    }
 }
