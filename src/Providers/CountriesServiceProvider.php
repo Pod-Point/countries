@@ -2,6 +2,7 @@
 
 namespace PodPoint\I18n\Providers;
 
+use PodPoint\I18n\Locale;
 use PodPoint\I18n\TaxRate;
 use League\ISO3166\ISO3166;
 use PodPoint\I18n\CurrencyHelper;
@@ -119,6 +120,10 @@ class CountriesServiceProvider extends ServiceProvider
         $this->app->singleton('i18n.taxrate', function ($app) {
             return new TaxRate(new VatCalculator($app->config));
         });
+
+        $this->app->singleton('i18n.locale', function ($app) {
+            return new Locale($app->config);
+        });
     }
 
     /**
@@ -131,6 +136,7 @@ class CountriesServiceProvider extends ServiceProvider
         $this->app->booting(function () {
             $this->app->alias('currency.helper', CurrencyHelper::class);
             $this->app->alias('i18n.taxrate', TaxRate::class);
+            $this->app->alias('i18n.locale', Locale::class);
         });
     }
 }
