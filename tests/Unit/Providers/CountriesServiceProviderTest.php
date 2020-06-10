@@ -3,10 +3,8 @@
 namespace PodPoint\I18n\Tests\Unit\Providers;
 
 use PodPoint\I18n\CountryCode;
-use Illuminate\Config\Repository;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
-use PodPoint\I18n\CurrencyHelper;
 
 class CountriesServiceProviderTest extends TestCase
 {
@@ -29,24 +27,6 @@ class CountriesServiceProviderTest extends TestCase
      */
     public function testCountriesConfigIsEnhancedWithAdditionalInfo()
     {
-        $this->loadConfiguration();
-
-        $countryWithBasicInfo = $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM);
-
-        $this->assertArrayHasKey('name', $countryWithBasicInfo);
-        $this->assertArrayHasKey('diallingCode', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('systemLocale', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('locale', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('language', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('tld', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('timezone', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('alpha2', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('alpha3', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('numeric', $countryWithBasicInfo);
-        $this->assertArrayNotHasKey('currency', $countryWithBasicInfo);
-
-        $this->loadServiceProvider();
-
         collect([
             $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM),
             $this->app->config->get('countries-partial.' . CountryCode::UNITED_KINGDOM),
@@ -55,7 +35,6 @@ class CountriesServiceProviderTest extends TestCase
             $this->assertArrayHasKey('diallingCode', $enhancedCountry);
             $this->assertArrayHasKey('systemLocale', $enhancedCountry);
             $this->assertArrayHasKey('locale', $enhancedCountry);
-            $this->assertArrayHasKey('language', $enhancedCountry);
             $this->assertArrayHasKey('tld', $enhancedCountry);
             $this->assertArrayHasKey('timezone', $enhancedCountry);
             $this->assertArrayHasKey('alpha2', $enhancedCountry);
@@ -72,8 +51,6 @@ class CountriesServiceProviderTest extends TestCase
      */
     public function testPartialCountriesConfigHasOnlySupportedCountriesAndLocales()
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $countryCodes = array_keys($this->app->config->get('countries-partial'));
 
         $this->assertEquals(CountryCode::all(), $countryCodes);
@@ -120,8 +97,6 @@ class CountriesServiceProviderTest extends TestCase
      */
     public function testCountryNamesAreCorrect(string $countryCode, string $expectedCountryName)
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $this->assertEquals($expectedCountryName, $this->app->config->get("countries.$countryCode.name"));
         $this->assertEquals($expectedCountryName, $this->app->config->get("countries-partial.$countryCode.name"));
     }

@@ -2,15 +2,15 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\Locale;
+use PodPoint\I18n\Language;
 use PodPoint\I18n\Tests\TestCase;
 
-class LocaleTest extends TestCase
+class LanguageTest extends TestCase
 {
     /**
-     * @var Locale
+     * @var Language
      */
-    private $locale;
+    private $language;
 
     /**
      * @inheritDoc
@@ -19,9 +19,7 @@ class LocaleTest extends TestCase
     {
         parent::setUp();
 
-        $this->loadConfiguration()->loadServiceProvider();
-
-        $this->locale = new Locale($this->app->config);
+        $this->language = new Language($this->app->config, $this->app->translator);
     }
 
     /**
@@ -30,8 +28,8 @@ class LocaleTest extends TestCase
     public function testWeCanGetAllSupportedLanguagesIndexByTheirLocale()
     {
         $this->assertEquals([
-            'en' => 'ENG',
-            'no' => 'NOR',
-        ], $this->locale->all());
+            'en' => 'English',
+            'no' => 'Norwegian',
+        ], $this->language->all());
    }
 }

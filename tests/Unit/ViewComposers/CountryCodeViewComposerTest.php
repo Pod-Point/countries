@@ -3,9 +3,9 @@
 namespace PodPoint\I18n\Tests\Unit\ViewComposers;
 
 use Illuminate\View\View;
+use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\ViewComposers\CountryCodeViewComposer;
-use PodPoint\I18n\CountryCode;
 
 class CountryCodeViewComposerTest extends TestCase
 {
@@ -14,8 +14,6 @@ class CountryCodeViewComposerTest extends TestCase
      */
     public function testCompose()
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $countryLocaleViewComposer = new CountryCodeViewComposer($this->app->config);
 
         /** @var View|\PHPUnit_Framework_MockObject_MockObject $viewMock */
@@ -47,8 +45,6 @@ class CountryCodeViewComposerTest extends TestCase
         $actual = $countryLocaleViewComposer->countryChoice(CountryCode::UNITED_KINGDOM, [
             'name' => 'United Kingdom',
             'diallingCode' => 44,
-            'locale' => 'en',
-            'language' => 'ENG',
         ]);
 
         $expected = [
@@ -72,8 +68,6 @@ class CountryCodeViewComposerTest extends TestCase
         $actual = $countryLocaleViewComposer->countryChoice(CountryCode::UNITED_KINGDOM, [
             'name' => 'United Kingdom',
             'diallingCode' => 44,
-            'locale' => 'en',
-            'language' => 'ENG',
         ], true);
 
         $expected = [

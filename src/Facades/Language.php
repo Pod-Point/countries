@@ -5,9 +5,9 @@ namespace PodPoint\I18n\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array all()
+ * @method static array all(string $translateIn = null)
  */
-class Locale extends Facade
+class Language extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class Locale extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'i18n.locale';
+        return 'i18n.language';
     }
 }

@@ -45,8 +45,6 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormat(float $value, string $currencyCode, string $locale, string $expected)
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $actual = (new CurrencyHelper($this->app->config))->toFormat(
             $value,
             $currencyCode,
@@ -88,8 +86,6 @@ class CurrencyHelperTest extends TestCase
      */
     public function testGetSymbol(string $currencyCode, string $locale, string $expected)
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $actual = (new CurrencyHelper($this->app->config))->getSymbol($currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
@@ -100,8 +96,6 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormatFromInt()
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $expected = '£15.50';
         $actual = (new CurrencyHelper($this->app->config))->toFormatFromInt('1550');
 
@@ -113,8 +107,6 @@ class CurrencyHelperTest extends TestCase
      */
     public function testToFormatCanDisplayUpToSixDecimals()
     {
-        $this->loadConfiguration()->loadServiceProvider();
-
         $expected = '£0.106544';
         $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
 

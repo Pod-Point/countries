@@ -10,7 +10,8 @@
         "illuminate/view": "5.*",
         "league/iso3166": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
-        "mpociot/vat-calculator": "^2.4"
+        "mpociot/vat-calculator": "^2.4",
+        "illuminate/translation": "5.*"
     },
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",

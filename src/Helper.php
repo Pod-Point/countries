@@ -2,7 +2,7 @@
 
 namespace PodPoint\I18n;
 
-use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository;
 
 abstract class Helper
 {

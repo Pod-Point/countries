@@ -20,21 +20,18 @@ return [
     CountryCode::UNITED_KINGDOM => [
         'systemLocale' => 'en_GB.UTF-8',
         'locale' => 'en',
-        'language' => 'ENG',
         'tld' => 'com',
         'timezone' => 'Europe/London',
     ],
     CountryCode::IRELAND => [
         'systemLocale' => 'en_IE.UTF-8',
         'locale' => 'en',
-        'language' => 'ENG',
         'tld' => 'ie',
         'timezone' => 'Europe/Dublin',
     ],
     CountryCode::NORWAY => [
         'systemLocale' => 'nb_NO.UTF-8',
         'locale' => 'no',
-        'language' => 'NOR',
         'tld' => 'no',
         'timezone' => 'Europe/Oslo',
     ],
