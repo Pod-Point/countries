@@ -74,7 +74,7 @@ class CountriesServiceProviderTest extends TestCase
         return [
             [
                 $countryCode = CountryCode::IRELAND,
-                $expectedCountryName = 'Ireland',
+                $expectedCountryName = 'Republic of Ireland',
             ],
             [
                 $countryCode = CountryCode::NORWAY,
