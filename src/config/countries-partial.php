@@ -26,7 +26,7 @@ return [
     ],
     CountryCode::IRELAND => [
         'systemLocale' => 'en_IE.UTF-8',
-        'locale' => 'en',
+        'locale' => 'ie',
         'language' => 'ENG',
         'tld' => 'ie',
         'timezone' => 'Europe/Dublin',
