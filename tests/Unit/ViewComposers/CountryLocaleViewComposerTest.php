@@ -30,6 +30,7 @@ class CountryLocaleViewComposerTest extends TestCase
                 'countryLocalesOptions' => [
                     'en' => 'ENG',
                     'no' => 'NOR',
+                    'ie' => 'ENG'
                 ],
             ]);
 
