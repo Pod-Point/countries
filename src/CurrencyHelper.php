@@ -45,6 +45,32 @@ class CurrencyHelper extends LocalizedHelper
     }
 
     /**
+     * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
+     * with the right currency symbol and the right localised format for the parameters respectively given.
+     *
+     * @param int $value
+     * @param string $currencyCode
+     * @param string $locale
+     *
+     * @return string
+     */
+    public function toFormatIncludingMinorUnit(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
+    {
+        $formatter = new NumberFormatter(
+            $this->getSystemLocale($locale),
+            NumberFormatter::CURRENCY
+        );
+
+        if ($value < $this->getMinorUnitEnd($locale) && $pattern = $this->getMinorUnitPattern($locale)) {
+            $formatter->setPattern($pattern);
+
+            return $formatter->formatCurrency($value, $currencyCode);
+        }
+
+        return $this->toFormatFromInt($value, $currencyCode, $locale);
+    }
+
+    /**
      * Return a currency symbol formatted in the right locale.
      *
      * @param string $locale

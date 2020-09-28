@@ -36,4 +36,32 @@ abstract class LocalizedHelper extends Helper
 
         return $country['systemLocale'];
     }
+
+    /**
+     * Return minor unit pattern from locale. (en => #,###.###p)
+     *
+     * @param string $locale
+     *
+     * @return string|null
+     */
+    protected function getMinorUnitPattern(string $locale): ?string
+    {
+        $country = $this->countryHelper->findBy('locale', $locale);
+
+        return $country['minorUnitPattern'] ?? null;
+    }
+
+    /**
+     * Return the last minor unit from locale. (en => 99 pence)
+     *
+     * @param string $locale
+     *
+     * @return int|null
+     */
+    protected function getMinorUnitEnd(string $locale): ?int
+    {
+        $country = $this->countryHelper->findBy('locale', $locale);
+
+        return $country['minorUnitEnd'] ?? null;
+    }
 }

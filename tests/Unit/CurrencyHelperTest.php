@@ -2,6 +2,7 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
+use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\Tests\TestCase;
@@ -117,6 +118,32 @@ class CurrencyHelperTest extends TestCase
 
         $expected = '£0.106544';
         $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
+     */
+    public function testToFormatCanDisplayMinorUnitSymbol()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $expected = '20p';
+        $actual = (new CurrencyHelper($this->app->config))->toFormatIncludingMinorUnit(20);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that it returns formatted value without minor unit symbol from fractional monetary values.
+     */
+    public function testToFormatCanDisplayMinorUnitSymbolWithoutPattern()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $expected = '';
+        $actual = (new CurrencyHelper($this->app->config))->toFormatIncludingMinorUnit(20, CountryCode::IRELAND, 'ie');
 
         $this->assertEquals($expected, $actual);
     }
