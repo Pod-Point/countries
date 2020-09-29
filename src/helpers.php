@@ -66,6 +66,6 @@ if (!function_exists('getMoneyFormatWithPence')) {
      */
     function getMoneyFormatWithPence(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        return CurrencyHelper::toFormatIncludingMinorUnit($currencyCode, $locale);
+        return CurrencyHelper::formatToMinorUnitWhenApplicable($currencyCode, $locale);
     }
 }

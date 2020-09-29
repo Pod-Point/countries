@@ -130,7 +130,7 @@ class CurrencyHelperTest extends TestCase
         $this->loadConfiguration()->loadServiceProvider();
 
         $expected = '20p';
-        $actual = (new CurrencyHelper($this->app->config))->toFormatIncludingMinorUnit(20);
+        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable(20);
 
         $this->assertEquals($expected, $actual);
     }
@@ -144,7 +144,7 @@ class CurrencyHelperTest extends TestCase
 
         // Expected empty string is the current behaviour when using existing methods.
         $expected = '';
-        $actual = (new CurrencyHelper($this->app->config))->toFormatIncludingMinorUnit(20, CountryCode::IRELAND, 'ie');
+        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable(20, CountryCode::IRELAND, 'ie');
 
         $this->assertEquals($expected, $actual);
     }

@@ -54,20 +54,20 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function toFormatIncludingMinorUnit(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
+    public function formatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        $formatter = new NumberFormatter(
-            $this->getSystemLocale($locale),
-            NumberFormatter::CURRENCY
-        );
-
         if ($value <= $this->getMinorUnitEnd($locale) && $pattern = $this->getMinorUnitPattern($locale)) {
+            $formatter = new NumberFormatter(
+                $this->getSystemLocale($locale),
+                NumberFormatter::CURRENCY
+            );
+
             $formatter->setPattern($pattern);
 
             return $formatter->formatCurrency($value, $currencyCode);
         }
 
-        return $this->toFormatFromInt($value, $currencyCode, $locale);
+        return $this->toFormat($value, $currencyCode, $locale);
     }
 
     /**
