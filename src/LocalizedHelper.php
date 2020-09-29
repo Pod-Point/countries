@@ -52,7 +52,7 @@ abstract class LocalizedHelper extends Helper
     }
 
     /**
-     * Return the last minor unit from locale. (en => 99 pence)
+     * Return the last minor unit from locale. (en => 99)
      *
      * @param string $locale
      *
