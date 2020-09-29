@@ -61,7 +61,7 @@ class CurrencyHelper extends LocalizedHelper
             NumberFormatter::CURRENCY
         );
 
-        if ($value < $this->getMinorUnitEnd($locale) && $pattern = $this->getMinorUnitPattern($locale)) {
+        if ($value <= $this->getMinorUnitEnd($locale) && $pattern = $this->getMinorUnitPattern($locale)) {
             $formatter->setPattern($pattern);
 
             return $formatter->formatCurrency($value, $currencyCode);
