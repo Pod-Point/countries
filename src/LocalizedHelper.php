@@ -38,7 +38,7 @@ abstract class LocalizedHelper extends Helper
     }
 
     /**
-     * Return minor unit pattern from locale. (en => #,###.###p)
+     * Return minor unit pattern from locale. (en => #.##p)
      *
      * @param string $locale
      *
