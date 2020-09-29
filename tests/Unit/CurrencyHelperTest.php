@@ -142,7 +142,7 @@ class CurrencyHelperTest extends TestCase
     {
         $this->loadConfiguration()->loadServiceProvider();
 
-        // Expected empty string is the current behaviour for existing methods.
+        // Expected empty string is the current behaviour when using existing methods.
         $expected = '';
         $actual = (new CurrencyHelper($this->app->config))->toFormatIncludingMinorUnit(20, CountryCode::IRELAND, 'ie');
 
