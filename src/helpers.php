@@ -67,6 +67,6 @@ if (!function_exists('getFormatToMinorUnitWhenApplicable')) {
      */
     function getFormatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        return CurrencyHelper::formatToMinorUnitWhenApplicable($currencyCode, $locale);
+        return CurrencyHelper::formatToMinorUnitWhenApplicable($value, $currencyCode, $locale);
     }
 }
