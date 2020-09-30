@@ -54,17 +54,18 @@ if (!function_exists('getCurrencySymbol')) {
     }
 }
 
-if (!function_exists('getMoneyFormatWithPence')) {
+if (!function_exists('getFormatToMinorUnitWhenApplicable')) {
 
     /**
      * Return a currency symbol formatted in the right locale.
      *
+     * @param int $value
      * @param string $currencyCode
      * @param string $locale
      *
      * @return string
      */
-    function getMoneyFormatWithPence(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
+    function getFormatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
         return CurrencyHelper::formatToMinorUnitWhenApplicable($currencyCode, $locale);
     }
