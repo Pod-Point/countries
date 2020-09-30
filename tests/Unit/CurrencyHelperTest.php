@@ -142,7 +142,7 @@ class CurrencyHelperTest extends TestCase
     {
         $this->loadConfiguration()->loadServiceProvider();
 
-        $expected = '€20.00';
+        $expected = '€0.20';
         $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable(20, CurrencyCode::EURO, 'ie');
 
         $this->assertEquals($expected, $actual);
