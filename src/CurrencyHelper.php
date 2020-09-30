@@ -67,7 +67,7 @@ class CurrencyHelper extends LocalizedHelper
             return $formatter->formatCurrency($value, $currencyCode);
         }
 
-        return $this->toFormat($value, $currencyCode, $locale);
+        return $this->toFormatFromInt($value, $currencyCode, $locale);
     }
 
     /**
