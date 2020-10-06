@@ -79,6 +79,54 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
+     * Data provider for test.
+     *
+     * @return array
+     */
+    public function providerTestFormatToMinorUnitWhenApplicable()
+    {
+        return [
+            'Pound Sterling happy path' => [
+                '20',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '20p',
+            ],
+            'Pound Sterling negative value' => [
+                '-20',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '-20p',
+            ],
+            'Pound Sterling high value' => [
+                '20000000',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '£200,000.00',
+            ],
+            'Pound Sterling within minor unit end' => [
+                '75',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '75p',
+            ],
+            'European Euro' => [
+                '20',
+                CurrencyCode::EURO,
+                'ie',
+                '€0.20',
+            ],
+            'European Euro high value' => [
+                '20000000',
+                CurrencyCode::EURO,
+                'ie',
+                '€200,000.00',
+            ],
+        ];
+    }
+
+
+    /**
      * Tests that it returns a currency symbol.
      *
      * @dataProvider providerTestGetSymbol
@@ -124,26 +172,18 @@ class CurrencyHelperTest extends TestCase
 
     /**
      * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
+     *
+     * @dataProvider  providerTestFormatToMinorUnitWhenApplicable
+     * @param int $value
+     * @param string $currencyCode
+     * @param string $locale
+     * @param string $expected
      */
-    public function testToFormatCanDisplayMinorUnitSymbol()
+    public function testFormatToMinorUnitWhenApplicablel(int $value, string $currencyCode, string $locale, string $expected)
     {
         $this->loadConfiguration()->loadServiceProvider();
 
-        $expected = '20p';
-        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable(20);
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Tests that it returns formatted value without minor unit symbol from fractional monetary values.
-     */
-    public function testToFormatCanDisplayMinorUnitSymbolWithoutPattern()
-    {
-        $this->loadConfiguration()->loadServiceProvider();
-
-        $expected = '€0.20';
-        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable(20, CurrencyCode::EURO, 'ie');
+        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable($value, $currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
     }
