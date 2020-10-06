@@ -56,7 +56,9 @@ class CurrencyHelper extends LocalizedHelper
      */
     public function formatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        if ($value <= $this->getMinorUnitEnd($locale) && $pattern = $this->getMinorUnitPattern($locale)) {
+        $pattern = $this->getMinorUnitPattern($locale);
+
+        if ($value <= $this->getMinorUnitEnd($locale) && $pattern) {
             $formatter = new NumberFormatter(
                 $this->getSystemLocale($locale),
                 NumberFormatter::CURRENCY
