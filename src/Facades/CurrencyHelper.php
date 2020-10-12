@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static string toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
  * @method static string toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
+ * @method static string getFormatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
  * @method static string getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
  */
 class CurrencyHelper extends Facade

@@ -2,6 +2,7 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
+use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\Tests\TestCase;
@@ -78,6 +79,54 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
+     * Data provider for test.
+     *
+     * @return array
+     */
+    public function providerTestFormatToMinorUnitWhenApplicable()
+    {
+        return [
+            'Pound Sterling happy path' => [
+                '20',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '20p',
+            ],
+            'Pound Sterling negative value' => [
+                '-20',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '-20p',
+            ],
+            'Pound Sterling high value' => [
+                '20000000',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '£200,000.00',
+            ],
+            'Pound Sterling within minor unit end' => [
+                '75',
+                CurrencyCode::POUND_STERLING,
+                'en',
+                '75p',
+            ],
+            'European Euro' => [
+                '20',
+                CurrencyCode::EURO,
+                'ie',
+                '€0.20',
+            ],
+            'European Euro high value' => [
+                '20000000',
+                CurrencyCode::EURO,
+                'ie',
+                '€200,000.00',
+            ],
+        ];
+    }
+
+
+    /**
      * Tests that it returns a currency symbol.
      *
      * @dataProvider providerTestGetSymbol
@@ -117,6 +166,24 @@ class CurrencyHelperTest extends TestCase
 
         $expected = '£0.106544';
         $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
+     *
+     * @dataProvider  providerTestFormatToMinorUnitWhenApplicable
+     * @param int $value
+     * @param string $currencyCode
+     * @param string $locale
+     * @param string $expected
+     */
+    public function testFormatToMinorUnitWhenApplicablel(int $value, string $currencyCode, string $locale, string $expected)
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $actual = (new CurrencyHelper($this->app->config))->formatToMinorUnitWhenApplicable($value, $currencyCode, $locale);
 
         $this->assertEquals($expected, $actual);
     }
