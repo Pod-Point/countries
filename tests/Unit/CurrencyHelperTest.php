@@ -2,7 +2,6 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\Tests\TestCase;
@@ -166,6 +165,27 @@ class CurrencyHelperTest extends TestCase
 
         $expected = '£0.106544';
         $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testToStandardFormat()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $currencyHelper = (new CurrencyHelper($this->app->config));
+
+        $expected = '£54.65';
+        $actual = $currencyHelper->toStandardFormat(54.6532);
+        $this->assertEquals($expected, $actual);
+
+        $expected = '€140.00';
+        $actual = $currencyHelper->toStandardFormat(140, CurrencyCode::EURO, 'ie');
+        $this->assertEquals($expected, $actual);
+
+        $nonBreakingSpace = "\xC2\xA0";
+        $expected = "kr{$nonBreakingSpace}542,67";
+        $actual = $currencyHelper->toStandardFormat(542.668, CurrencyCode::NORWEGIAN_KRONE, 'no');
 
         $this->assertEquals($expected, $actual);
     }
