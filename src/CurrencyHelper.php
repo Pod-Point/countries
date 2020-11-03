@@ -13,17 +13,23 @@ class CurrencyHelper extends LocalizedHelper
      * @param string $currencyCode
      * @param string $locale
      *
+     * @deprecated toStandardFormat should be used.
      * @return string
      */
-    public function toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
-    {
+    public function toFormat(
+        $value,
+        string $currencyCode = CurrencyCode::POUND_STERLING,
+        string $locale = 'en'
+    ): string {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
             NumberFormatter::CURRENCY
         );
 
-        // NumberFormatter will round up with 2 decimals only by default.
-        // Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
+        /*
+         * NumberFormatter will round up with 2 decimals only by default.
+         * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
+         */
         $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
 
         return $formatter->formatCurrency($value, $currencyCode);
@@ -39,9 +45,12 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
-    {
-        return $this->toFormat($value / 100, $currencyCode, $locale);
+    public function toFormatFromInt(
+        int $value,
+        string $currencyCode = CurrencyCode::POUND_STERLING,
+        string $locale = 'en'
+    ): string {
+        return $this->toStandardFormat($value / 100, $currencyCode, $locale);
     }
 
     /**
@@ -54,8 +63,11 @@ class CurrencyHelper extends LocalizedHelper
      *
      * @return string
      */
-    public function formatToMinorUnitWhenApplicable(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
-    {
+    public function formatToMinorUnitWhenApplicable(
+        int $value,
+        string $currencyCode = CurrencyCode::POUND_STERLING,
+        string $locale = 'en'
+    ): string {
         $pattern = $this->getMinorUnitPattern($locale);
 
         if ($value <= $this->getMinorUnitEnd($locale) && $pattern) {
@@ -88,5 +100,32 @@ class CurrencyHelper extends LocalizedHelper
         );
 
         return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+    }
+
+    /**
+     * Return a value in the given currency format for the given currency code and locale.
+     *
+     * @param float $value
+     * @param string $currencyCode
+     * @param string $locale
+     * @param int|null $precision Number of decimals to show. If null is given, it will take the default currency
+     * precision
+     *
+     * @return string
+     */
+    public function toStandardFormat(
+        float $value,
+        $currencyCode = CurrencyCode::POUND_STERLING,
+        string $locale = 'en',
+        $precision = null
+    ): string {
+        $formatter = new NumberFormatter($this->getSystemLocale($locale), NumberFormatter::CURRENCY);
+
+        if (is_int($precision)) {
+            $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
+            $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $precision);
+        }
+
+        return $formatter->formatCurrency($value, $currencyCode);
     }
 }

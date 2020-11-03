@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 'countries-partial' => $filesystem->getRequire(__DIR__ . '/../src/config/countries-partial.php'),
             ]);
         } catch (FileNotFoundException $e) {
-            die("Package configuration files ['src/config/countries', 'src/config/countries-partial'] not found.");
+            die("Package configuration files not found: {$e->getMessage()}");
         }
 
         return $this;

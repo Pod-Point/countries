@@ -2,7 +2,6 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\CurrencyCode;
 use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\Tests\TestCase;
@@ -167,6 +166,67 @@ class CurrencyHelperTest extends TestCase
         $expected = '£0.106544';
         $actual = (new CurrencyHelper($this->app->config))->toFormat('0.106544');
 
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that toStandardFormat returns the correct currency formats.
+     */
+    public function testToStandardFormat()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $currencyHelper = (new CurrencyHelper($this->app->config));
+
+        $expected = '£54.65';
+        $actual = $currencyHelper->toStandardFormat(54.6532);
+        $this->assertEquals($expected, $actual);
+
+        $expected = '€140.00';
+        $actual = $currencyHelper->toStandardFormat(140, CurrencyCode::EURO, 'ie');
+        $this->assertEquals($expected, $actual);
+
+        $nonBreakingSpace = "\xC2\xA0";
+        $expected = "kr{$nonBreakingSpace}542,67";
+        $actual = $currencyHelper->toStandardFormat(542.668, CurrencyCode::NORWEGIAN_KRONE, 'no');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Tests that toStandardFormat returns the correct currency formats with the specified precision.
+     */
+    public function testToStandardFormatWithCustomPrecision()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $currencyHelper = (new CurrencyHelper($this->app->config));
+
+        $expected = '£5,167.6543';
+        $actual = $currencyHelper->toStandardFormat(
+            5167.65428954,
+            CurrencyCode::POUND_STERLING,
+            'en',
+            4
+        );
+        $this->assertEquals($expected, $actual);
+
+        $expected = '£0.534560';
+        $actual = $currencyHelper->toStandardFormat(
+            0.53456,
+            CurrencyCode::POUND_STERLING,
+            'en',
+            6
+        );
+        $this->assertEquals($expected, $actual);
+
+        $expected = '€1,560';
+        $actual = $currencyHelper->toStandardFormat(
+            1560.34334,
+            CurrencyCode::EURO,
+            'ie',
+            0
+        );
         $this->assertEquals($expected, $actual);
     }
 
