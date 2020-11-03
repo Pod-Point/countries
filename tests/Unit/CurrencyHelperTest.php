@@ -170,7 +170,7 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
-     * Tests that toStandardFormat returns that correct currency formats.
+     * Tests that toStandardFormat returns the correct currency formats.
      */
     public function testToStandardFormat()
     {
@@ -194,7 +194,7 @@ class CurrencyHelperTest extends TestCase
     }
 
     /**
-     * Tests that toStandardFormat returns that correct currency formats with the specified precision.
+     * Tests that toStandardFormat returns the correct currency formats with the specified precision.
      */
     public function testToStandardFormatWithCustomPrecision()
     {
