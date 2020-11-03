@@ -50,7 +50,7 @@ class CurrencyHelper extends LocalizedHelper
         string $currencyCode = CurrencyCode::POUND_STERLING,
         string $locale = 'en'
     ): string {
-        return $this->toFormat($value / 100, $currencyCode, $locale);
+        return $this->toStandardFormat($value / 100, $currencyCode, $locale);
     }
 
     /**
