@@ -169,6 +169,9 @@ class CurrencyHelperTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * Tests that toStandardFormat returns that correct currency formats.
+     */
     public function testToStandardFormat()
     {
         $this->loadConfiguration()->loadServiceProvider();
@@ -190,6 +193,9 @@ class CurrencyHelperTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * Tests that toStandardFormat returns that correct currency formats with the specified precision.
+     */
     public function testToStandardFormatWithCustomPrecision()
     {
         $this->loadConfiguration()->loadServiceProvider();
