@@ -32,7 +32,7 @@ abstract class LocalizedHelper extends Helper
      */
     protected function getSystemLocale(string $locale): string
     {
-        $country = $this->countryHelper->findBy('locale', $locale);
+        $country = $this->countryHelper->findByLocale($locale);
 
         return $country['systemLocale'];
     }
@@ -46,7 +46,7 @@ abstract class LocalizedHelper extends Helper
      */
     protected function getMinorUnitPattern(string $locale): ?string
     {
-        $country = $this->countryHelper->findBy('locale', $locale);
+        $country = $this->countryHelper->findByLocale($locale);
 
         return $country['minorUnitPattern'] ?? null;
     }
@@ -60,7 +60,7 @@ abstract class LocalizedHelper extends Helper
      */
     protected function getMinorUnitEnd(string $locale): ?int
     {
-        $country = $this->countryHelper->findBy('locale', $locale);
+        $country = $this->countryHelper->findByLocale($locale);
 
         return $country['minorUnitEnd'] ?? null;
     }
