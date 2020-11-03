@@ -190,6 +190,42 @@ class CurrencyHelperTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testToStandardFormatWithCustomPrecision()
+    {
+        $this->loadConfiguration()->loadServiceProvider();
+
+        $currencyHelper = (new CurrencyHelper($this->app->config));
+
+        $expected = '£5,167.6543';
+        $actual = $currencyHelper->toStandardFormat(
+            5167.65428954,
+            CurrencyCode::POUND_STERLING,
+            'en',
+            4
+        );
+        $this->assertEquals($expected, $actual);
+
+        $expected = '£0.534560';
+        $actual = $currencyHelper->toStandardFormat(
+            0.53456,
+            CurrencyCode::POUND_STERLING,
+            'en',
+            6
+        );
+        $this->assertEquals($expected, $actual);
+
+        $expected = '€1,560';
+        $actual = $currencyHelper->toStandardFormat(
+            1560.34334,
+            CurrencyCode::EURO,
+            'ie',
+            0
+        );
+        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals($expected, $actual);
+    }
+
     /**
      * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
      *

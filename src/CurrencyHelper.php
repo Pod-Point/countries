@@ -123,6 +123,7 @@ class CurrencyHelper extends LocalizedHelper
 
         if (is_int($precision)) {
             $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
+            $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $precision);
         }
 
         return $formatter->formatCurrency($value, $currencyCode);
