@@ -222,8 +222,6 @@ class CurrencyHelperTest extends TestCase
             0
         );
         $this->assertEquals($expected, $actual);
-
-        $this->assertEquals($expected, $actual);
     }
 
     /**
