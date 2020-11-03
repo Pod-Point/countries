@@ -2,17 +2,10 @@
 
 namespace PodPoint\I18n;
 
-use Illuminate\Support\Arr;
 use NumberFormatter;
 
 class CurrencyHelper extends LocalizedHelper
 {
-    /*
-     * NumberFormatter will round up with 2 decimals only by default.
-     * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
-     */
-    const MAX_PRECISION = 6;
-
     /**
      * Return a value in the given currency formatted for the given locale.
      *
@@ -20,21 +13,24 @@ class CurrencyHelper extends LocalizedHelper
      * @param string $currencyCode
      * @param string $locale
      *
-     * @param int $precision
+     * @deprecated toStandardFormat should be used.
      * @return string
      */
     public function toFormat(
         $value,
         string $currencyCode = CurrencyCode::POUND_STERLING,
-        string $locale = 'en',
-        $precision = self::MAX_PRECISION
+        string $locale = 'en'
     ): string {
         $formatter = new NumberFormatter(
             $this->getSystemLocale($locale),
             NumberFormatter::CURRENCY
         );
 
-        $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
+        /*
+         * NumberFormatter will round up with 2 decimals only by default.
+         * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
+         */
+        $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
 
         return $formatter->formatCurrency($value, $currencyCode);
     }
@@ -106,17 +102,28 @@ class CurrencyHelper extends LocalizedHelper
         return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
     }
 
+    /**
+     * Return a value in the given currency formatted for the given currency code and locale.
+     *
+     * @param float $value
+     * @param string $currencyCode
+     * @param string $locale
+     * @param int|null $precision Number of decimal to show. If given null, it will take the default currency precision
+     *
+     * @return string
+     */
     public function toStandardFormat(
         float $value,
         $currencyCode = CurrencyCode::POUND_STERLING,
-        string $locale = 'en'
+        string $locale = 'en',
+        $precision = null
     ): string {
-        $precision = Arr::get(
-            $this->config->get('currencies'),
-            "{$currencyCode}.precision",
-            self::MAX_PRECISION
-        );
+        $formatter = new NumberFormatter($this->getSystemLocale($locale), NumberFormatter::CURRENCY);
 
-        return $this->toFormat($value, $currencyCode, $locale, $precision);
+        if (is_int($precision)) {
+            $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
+        }
+
+        return $formatter->formatCurrency($value, $currencyCode);
     }
 }

@@ -40,7 +40,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $this->app->config = new Repository([
                 'countries' => $filesystem->getRequire(__DIR__ . '/../src/config/countries.php'),
                 'countries-partial' => $filesystem->getRequire(__DIR__ . '/../src/config/countries-partial.php'),
-                'currencies' => $filesystem->getRequire(__DIR__ . '/../src/config/currencies.php'),
             ]);
         } catch (FileNotFoundException $e) {
             die("Package configuration files not found: {$e->getMessage()}");

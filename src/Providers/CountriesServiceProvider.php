@@ -36,7 +36,6 @@ class CountriesServiceProvider extends ServiceProvider
         collect([
             'countries',
             'countries-partial',
-            'currencies',
         ])->each(function ($key) {
             $this->app->config->set($key, array_merge(
                 require __DIR__ . "/../config/$key.php",
