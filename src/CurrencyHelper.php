@@ -103,12 +103,13 @@ class CurrencyHelper extends LocalizedHelper
     }
 
     /**
-     * Return a value in the given currency formatted for the given currency code and locale.
+     * Return a value in the given currency format for the given currency code and locale.
      *
      * @param float $value
      * @param string $currencyCode
      * @param string $locale
-     * @param int|null $precision Number of decimal to show. If given null, it will take the default currency precision
+     * @param int|null $precision Number of decimals to show. If null is given, it will take the default currency
+     * precision
      *
      * @return string
      */
