@@ -27,14 +27,15 @@ abstract class LocalizedHelper extends Helper
      * Return system locale from locale. (en => en_GB.UTF-8)
      *
      * @param string $locale
+     * @param bool $fallback
      *
-     * @return string
+     * @return string|null
      */
-    protected function getSystemLocale(string $locale): string
+    protected function getSystemLocale(string $locale, $fallback = true): ?string
     {
         $country = $this->countryHelper->findByLocale($locale);
 
-        return $country['systemLocale'];
+        return $country['systemLocale'] ?? ($fallback ? $this->getFallbackSystemLocale() : null);
     }
 
     /**
@@ -63,5 +64,17 @@ abstract class LocalizedHelper extends Helper
         $country = $this->countryHelper->findByLocale($locale);
 
         return $country['minorUnitEnd'] ?? null;
+    }
+
+    /**
+     * Returns the fallback system Locale or null if there's no match.
+     *
+     * @return string|null
+     */
+    protected function getFallbackSystemLocale(): ?string
+    {
+        $country = $this->countryHelper->findByLocale($this->config->get('app.fallback_locale'));
+
+        return $country['systemLocale'] ?? null;
     }
 }
