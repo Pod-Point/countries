@@ -3,10 +3,8 @@
 namespace PodPoint\I18n\Tests\Unit\Providers;
 
 use PodPoint\I18n\CountryCode;
-use Illuminate\Config\Repository;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
-use PodPoint\I18n\CurrencyHelper;
 
 class CountriesServiceProviderTest extends TestCase
 {
