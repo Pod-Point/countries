@@ -3,11 +3,11 @@
     "description": "A package of useful components for internationalisation in Laravel applications.",
     "type": "library",
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "ext-intl": "*",
-        "illuminate/config": "5.*",
-        "illuminate/support": "5.*",
-        "illuminate/view": "5.*",
+        "illuminate/config": "^6.0",
+        "illuminate/support": "^6.0",
+        "illuminate/view": "^6.0",
         "league/iso3166": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
         "mpociot/vat-calculator": "^2.4"
