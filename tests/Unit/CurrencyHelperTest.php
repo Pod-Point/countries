@@ -86,37 +86,37 @@ class CurrencyHelperTest extends TestCase
     {
         return [
             'Pound Sterling happy path' => [
-                '20',
+                20,
                 CurrencyCode::POUND_STERLING,
                 'en',
                 '20p',
             ],
             'Pound Sterling negative value' => [
-                '-20',
+                -20,
                 CurrencyCode::POUND_STERLING,
                 'en',
                 '-20p',
             ],
             'Pound Sterling high value' => [
-                '20000000',
+                20000000,
                 CurrencyCode::POUND_STERLING,
                 'en',
                 '£200,000.00',
             ],
             'Pound Sterling within minor unit end' => [
-                '75',
+                75,
                 CurrencyCode::POUND_STERLING,
                 'en',
                 '75p',
             ],
             'European Euro' => [
-                '20',
+                20,
                 CurrencyCode::EURO,
                 'ie',
                 '€0.20',
             ],
             'European Euro high value' => [
-                '20000000',
+                20000000,
                 CurrencyCode::EURO,
                 'ie',
                 '€200,000.00',
@@ -239,7 +239,7 @@ class CurrencyHelperTest extends TestCase
      * @param string $locale
      * @param string $expected
      */
-    public function testFormatToMinorUnitWhenApplicablel(int $value, string $currencyCode, string $locale, string $expected)
+    public function testFormatToMinorUnitWhenApplicable(int $value, string $currencyCode, string $locale, string $expected)
     {
         $this->loadConfiguration()->loadServiceProvider();
 

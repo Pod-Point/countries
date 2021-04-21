@@ -48,7 +48,7 @@ class CurrencyServiceTest extends TestCase
     /**
      * Creates mocked cache, config and OpenExchangeRates client & service instances.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
