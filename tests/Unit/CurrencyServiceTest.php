@@ -3,6 +3,7 @@
 namespace PodPoint\I18n\Tests\Unit;
 
 use Carbon\Carbon;
+use GuzzleHttp\Utils;
 use GuzzleHttp\Psr7\Response;
 use PodPoint\I18n\Tests\TestCase;
 use PodPoint\I18n\Currency\ExchangeRate;
@@ -84,11 +85,9 @@ class CurrencyServiceTest extends TestCase
             ->willReturn($appId);
 
         $this->mockClient->expects($this->once())
-            ->method('__call')
-            ->with('get', [
-                "latest.json?{$query}",
-            ])
-            ->willReturn(new Response(200, [], \GuzzleHttp\json_encode([
+            ->method('get')
+            ->with("latest.json?{$query}")
+            ->willReturn(new Response(200, [], Utils::jsonEncode([
                 'timestamp' => $timestamp->timestamp,
                 'rates' => [
                     'NOK' => $rate,
@@ -132,11 +131,9 @@ class CurrencyServiceTest extends TestCase
             ->willReturn($appId);
 
         $this->mockClient->expects($this->once())
-            ->method('__call')
-            ->with('get', [
-                "historical/{$timestamp->format('Y-m-d')}.json?{$query}",
-            ])
-            ->willReturn(new Response(200, [], \GuzzleHttp\json_encode([
+            ->method('get')
+            ->with("historical/{$timestamp->format('Y-m-d')}.json?{$query}")
+            ->willReturn(new Response(200, [], Utils::jsonEncode([
                 'timestamp' => $timestamp->timestamp,
                 'rates' => [
                     'NOK' => $rate,

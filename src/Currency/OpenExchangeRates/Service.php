@@ -3,6 +3,7 @@
 namespace PodPoint\I18n\Currency\OpenExchangeRates;
 
 use Carbon\Carbon;
+use GuzzleHttp\Utils;
 use PodPoint\I18n\CurrencyCode;
 use Illuminate\Support\Collection;
 use PodPoint\I18n\Currency\ExchangeRate;
@@ -60,7 +61,7 @@ class Service implements CurrencyService
         $query = http_build_query($params);
 
         $response = $this->client->get("{$endpoint}?{$query}");
-        $json = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+        $json = Utils::jsonDecode($response->getBody()->getContents(), true);
         $timestamp = Carbon::createFromTimestamp($json['timestamp']);
         $rates = $json['rates'];
 
