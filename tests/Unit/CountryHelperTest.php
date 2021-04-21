@@ -45,7 +45,7 @@ class CountryHelperTest extends TestCase
 
         $actual = (new CountryHelper($this->app->config))->getCountryCodeFromLocale('en');
 
-        $this->assertEquals($actual, 'GB');
+        $this->assertEquals('GB', $actual);
     }
 
     /**
