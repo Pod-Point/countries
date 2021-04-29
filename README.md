@@ -16,9 +16,17 @@ The countries are indexed using their uppercase ISO codes (alpha2/cca2).
 
 Require the package in composer:
 
+For Laravel 5.* and PHP <= 7.1
 ```javascript
 "require": {
     "pod-point/countries": "^3.0"
+},
+```
+
+For Laravel 6.* and PHP >= 7.2
+```javascript
+"require": {
+    "pod-point/countries": "^4.0"
 },
 ```
 
@@ -35,3 +43,7 @@ If you're using Lumen, add the following line to your `bootstrap/app.php` file:
 ```php
 $app->register(PodPoint\I18n\Providers\CountriesServiceProvider::class);
 ```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
