@@ -2,6 +2,7 @@
 
 namespace PodPoint\I18n\ViewComposers;
 
+use GuzzleHttp\Utils;
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
 use PodPoint\I18n\CountryCode;
@@ -91,7 +92,7 @@ class CountryCodeViewComposer
             ],
         ];
 
-        return \GuzzleHttp\json_encode($countryGroups);
+        return Utils::jsonEncode($countryGroups);
     }
 
     /**

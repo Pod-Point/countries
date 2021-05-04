@@ -20,7 +20,7 @@ class CountryCodeViewComposerTest extends TestCase
         /** @var View|\PHPUnit_Framework_MockObject_MockObject $viewMock */
         $viewMock = $this->getMockBuilder(View::class)
             ->disableOriginalConstructor()
-            ->setMethods(['with'])
+            ->onlyMethods(['with'])
             ->getMock();
 
         $viewMock->expects($this->once())

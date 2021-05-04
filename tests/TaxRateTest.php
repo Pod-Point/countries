@@ -17,7 +17,7 @@ class TaxRateTest extends TestCase
     /**
      * @inheritDoc
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -53,10 +53,10 @@ class TaxRateTest extends TestCase
      *
      * @dataProvider supportedCountriesTaxRateDataProvider
      *
-     * @param CountryCode $countryCode
+     * @param string $countryCode
      * @param float $currentVatRate
      */
-    public function testWeCanGetTaxRateForSupportedCountries($countryCode, $currentVatRate)
+    public function testWeCanGetTaxRateForSupportedCountries(string $countryCode, float $currentVatRate)
     {
         $this->assertEquals($currentVatRate, $this->taxRate->get($countryCode));
    }
