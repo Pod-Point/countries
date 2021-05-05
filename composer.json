@@ -3,18 +3,18 @@
     "description": "A package of useful components for internationalisation in Laravel applications.",
     "type": "library",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3 | >=8.0",
         "ext-intl": "*",
-        "illuminate/config": "^6.0",
-        "illuminate/support": "^6.0",
-        "illuminate/view": "^6.0",
+        "illuminate/config": "^8.0",
+        "illuminate/support": "^8.0",
+        "illuminate/view": "^8.0",
         "league/iso3166": "^2.1",
         "guzzlehttp/guzzle": "^7.0",
         "mpociot/vat-calculator": "^2.4"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.0"
     },
     "license": "MIT",
     "authors": [
