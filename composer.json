@@ -8,7 +8,7 @@
         "illuminate/config": "^8.0",
         "illuminate/support": "^8.0",
         "illuminate/view": "^8.0",
-        "league/iso3166": "^2.1",
+        "league/iso3166": "^3.0",
         "guzzlehttp/guzzle": "^7.0",
         "mpociot/vat-calculator": "^2.4"
     },
