@@ -30,6 +30,13 @@ For Laravel 6.* and PHP >= 7.2
 },
 ```
 
+For Laravel 8.* and PHP >= 7.3
+```javascript
+"require": {
+    "pod-point/countries": "^5.0"
+},
+```
+
 Then finally, if you're using Laravel, add the service provider to your `config/app.php` providers array:
 
 ```php

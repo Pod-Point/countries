@@ -2,6 +2,16 @@
 
 All notable changes will be documented in this file.
 
+## 5.0.0 - 2021-XX-XX
+
+Major release to support PHP 7.3 and Laravel 8.x
+- Illuminate packages 6.* -> 8.*
+- PHPUnit 8.x -> 9.x
+- league/iso3166 2.x -> 3.x
+
+#### Breaking changes:
+- This package can no longer support PHP7.2 - if using PHP7.2 please use version 4.*.
+
 ## 4.0.0 - 2021-04-29
 
 Major release to support PHP 7.2 and Laravel 6.x
