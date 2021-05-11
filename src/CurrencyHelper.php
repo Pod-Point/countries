@@ -7,6 +7,13 @@ use NumberFormatter;
 class CurrencyHelper extends LocalizedHelper
 {
     /**
+     * Number Formatters created per locale.
+     *
+     * @var array
+     */
+    protected $localizedFormatters = [];
+
+    /**
      * Return a value in the given currency formatted for the given locale.
      *
      * @param float|int $value
@@ -21,10 +28,7 @@ class CurrencyHelper extends LocalizedHelper
         string $currencyCode = CurrencyCode::POUND_STERLING,
         string $locale = 'en'
     ): string {
-        $formatter = new NumberFormatter(
-            $this->getSystemLocale($locale),
-            NumberFormatter::CURRENCY
-        );
+        $formatter = $this->getFormatter($locale);
 
         /*
          * NumberFormatter will round up with 2 decimals only by default.
@@ -127,5 +131,32 @@ class CurrencyHelper extends LocalizedHelper
         }
 
         return $formatter->formatCurrency($value, $currencyCode);
+    }
+
+    /**
+     * Get an instance of a localized Formatter.
+     *
+     * @param string $locale
+     * @return NumberFormatter
+     */
+    protected function getFormatter(string $locale): NumberFormatter
+    {
+        return $this->localizedFormatters[$locale]
+            ?? $this->setFormatter(
+                $locale,
+                new NumberFormatter($this->getSystemLocale($locale), NumberFormatter::CURRENCY)
+            );
+    }
+
+    /**
+     * Set an instance of a localized Formatter.
+     *
+     * @param string $locale
+     * @param NumberFormatter $formatter
+     * @return NumberFormatter
+     */
+    public function setFormatter(string $locale, NumberFormatter $formatter): NumberFormatter
+    {
+        return $this->localizedFormatters[$locale] = $formatter;
     }
 }
