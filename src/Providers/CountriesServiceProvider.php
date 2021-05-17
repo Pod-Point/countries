@@ -13,7 +13,7 @@ use Mpociot\VatCalculator\VatCalculator;
 class CountriesServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register the service provider.
      *
      * @return void
      */

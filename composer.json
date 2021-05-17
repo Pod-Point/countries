@@ -1,21 +1,8 @@
 {
     "name": "pod-point/i18n",
     "description": "A package of useful components for internationalisation in Laravel applications.",
-    "type": "library",
-    "require": {
-        "php": ">=7.3 | >=8.0",
-        "ext-intl": "*",
-        "illuminate/config": "^8.0",
-        "illuminate/support": "^8.0",
-        "illuminate/view": "^8.0",
-        "league/iso3166": "^3.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "mpociot/vat-calculator": "^2.4"
-    },
-    "require-dev": {
-        "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^9.0"
-    },
+    "keywords": ["laravel", "i18n", "internationalisation", "tax", "currencies", "markets", "languages", "countries"],
+    "homepage": "https://github.com/pod-point/countries",
     "license": "MIT",
     "authors": [
         {
@@ -23,6 +10,19 @@
             "email": "software@pod-point.com"
         }
     ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/config": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0",
+        "illuminate/view": "^7.0|^8.0",
+        "illuminate/filesystem": "^7.0|^8.0",
+        "league/iso3166": "^3.0",
+        "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "mpociot/vat-calculator": "^2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5.8|^9.3.3"
+    },
     "autoload": {
         "psr-4": {
             "PodPoint\\I18n\\": "src/"
@@ -38,9 +38,21 @@
     },
     "extra": {
         "laravel": {
+            "providers": [
+                "PodPoint\\I18n\\Providers\\CountriesServiceProvider"
+            ],
             "dont-discover": [
                 "mpociot/vat-calculator"
             ]
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
     }
 }
