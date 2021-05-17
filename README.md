@@ -1,6 +1,6 @@
 # Internationalisation Package
 
-[![Build Status](https://travis-ci.org/Pod-Point/countries.svg?branch=master)](https://travis-ci.org/Pod-Point/countries) [![Packagist](https://img.shields.io/packagist/v/Pod-Point/countries.svg)](https://packagist.org/packages/pod-point/countries)
+[![run-tests](https://github.com/Pod-Point/countries/actions/workflows/run-tests.yml/badge.svg)](https://github.com/Pod-Point/countries/actions/workflows/run-tests.yml)
 
 This package provides Laravel and Lumen applications internationalisation features:
 
@@ -37,7 +37,7 @@ For Laravel 8.* and PHP >= 7.3
 },
 ```
 
-Then finally, if you're using Laravel, add the service provider to your `config/app.php` providers array:
+Then finally, if you're using a Laravel version which doesn't support Auto Discovery, add the service provider to your `config/app.php` providers array:
 
 ```php
 'providers' => [
@@ -54,3 +54,15 @@ $app->register(PodPoint\I18n\Providers\CountriesServiceProvider::class);
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENCE.md) for more information.
+
+---
+
+<img src="https://d3h256n3bzippp.cloudfront.net/pod-point-logo.svg" align="right" />
+
+Travel shouldn't damage the earth 🌍
+
+Made with ❤️&nbsp;&nbsp;at [Pod Point](https://pod-point.com)
