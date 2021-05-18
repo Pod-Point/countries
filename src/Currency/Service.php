@@ -3,8 +3,8 @@
 namespace PodPoint\I18n\Currency;
 
 use Carbon\Carbon;
-use PodPoint\I18n\CurrencyCode;
 use Illuminate\Support\Collection;
+use PodPoint\I18n\CurrencyCode;
 
 interface Service
 {
