@@ -1,19 +1,16 @@
 <?php
 
-namespace PodPoint\I18n\Providers;
+namespace PodPoint\I18n;
 
-use PodPoint\I18n\CountryHelper;
-use PodPoint\I18n\TaxRate;
-use League\ISO3166\ISO3166;
-use PodPoint\I18n\CurrencyHelper;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use League\ISO3166\ISO3166;
 use Mpociot\VatCalculator\VatCalculator;
 
 class CountriesServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register the service provider.
      *
      * @return void
      */
@@ -38,10 +35,10 @@ class CountriesServiceProvider extends ServiceProvider
             'countries',
             'countries-partial',
         ])->each(function ($key) {
-            $this->app->config->set($key, array_merge(
-                require __DIR__ . "/../config/$key.php",
-                $this->app->config->get($key, [])
-            ));
+            $config = require __DIR__."/../config/$key.php";
+            $mergedConfig = array_merge($config, $this->app->config->get($key, []));
+
+            $this->app->config->set($key, $mergedConfig);
         });
 
         $this->enhanceConfig();
@@ -69,10 +66,14 @@ class CountriesServiceProvider extends ServiceProvider
         $onlySupportedCountries = $enhancedCountries->whereIn('alpha2', $partialCountries->keys());
 
         $this->app->config->set('countries', $enhancedCountries
-            ->sortBy(function ($country, $key) { return $key; })
+            ->sortBy(function ($country, $key) {
+                return $key;
+            })
             ->toArray());
         $this->app->config->set('countries-partial', $onlySupportedCountries
-            ->sortBy(function ($country, $key) { return $key; })
+            ->sortBy(function ($country, $key) {
+                return $key;
+            })
             ->toArray());
     }
 

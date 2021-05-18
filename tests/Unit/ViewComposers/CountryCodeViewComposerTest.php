@@ -51,10 +51,10 @@ class CountryCodeViewComposerTest extends TestCase
         ]);
 
         $expected = [
-            "value" => "GB",
-            "label" => '🇬🇧&nbsp;<span class="country-name">United Kingdom</span>&nbsp;<span class="country-dialling-code">(+44)</span>',
-            "customProperties" => [
-                "description" => "United Kingdom",
+            'value' => 'GB',
+            'label' => '🇬🇧&nbsp;<span class="country-name">United Kingdom</span>&nbsp;<span class="country-dialling-code">(+44)</span>',
+            'customProperties' => [
+                'description' => 'United Kingdom',
             ],
         ];
 
@@ -76,10 +76,10 @@ class CountryCodeViewComposerTest extends TestCase
         ], true);
 
         $expected = [
-            "value" => "GB",
-            "label" => '🇬🇧&nbsp;<span class="country-name country-name--heading">United Kingdom</span>&nbsp;<span class="country-dialling-code country-dialling-code--heading">(+44)</span>',
-            "customProperties" => [
-                "description" => "United Kingdom",
+            'value' => 'GB',
+            'label' => '🇬🇧&nbsp;<span class="country-name country-name--heading">United Kingdom</span>&nbsp;<span class="country-dialling-code country-dialling-code--heading">(+44)</span>',
+            'customProperties' => [
+                'description' => 'United Kingdom',
             ],
         ];
 

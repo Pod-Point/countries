@@ -42,6 +42,7 @@ class CountryHelper extends Helper
             ->search(function ($item) use ($locale) {
                 return isset($item['locale']) && $item['locale'] === $locale;
             });
+
         return $code ? $code : null;
     }
 }
