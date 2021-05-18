@@ -30,6 +30,11 @@ All notable changes to `pod-point/countries` will be documented in this file.
 
 * This package can no longer support PHP7.1 - if using PHP7.1 please use version 3.*.
 
+## 3.1.2 - 2021-05-18
+
+* Minor modernisations
+* Moved from Travis CI to Github Actions
+
 ## 3.1.1 - 2020-11-05
 
 * `getSystemLocale` in `LocalizedHelper` now returns the fallback locale if the given one is not found. This created issues with some tests because NumberFormatter becomes system dependent if null is given.
