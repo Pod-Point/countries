@@ -42,7 +42,7 @@
         },
         "laravel": {
             "providers": [
-                "PodPoint\\I18n\\Providers\\CountriesServiceProvider"
+                "PodPoint\\I18n\\CountriesServiceProvider"
             ],
             "dont-discover": [
                 "mpociot/vat-calculator"
