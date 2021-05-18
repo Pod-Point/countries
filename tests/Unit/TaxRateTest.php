@@ -2,10 +2,10 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\TaxRate;
-use PodPoint\I18n\CountryCode;
-use PodPoint\I18n\Tests\TestCase;
 use Mpociot\VatCalculator\VatCalculator;
+use PodPoint\I18n\CountryCode;
+use PodPoint\I18n\TaxRate;
+use PodPoint\I18n\Tests\TestCase;
 
 class TaxRateTest extends TestCase
 {
@@ -25,7 +25,7 @@ class TaxRateTest extends TestCase
     }
 
     /**
-     * Data Provider for testWeCanGetTaxRateForSupportedCountries()
+     * Data Provider for testWeCanGetTaxRateForSupportedCountries().
      *
      * @return array
      */
@@ -59,7 +59,7 @@ class TaxRateTest extends TestCase
     public function testWeCanGetTaxRateForSupportedCountries(string $countryCode, float $currentVatRate)
     {
         $this->assertEquals($currentVatRate, $this->taxRate->get($countryCode));
-   }
+    }
 
     /**
      * Make sure that if a Country couldn't be found, the tax rate returned is zero.
@@ -70,7 +70,7 @@ class TaxRateTest extends TestCase
     }
 
     /**
-     * Data Provider for testWeCanCalculatePriceWithVat()
+     * Data Provider for testWeCanCalculatePriceWithVat().
      *
      * @return array
      */
@@ -111,7 +111,7 @@ class TaxRateTest extends TestCase
     }
 
     /**
-     * Data Provider for testWeCanCalculatePriceExcludingVat()
+     * Data Provider for testWeCanCalculatePriceExcludingVat().
      *
      * @return array
      */
