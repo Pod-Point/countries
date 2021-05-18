@@ -1,10 +1,10 @@
 <?php
 
-namespace PodPoint\I18n\Tests\Unit\Providers;
+namespace PodPoint\I18n\Tests\Unit;
 
 use PodPoint\I18n\CountryCode;
 use PodPoint\I18n\Tests\TestCase;
-use PodPoint\I18n\Providers\CountriesServiceProvider;
+use PodPoint\I18n\CountriesServiceProvider;
 
 class CountriesServiceProviderTest extends TestCase
 {

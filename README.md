@@ -41,14 +41,14 @@ Then finally, if you're using a Laravel version which doesn't support Auto Disco
 
 ```php
 'providers' => [
-    PodPoint\I18n\Providers\CountriesServiceProvider::class,
+    PodPoint\I18n\CountriesServiceProvider::class,
 ]
 ```
 
 If you're using Lumen, add the following line to your `bootstrap/app.php` file:
 
 ```php
-$app->register(PodPoint\I18n\Providers\CountriesServiceProvider::class);
+$app->register(PodPoint\I18n\CountriesServiceProvider::class);
 ```
 
 ## Changelog

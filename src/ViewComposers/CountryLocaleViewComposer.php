@@ -30,7 +30,7 @@ class CountryLocaleViewComposer
      *
      * @param View $view
      *
-     * @see \PodPoint\I18n\Providers\CountriesServiceProvider::addIsoInfoToCountryConfig()
+     * @see \PodPoint\I18n\CountriesServiceProvider::addIsoInfoToCountryConfig()
      */
     public function compose(View $view)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\I18n\Tests;
+namespace PodPoint\I18n\Tests\Unit;
 
 use PodPoint\I18n\TaxRate;
 use PodPoint\I18n\CountryCode;
