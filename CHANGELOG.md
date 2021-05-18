@@ -11,6 +11,10 @@ Major release to support PHP 7.3+ and Laravel 7.x+
 
 Implement Laravel Auto-Discovery
 
+Moved `config/` a level up following best practices.
+
+Moved `CountriesServiceProvider.php` a level up following best practices.
+
 Removed php-coveralls
 
 Moved from Travis CI to Github Actions
