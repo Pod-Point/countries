@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\I18n\Providers;
+namespace PodPoint\I18n;
 
 use PodPoint\I18n\CountryHelper;
 use PodPoint\I18n\TaxRate;
