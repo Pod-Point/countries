@@ -37,6 +37,9 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "5.0-dev"
+        },
         "laravel": {
             "providers": [
                 "PodPoint\\I18n\\Providers\\CountriesServiceProvider"
