@@ -1,9 +1,9 @@
 <?php
 
-use PodPoint\I18n\Facades\CurrencyHelper;
 use PodPoint\I18n\CurrencyCode;
+use PodPoint\I18n\Facades\CurrencyHelper;
 
-if (!function_exists('moneyFormat')) {
+if (! function_exists('moneyFormat')) {
 
     /**
      * Return a value in the given currency formatted for the given locale.
@@ -20,7 +20,7 @@ if (!function_exists('moneyFormat')) {
     }
 }
 
-if (!function_exists('moneyFormatFromInt')) {
+if (! function_exists('moneyFormatFromInt')) {
 
     /**
      * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
@@ -38,7 +38,7 @@ if (!function_exists('moneyFormatFromInt')) {
     }
 }
 
-if (!function_exists('getCurrencySymbol')) {
+if (! function_exists('getCurrencySymbol')) {
 
     /**
      * Return a currency symbol formatted in the right locale.
@@ -54,7 +54,7 @@ if (!function_exists('getCurrencySymbol')) {
     }
 }
 
-if (!function_exists('getFormatToMinorUnitWhenApplicable')) {
+if (! function_exists('getFormatToMinorUnitWhenApplicable')) {
 
     /**
      * Return a currency symbol formatted in the right locale.
