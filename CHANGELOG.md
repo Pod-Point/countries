@@ -2,7 +2,7 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
-## 5.0.0 - 2021-XX-XX
+## 5.0.0 - 2021-05-18
 
 * Major release to support PHP 7.3+ and Laravel 7.x+
   * Illuminate packages 6.* -> 7.* or 8.*
@@ -17,6 +17,14 @@ All notable changes to `pod-point/countries` will be documented in this file.
 #### Breaking changes:
 
 * This package can no longer support PHP7.2 - if using PHP7.2 please use version 4.*.
+
+## 4.0.1 - 2021-05-18
+
+* Implement Laravel Auto-Discovery
+* Moved `config/` a level up following best practices.
+* Moved `CountriesServiceProvider.php` a level up following best practices.
+* Removed php-coveralls
+* Moved from Travis CI to Github Actions
 
 ## 4.0.0 - 2021-04-29
 
