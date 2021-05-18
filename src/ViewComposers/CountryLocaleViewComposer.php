@@ -2,8 +2,8 @@
 
 namespace PodPoint\I18n\ViewComposers;
 
-use Illuminate\View\View;
 use Illuminate\Config\Repository;
+use Illuminate\View\View;
 
 class CountryLocaleViewComposer
 {
