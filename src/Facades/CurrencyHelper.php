@@ -2,11 +2,11 @@
 
 namespace PodPoint\I18n\Facades;
 
-use PodPoint\I18n\CurrencyCode;
 use Illuminate\Support\Facades\Facade;
+use PodPoint\I18n\CurrencyCode;
 
 /**
- * // phpcs:disable
+ * // phpcs:disable.
  * @method static string toFormat($value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
  * @method static string toFormatFromInt(int $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')
  * @method static string toStandardFormat(float $value, string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en')

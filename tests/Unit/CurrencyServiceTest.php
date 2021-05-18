@@ -4,14 +4,14 @@ namespace PodPoint\I18n\Tests\Unit;
 
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
-use PodPoint\I18n\Tests\TestCase;
-use PodPoint\I18n\Currency\ExchangeRate;
-use PHPUnit\Framework\MockObject\MockObject;
 use Illuminate\Contracts\Cache\Repository as Cache;
-use PodPoint\I18n\Currency\OpenExchangeRates\Client;
 use Illuminate\Contracts\Config\Repository as Config;
-use PodPoint\I18n\Currency\OpenExchangeRates\Service;
+use PHPUnit\Framework\MockObject\MockObject;
 use PodPoint\I18n\Currency\Cache\Service as CacheService;
+use PodPoint\I18n\Currency\ExchangeRate;
+use PodPoint\I18n\Currency\OpenExchangeRates\Client;
+use PodPoint\I18n\Currency\OpenExchangeRates\Service;
+use PodPoint\I18n\Tests\TestCase;
 
 class CurrencyServiceTest extends TestCase
 {
