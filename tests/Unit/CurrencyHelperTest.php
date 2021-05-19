@@ -124,7 +124,6 @@ class CurrencyHelperTest extends TestCase
         ];
     }
 
-
     /**
      * Tests that it returns a currency symbol.
      *

@@ -24,7 +24,7 @@ return [
         'tld' => 'com',
         'timezone' => 'Europe/London',
         'minorUnitEnd' => 99,
-        'minorUnitPattern' => '#.##p'
+        'minorUnitPattern' => '#.##p',
     ],
     CountryCode::IRELAND => [
         'systemLocale' => 'en_IE.UTF-8',

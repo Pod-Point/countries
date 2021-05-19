@@ -4,11 +4,11 @@ namespace PodPoint\I18n\Currency\OpenExchangeRates;
 
 use Carbon\Carbon;
 use GuzzleHttp\Utils;
-use PodPoint\I18n\CurrencyCode;
+use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Support\Collection;
 use PodPoint\I18n\Currency\ExchangeRate;
-use Illuminate\Contracts\Config\Repository as Config;
 use PodPoint\I18n\Currency\Service as CurrencyService;
+use PodPoint\I18n\CurrencyCode;
 
 class Service implements CurrencyService
 {
