@@ -31,7 +31,7 @@ For Laravel 7.x or 8.x and PHP >= 7.3
 composer require pod-point/countries:^5.0
 ```
 
-Then finally, if you're using a Laravel version which doesn't support Auto Discovery, add the service provider to your `config/app.php` providers array:
+Then, finally, if you're using a Laravel version which doesn't support Auto Discovery, add the service provider to your `config/app.php` providers array:
 
 ```php
 'providers' => [
@@ -49,9 +49,9 @@ $app->register(PodPoint\I18n\Providers\CountriesServiceProvider::class);
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## License
+## Licence
 
-The MIT License (MIT). Please see [License File](LICENCE.md) for more information.
+The MIT Licence (MIT). Please see [Licence File](LICENCE.md) for more information.
 
 ---
 
