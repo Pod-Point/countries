@@ -2,8 +2,8 @@
 
 namespace PodPoint\I18n\Currency\OpenExchangeRates;
 
-use Illuminate\Support\Str;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Support\Str;
 
 class Client extends \GuzzleHttp\Client
 {
