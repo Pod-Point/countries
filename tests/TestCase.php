@@ -38,8 +38,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         try {
             $this->app->config = new Repository([
-                'countries' => $filesystem->getRequire(__DIR__.'/../config/countries.php'),
-                'countries-partial' => $filesystem->getRequire(__DIR__.'/../config/countries-partial.php'),
+                'countries' => $filesystem->getRequire(__DIR__ . '/../config/countries.php'),
+                'countries-partial' => $filesystem->getRequire(__DIR__ . '/../config/countries-partial.php'),
             ]);
         } catch (FileNotFoundException $e) {
             exit("Package configuration files not found: {$e->getMessage()}");

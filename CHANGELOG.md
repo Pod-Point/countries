@@ -2,7 +2,13 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
-## 5.0.0 - 2021-XX-XX
+## 5.0.1 - 2021-05-19
+
+* [SWP-2788](https://podpoint.atlassian.net/browse/SWP-2788) Introduce memoization for efficiency during use on mass
+  * Introduced a history for finds in the `CountryHelper` so that we don't perform the same lookup many times
+  * Introduced a caching layer for `NumberFormatters` used in the `CurrencyHelper` to avoid creating many unnecessary instances when used on mass
+
+## 5.0.0 - 2021-05-18
 
 * Major release to support PHP 7.3+ and Laravel 7.x+
   * Illuminate packages 6.* -> 7.* or 8.*
@@ -17,6 +23,12 @@ All notable changes to `pod-point/countries` will be documented in this file.
 #### Breaking changes:
 
 * This package can no longer support PHP7.2 - if using PHP7.2 please use version 4.*.
+
+## 4.0.2 - 2021-05-19
+
+* [SWP-2788](https://podpoint.atlassian.net/browse/SWP-2788) Introduce memoization for efficiency during use on mass
+  * Introduced a history for finds in the `CountryHelper` so that we don't perform the same lookup many times
+  * Introduced a caching layer for `NumberFormatters` used in the `CurrencyHelper` to avoid creating many unnecessary instances when used on mass
 
 ## 4.0.1 - 2021-05-18
 
@@ -37,6 +49,12 @@ All notable changes to `pod-point/countries` will be documented in this file.
 #### Breaking changes:
 
 * This package can no longer support PHP7.1 - if using PHP7.1 please use version 3.*.
+
+## 3.1.3 - 2021-05-19
+
+* [SWP-2788](https://podpoint.atlassian.net/browse/SWP-2788) Introduce memoization for efficiency during use on mass
+  * Introduced a history for finds in the `CountryHelper` so that we don't perform the same lookup many times
+  * Introduced a caching layer for `NumberFormatters` used in the `CurrencyHelper` to avoid creating many unnecessary instances when used on mass
 
 ## 3.1.2 - 2021-05-18
 
