@@ -3,11 +3,11 @@
 namespace PodPoint\I18n\Tests;
 
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 use PHPUnit\Framework\MockObject\MockObject;
-use Illuminate\Contracts\Foundation\Application;
 use PodPoint\I18n\Providers\CountriesServiceProvider;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 'countries-partial' => $filesystem->getRequire(__DIR__ . '/../src/config/countries-partial.php'),
             ]);
         } catch (FileNotFoundException $e) {
-            die("Package configuration files not found: {$e->getMessage()}");
+            exit("Package configuration files not found: {$e->getMessage()}");
         }
 
         return $this;

@@ -1,7 +1,15 @@
 {
     "name": "pod-point/i18n",
     "description": "A package of useful components for internationalisation in Laravel applications.",
-    "type": "library",
+    "keywords": ["laravel", "i18n", "internationalisation", "tax", "currencies", "markets", "languages", "countries"],
+    "homepage": "https://github.com/pod-point/countries",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pod Point Software Team",
+            "email": "software@pod-point.com"
+        }
+    ],
     "require": {
         "php": ">=7.1",
         "ext-intl": "*",
@@ -16,13 +24,6 @@
         "satooshi/php-coveralls": "^1.0",
         "phpunit/phpunit": "^7.5"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Pod Point Software Team",
-            "email": "software@pod-point.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "PodPoint\\I18n\\": "src/"
@@ -38,9 +39,21 @@
     },
     "extra": {
         "laravel": {
+            "providers": [
+                "PodPoint\\I18n\\CountriesServiceProvider"
+            ],
             "dont-discover": [
                 "mpociot/vat-calculator"
             ]
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
     }
 }
