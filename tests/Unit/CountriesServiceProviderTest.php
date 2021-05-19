@@ -29,7 +29,7 @@ class CountriesServiceProviderTest extends TestCase
     {
         $this->loadConfiguration();
 
-        $countryWithBasicInfo = $this->app->config->get('countries.'.CountryCode::UNITED_KINGDOM);
+        $countryWithBasicInfo = $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM);
 
         $this->assertArrayHasKey('name', $countryWithBasicInfo);
         $this->assertArrayHasKey('diallingCode', $countryWithBasicInfo);
@@ -46,8 +46,8 @@ class CountriesServiceProviderTest extends TestCase
         $this->loadServiceProvider();
 
         collect([
-            $this->app->config->get('countries.'.CountryCode::UNITED_KINGDOM),
-            $this->app->config->get('countries-partial.'.CountryCode::UNITED_KINGDOM),
+            $this->app->config->get('countries.' . CountryCode::UNITED_KINGDOM),
+            $this->app->config->get('countries-partial.' . CountryCode::UNITED_KINGDOM),
         ])->each(function ($enhancedCountry) {
             $this->assertArrayHasKey('name', $enhancedCountry);
             $this->assertArrayHasKey('diallingCode', $enhancedCountry);

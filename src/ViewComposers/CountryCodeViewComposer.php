@@ -124,7 +124,7 @@ class CountryCodeViewComposer
      */
     private function countryNameMarkup(string $name, bool $defaultChoice = false): string
     {
-        return '&nbsp;<span class="country-name'.($defaultChoice ? ' country-name--heading' : '').'">'.$name.'</span>';
+        return '&nbsp;<span class="country-name' . ($defaultChoice ? ' country-name--heading' : '') . '">' . $name . '</span>';
     }
 
     /**
@@ -141,7 +141,7 @@ class CountryCodeViewComposer
             return '';
         }
 
-        return '&nbsp;<span class="country-dialling-code'.($defaultChoice ? ' country-dialling-code--heading' : '').'">(+'.$diallingCode.')</span>';
+        return '&nbsp;<span class="country-dialling-code' . ($defaultChoice ? ' country-dialling-code--heading' : '') . '">(+' . $diallingCode . ')</span>';
     }
 
     /**
@@ -203,7 +203,7 @@ class CountryCodeViewComposer
         $letter = strtolower($letter);
 
         if (array_key_exists($letter, $codes)) {
-            return mb_convert_encoding('&#x'.$codes[$letter].';', 'UTF-8', 'HTML-ENTITIES');
+            return mb_convert_encoding('&#x' . $codes[$letter] . ';', 'UTF-8', 'HTML-ENTITIES');
         }
 
         return '';
