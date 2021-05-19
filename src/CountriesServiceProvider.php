@@ -36,6 +36,7 @@ class CountriesServiceProvider extends ServiceProvider
             'countries-partial',
         ])->each(function ($key) {
             $config = require __DIR__ . "/../config/$key.php";
+
             $mergedConfig = array_merge($config, $this->app->config->get($key, []));
 
             $this->app->config->set($key, $mergedConfig);
