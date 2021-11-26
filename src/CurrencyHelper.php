@@ -43,10 +43,9 @@ class CurrencyHelper extends LocalizedHelper
      * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
      * with the right currency symbol and the right localised format for the parameters respectively given.
      *
-     * @param int $value
-     * @param string $currencyCode
-     * @param string $locale
-     *
+     * @param  int  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
      * @return string
      */
     public function toFormatFromInt(
@@ -61,10 +60,9 @@ class CurrencyHelper extends LocalizedHelper
      * Transform an integer representing a decimal currency value (penny, cents...) into a monetary formatted string
      * with the right currency symbol and the right localised format for the parameters respectively given.
      *
-     * @param int $value
-     * @param string $currencyCode
-     * @param string $locale
-     *
+     * @param  int  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
      * @return string
      */
     public function formatToMinorUnitWhenApplicable(
@@ -88,9 +86,8 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Return a currency symbol formatted in the right locale.
      *
-     * @param string $locale
-     * @param string $currencyCode
-     *
+     * @param  string  $locale
+     * @param  string  $currencyCode
      * @return string
      */
     public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
@@ -103,12 +100,11 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Return a value in the given currency format for the given currency code and locale.
      *
-     * @param float $value
-     * @param string $currencyCode
-     * @param string $locale
-     * @param int|null $precision Number of decimals to show. If null is given, it will take the default currency
-     * precision
-     *
+     * @param  float  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  int|null  $precision  Number of decimals to show. If null is given, it will take the default currency
+     *                               precision
      * @return string
      */
     public function toStandardFormat(
@@ -130,7 +126,7 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Get an instance of a localized Formatter.
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return NumberFormatter
      */
     protected function getFormatter(string $locale): NumberFormatter
@@ -145,8 +141,8 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Set an instance of a localized Formatter.
      *
-     * @param string $locale
-     * @param NumberFormatter $formatter
+     * @param  string  $locale
+     * @param  NumberFormatter  $formatter
      * @return NumberFormatter
      */
     public function setFormatter(string $locale, NumberFormatter $formatter): NumberFormatter

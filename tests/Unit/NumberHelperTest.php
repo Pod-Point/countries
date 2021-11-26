@@ -35,9 +35,9 @@ class NumberHelperTest extends TestCase
      *
      * @dataProvider providerTestToFormat
      *
-     * @param float $value
-     * @param string $locale
-     * @param string $expected
+     * @param  float  $value
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testToFormat(float $value, string $locale, string $expected)
     {

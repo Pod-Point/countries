@@ -53,8 +53,8 @@ class TaxRateTest extends TestCase
      *
      * @dataProvider supportedCountriesTaxRateDataProvider
      *
-     * @param CountryCode $countryCode
-     * @param float $currentVatRate
+     * @param  CountryCode  $countryCode
+     * @param  float  $currentVatRate
      */
     public function testWeCanGetTaxRateForSupportedCountries($countryCode, $currentVatRate)
     {
@@ -99,9 +99,9 @@ class TaxRateTest extends TestCase
      * Make sure we can calculate the price after tax (with VAT) based on a net price, before tax,
      * for a specific country. We only test the supported countries through a Data Provider.
      *
-     * @param string $countryCode
-     * @param float $netPrice
-     * @param float $vatPrice
+     * @param  string  $countryCode
+     * @param  float  $netPrice
+     * @param  float  $vatPrice
      *
      * @dataProvider supportedCountriesCalculationDataProvider
      */
@@ -140,9 +140,9 @@ class TaxRateTest extends TestCase
      * Make sure we can calculate the price before tax (excluding VAT) based on a gross price, after tax,
      * for a specific country. We only test the supported countries through a Data Provider.
      *
-     * @param string $countryCode
-     * @param float $grossPrice
-     * @param float $exVatPrice
+     * @param  string  $countryCode
+     * @param  float  $grossPrice
+     * @param  float  $exVatPrice
      *
      * @dataProvider supportedCountriesExclusionDataProvider
      */

@@ -14,7 +14,7 @@ abstract class LocalizedHelper extends Helper
     protected $countryHelper;
 
     /**
-     * @param Repository $config
+     * @param  Repository  $config
      */
     public function __construct(Repository $config)
     {
@@ -26,9 +26,8 @@ abstract class LocalizedHelper extends Helper
     /**
      * Return system locale from locale. (en => en_GB.UTF-8).
      *
-     * @param string $locale
-     * @param bool $fallback
-     *
+     * @param  string  $locale
+     * @param  bool  $fallback
      * @return string|null
      */
     protected function getSystemLocale(string $locale, $fallback = true): ?string
@@ -41,8 +40,7 @@ abstract class LocalizedHelper extends Helper
     /**
      * Return minor unit pattern from locale. (en => #.##p).
      *
-     * @param string $locale
-     *
+     * @param  string  $locale
      * @return string|null
      */
     protected function getMinorUnitPattern(string $locale): ?string
@@ -55,8 +53,7 @@ abstract class LocalizedHelper extends Helper
     /**
      * Return the last minor unit from locale. (en => 99).
      *
-     * @param string $locale
-     *
+     * @param  string  $locale
      * @return int|null
      */
     protected function getMinorUnitEnd(string $locale): ?int

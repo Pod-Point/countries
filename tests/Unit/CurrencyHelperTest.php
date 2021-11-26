@@ -38,10 +38,10 @@ class CurrencyHelperTest extends TestCase
      *
      * @dataProvider providerTestToFormat
      *
-     * @param float $value
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     * @param  float  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testToFormat(float $value, string $currencyCode, string $locale, string $expected)
     {
@@ -129,9 +129,9 @@ class CurrencyHelperTest extends TestCase
      *
      * @dataProvider providerTestGetSymbol
      *
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testGetSymbol(string $currencyCode, string $locale, string $expected)
     {
@@ -233,10 +233,11 @@ class CurrencyHelperTest extends TestCase
      * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
      *
      * @dataProvider  providerTestFormatToMinorUnitWhenApplicable
-     * @param int $value
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     *
+     * @param  int  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testFormatToMinorUnitWhenApplicablel(int $value, string $currencyCode, string $locale, string $expected)
     {
