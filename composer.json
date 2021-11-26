@@ -40,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PodPoint\\I18n\\CountriesServiceProvider"
+                "PodPoint\\I18n\\Providers\\CountriesServiceProvider"
             ],
             "dont-discover": [
                 "mpociot/vat-calculator"
