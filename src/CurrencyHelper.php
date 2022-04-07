@@ -140,7 +140,7 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Create the default formatter for the given locale.
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return NumberFormatter
      */
     protected function getDefaultFormatter(string $locale): NumberFormatter
@@ -166,9 +166,9 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Create a basic number formatter for the given locale in the given style.
      *
-     * @param string $locale
-     * @param string|null $pattern
-     * @param int|null $style
+     * @param  string  $locale
+     * @param  string|null  $pattern
+     * @param  int|null  $style
      * @return NumberFormatter
      */
     protected function getBaseFormatter(string $locale, ?string $pattern = null, ?int $style = null): NumberFormatter
@@ -183,15 +183,15 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Create a number formatter for retrieving symbols.
      *
-     * @param string $locale
-     * @param string $currencyCode
+     * @param  string  $locale
+     * @param  string  $currencyCode
      * @return NumberFormatter
      */
     protected function getSymbolFormatter(string $locale, string $currencyCode): NumberFormatter
     {
         return $this->getFormatter(
             $this->getFormatterCacheKey(func_get_args()),
-            function () use ($locale,  $currencyCode) {
+            function () use ($locale, $currencyCode) {
                 return $this->getBaseFormatter(
                     $this->getSystemLocale($locale) . "@currency=$currencyCode"
                 );
@@ -202,8 +202,8 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Create a number formatter with a given precision.
      *
-     * @param string $locale
-     * @param int|null $precision
+     * @param  string  $locale
+     * @param  int|null  $precision
      * @return NumberFormatter
      */
     protected function getFixedPrecisionFormatter(string $locale, ?int $precision): NumberFormatter
@@ -226,8 +226,8 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Create a number formatter using a pattern.
      *
-     * @param string $locale
-     * @param string $pattern
+     * @param  string  $locale
+     * @param  string  $pattern
      * @return NumberFormatter
      */
     protected function getPatternedFormatter(string $locale, string $pattern): NumberFormatter
