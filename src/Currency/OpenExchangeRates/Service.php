@@ -22,8 +22,8 @@ class Service implements CurrencyService
     private $client;
 
     /**
-     * @param Config $config
-     * @param Client $client
+     * @param  Config  $config
+     * @param  Client  $client
      */
     public function __construct(Config $config, Client $client)
     {
@@ -34,10 +34,9 @@ class Service implements CurrencyService
     /**
      * Fetches the exchange rates from the OpenExchangeRates API.
      *
-     * @param string $base
-     * @param string[] $currencies
-     * @param Carbon|null $timestamp
-     *
+     * @param  string  $base
+     * @param  string[]  $currencies
+     * @param  Carbon|null  $timestamp
      * @return Collection|ExchangeRate[]
      */
     public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], ?Carbon $timestamp = null): Collection

@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 class Client extends \GuzzleHttp\Client
 {
     /**
-     * @param Repository $configRepository
-     * @param array $config
+     * @param  Repository  $configRepository
+     * @param  array  $config
      */
     public function __construct(Repository $configRepository, array $config = [])
     {

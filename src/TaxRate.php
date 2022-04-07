@@ -19,8 +19,7 @@ class TaxRate
     /**
      * Returns the tax rate for the given country code.
      *
-     * @param string $countryCode
-     *
+     * @param  string  $countryCode
      * @return float
      */
     public function get(string $countryCode): float
@@ -32,12 +31,11 @@ class TaxRate
      * Calculate the VAT based on the net price, country code and indication if the
      * customer is a company or not.
      *
-     * @param int|float $netPrice The net price to use for the calculation
-     * @param string $countryCode The country code to use for the rate lookup
-     * @param string|null $postalCode The postal code to use for the rate exception lookup
-     * @param bool|null $company Whether or not the customer is a company
-     * @param string|null $type The type can be low or high
-     *
+     * @param  int|float  $netPrice  The net price to use for the calculation
+     * @param  string  $countryCode  The country code to use for the rate lookup
+     * @param  string|null  $postalCode  The postal code to use for the rate exception lookup
+     * @param  bool|null  $company  Whether or not the customer is a company
+     * @param  string|null  $type  The type can be low or high
      * @return float
      */
     public function calculate($netPrice, string $countryCode, ?string $postalCode = null, ?bool $company = null, ?string $type = null): float
@@ -49,12 +47,11 @@ class TaxRate
      * Calculate the net price on the gross price, country code and indication if the
      * customer is a company or not.
      *
-     * @param int|float $grossPrice The gross price to use for the calculation
-     * @param string $countryCode The country code to use for the rate lookup
-     * @param string|null $postalCode The postal code to use for the rate exception lookup
-     * @param bool|null $company Whether or not the customer is a company
-     * @param string|null $type The type can be low or high
-     *
+     * @param  int|float  $grossPrice  The gross price to use for the calculation
+     * @param  string  $countryCode  The country code to use for the rate lookup
+     * @param  string|null  $postalCode  The postal code to use for the rate exception lookup
+     * @param  bool|null  $company  Whether or not the customer is a company
+     * @param  string|null  $type  The type can be low or high
      * @return float
      */
     public function exclude($grossPrice, string $countryCode, ?string $postalCode = null, ?bool $company = null, ?string $type = null): float
