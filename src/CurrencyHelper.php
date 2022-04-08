@@ -148,9 +148,7 @@ class CurrencyHelper extends LocalizedHelper
         return $this->getFormatter(
             $this->getFormatterCacheKey(func_get_args()),
             function () use ($locale) {
-                $formatter = $this->getBaseFormatter(
-                    $this->getSystemLocale($locale)
-                );
+                $formatter = $this->getBaseFormatter($this->getSystemLocale($locale));
 
                 /*
                  * NumberFormatter will round up with 2 decimals only by default.
@@ -167,17 +165,12 @@ class CurrencyHelper extends LocalizedHelper
      * Create a basic number formatter for the given locale in the given style.
      *
      * @param  string  $locale
-     * @param  string|null  $pattern
      * @param  int|null  $style
      * @return NumberFormatter
      */
-    protected function getBaseFormatter(string $locale, ?string $pattern = null, ?int $style = null): NumberFormatter
+    protected function getBaseFormatter(string $locale, ?int $style = null): NumberFormatter
     {
-        return new NumberFormatter(
-            $locale,
-            $style ?? NumberFormatter::CURRENCY,
-            $pattern
-        );
+        return new NumberFormatter($locale, $style ?? NumberFormatter::CURRENCY);
     }
 
     /**
@@ -235,7 +228,7 @@ class CurrencyHelper extends LocalizedHelper
         return $this->getFormatter(
             $this->getFormatterCacheKey(func_get_args()),
             function () use ($locale, $pattern) {
-                $formatter = $this->getBaseFormatter($this->getSystemLocale($locale), $pattern);
+                $formatter = $this->getBaseFormatter($this->getSystemLocale($locale));
 
                 $formatter->setPattern($pattern);
 
