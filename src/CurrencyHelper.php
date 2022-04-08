@@ -28,25 +28,9 @@ class CurrencyHelper extends LocalizedHelper
         string $currencyCode = CurrencyCode::POUND_STERLING,
         string $locale = 'en'
     ): string {
-        $formatter = $this->getFormatter(
-            $this->getFormatterCacheKey([__FUNCTION__] + compact('currencyCode', 'locale')),
-            function () use ($locale) {
-                $formatter = new NumberFormatter(
-                    $this->getSystemLocale($locale),
-                    NumberFormatter::CURRENCY
-                );
-
-                /*
-                 * NumberFormatter will round up with 2 decimals only by default.
-                 * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
-                 */
-                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
-
-                return $formatter;
-            }
-        );
-
-        return $formatter->formatCurrency($value, $currencyCode);
+        return $this
+            ->getDefaultFormatter($locale)
+            ->formatCurrency($value, $currencyCode);
     }
 
     /**
@@ -83,21 +67,9 @@ class CurrencyHelper extends LocalizedHelper
         $pattern = $this->getMinorUnitPattern($locale);
 
         if ($value <= $this->getMinorUnitEnd($locale) && $pattern) {
-            $formatter = $this->getFormatter(
-                $this->getFormatterCacheKey([__FUNCTION__] + compact('currencyCode', 'locale')),
-                function () use ($locale, $pattern) {
-                    $formatter = new NumberFormatter(
-                        $this->getSystemLocale($locale),
-                        NumberFormatter::CURRENCY
-                    );
-
-                    $formatter->setPattern($pattern);
-
-                    return $formatter;
-                }
-            );
-
-            return $formatter->formatCurrency($value, $currencyCode);
+            return $this
+                ->getPatternedFormatter($locale, $pattern)
+                ->formatCurrency($value, $currencyCode);
         }
 
         return $this->toFormatFromInt($value, $currencyCode, $locale);
@@ -112,17 +84,9 @@ class CurrencyHelper extends LocalizedHelper
      */
     public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        $formatter = $this->getFormatter(
-            $this->getFormatterCacheKey([__FUNCTION__] + compact('currencyCode', 'locale')),
-            function () use ($locale, $currencyCode) {
-                return new NumberFormatter(
-                    $this->getSystemLocale($locale) . "@currency=$currencyCode",
-                    NumberFormatter::CURRENCY
-                );
-            }
-        );
-
-        return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+        return $this
+            ->getSymbolFormatter($locale, $currencyCode)
+            ->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
     }
 
     /**
@@ -141,28 +105,9 @@ class CurrencyHelper extends LocalizedHelper
         string $locale = 'en',
         int $precision = null
     ): string {
-        $formatter = $this->getFormatter(
-            $this->getFormatterCacheKey([__FUNCTION__] + compact(
-                'currencyCode',
-                'locale',
-                'precision')
-            ),
-            function () use ($locale, $precision) {
-                $formatter = new NumberFormatter(
-                    $this->getSystemLocale($locale),
-                    NumberFormatter::CURRENCY
-                );
-
-                if (is_int($precision)) {
-                    $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
-                    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $precision);
-                }
-
-                return $formatter;
-            }
-        );
-
-        return $formatter->formatCurrency($value, $currencyCode);
+        return $this
+            ->getFixedPrecisionFormatter($locale, $precision)
+            ->formatCurrency($value, $currencyCode);
     }
 
     /**
@@ -190,5 +135,112 @@ class CurrencyHelper extends LocalizedHelper
         }
 
         return $this->cachedFormatters[$key] = $createHandler();
+    }
+
+    /**
+     * Create the default formatter for the given locale.
+     *
+     * @param  string  $locale
+     * @return NumberFormatter
+     */
+    protected function getDefaultFormatter(string $locale): NumberFormatter
+    {
+        return $this->getFormatter(
+            $this->getFormatterCacheKey(func_get_args()),
+            function () use ($locale) {
+                $formatter = $this->getBaseFormatter(
+                    $this->getSystemLocale($locale)
+                );
+
+                /*
+                 * NumberFormatter will round up with 2 decimals only by default.
+                 * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
+                 */
+                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
+
+                return $formatter;
+            }
+        );
+    }
+
+    /**
+     * Create a basic number formatter for the given locale in the given style.
+     *
+     * @param  string  $locale
+     * @param  string|null  $pattern
+     * @param  int|null  $style
+     * @return NumberFormatter
+     */
+    protected function getBaseFormatter(string $locale, ?string $pattern = null, ?int $style = null): NumberFormatter
+    {
+        return new NumberFormatter(
+            $locale,
+            $style ?? NumberFormatter::CURRENCY,
+            $pattern
+        );
+    }
+
+    /**
+     * Create a number formatter for retrieving symbols.
+     *
+     * @param  string  $locale
+     * @param  string  $currencyCode
+     * @return NumberFormatter
+     */
+    protected function getSymbolFormatter(string $locale, string $currencyCode): NumberFormatter
+    {
+        return $this->getFormatter(
+            $this->getFormatterCacheKey(func_get_args()),
+            function () use ($locale, $currencyCode) {
+                return $this->getBaseFormatter(
+                    $this->getSystemLocale($locale) . "@currency=$currencyCode"
+                );
+            }
+        );
+    }
+
+    /**
+     * Create a number formatter with a given precision.
+     *
+     * @param  string  $locale
+     * @param  int|null  $precision
+     * @return NumberFormatter
+     */
+    protected function getFixedPrecisionFormatter(string $locale, ?int $precision): NumberFormatter
+    {
+        return $this->getFormatter(
+            $this->getFormatterCacheKey(func_get_args()),
+            function () use ($locale, $precision) {
+                $formatter = $this->getBaseFormatter($this->getSystemLocale($locale));
+
+                if (is_int($precision)) {
+                    $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
+                    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $precision);
+                }
+
+                return $formatter;
+            }
+        );
+    }
+
+    /**
+     * Create a number formatter using a pattern.
+     *
+     * @param  string  $locale
+     * @param  string  $pattern
+     * @return NumberFormatter
+     */
+    protected function getPatternedFormatter(string $locale, string $pattern): NumberFormatter
+    {
+        return $this->getFormatter(
+            $this->getFormatterCacheKey(func_get_args()),
+            function () use ($locale, $pattern) {
+                $formatter = $this->getBaseFormatter($this->getSystemLocale($locale), $pattern);
+
+                $formatter->setPattern($pattern);
+
+                return $formatter;
+            }
+        );
     }
 }
