@@ -16,9 +16,9 @@ class CurrencyHelper extends LocalizedHelper
     /**
      * Return a value in the given currency formatted for the given locale.
      *
-     * @param float|int $value
-     * @param string $currencyCode
-     * @param string $locale
+     * @param  float|int  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
      * @return string
      *
      * @deprecated toStandardFormat should be used.
