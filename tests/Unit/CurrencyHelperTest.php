@@ -13,7 +13,7 @@ class CurrencyHelperTest extends TestCase
      *
      * @return array
      */
-    public function providerTestToFormat()
+    public function providerTestToFormat(): array
     {
         $value = 1500.5;
 
@@ -38,10 +38,10 @@ class CurrencyHelperTest extends TestCase
      *
      * @dataProvider providerTestToFormat
      *
-     * @param float $value
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     * @param  float  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testToFormat(float $value, string $currencyCode, string $locale, string $expected)
     {
@@ -61,9 +61,14 @@ class CurrencyHelperTest extends TestCase
      *
      * @return array
      */
-    public function providerTestGetSymbol()
+    public function providerTestGetSymbol(): array
     {
         return [
+            'Euro' => [
+                CurrencyCode::EURO,
+                'en',
+                '€',
+            ],
             'Pound Sterling' => [
                 CurrencyCode::POUND_STERLING,
                 'en',
@@ -82,7 +87,7 @@ class CurrencyHelperTest extends TestCase
      *
      * @return array
      */
-    public function providerTestFormatToMinorUnitWhenApplicable()
+    public function providerTestFormatToMinorUnitWhenApplicable(): array
     {
         return [
             'Pound Sterling happy path' => [
@@ -129,9 +134,9 @@ class CurrencyHelperTest extends TestCase
      *
      * @dataProvider providerTestGetSymbol
      *
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
     public function testGetSymbol(string $currencyCode, string $locale, string $expected)
     {
@@ -232,13 +237,14 @@ class CurrencyHelperTest extends TestCase
     /**
      * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
      *
-     * @dataProvider  providerTestFormatToMinorUnitWhenApplicable
-     * @param int $value
-     * @param string $currencyCode
-     * @param string $locale
-     * @param string $expected
+     * @dataProvider providerTestFormatToMinorUnitWhenApplicable
+     *
+     * @param  int  $value
+     * @param  string  $currencyCode
+     * @param  string  $locale
+     * @param  string  $expected
      */
-    public function testFormatToMinorUnitWhenApplicablel(int $value, string $currencyCode, string $locale, string $expected)
+    public function testFormatToMinorUnitWhenApplicable(int $value, string $currencyCode, string $locale, string $expected)
     {
         $this->loadConfiguration()->loadServiceProvider();
 

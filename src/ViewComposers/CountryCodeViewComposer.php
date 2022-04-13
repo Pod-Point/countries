@@ -14,7 +14,7 @@ class CountryCodeViewComposer
     private $config;
 
     /**
-     * @param Repository $config
+     * @param  Repository  $config
      */
     public function __construct(Repository $config)
     {
@@ -24,7 +24,7 @@ class CountryCodeViewComposer
     /**
      * Binds the data to the view.
      *
-     * @param View $view
+     * @param  View  $view
      */
     public function compose(View $view)
     {
@@ -36,10 +36,9 @@ class CountryCodeViewComposer
     /**
      * Get a country choice.
      *
-     * @param string $countryCode
-     * @param array  $country
-     * @param bool   $defaultChoice
-     *
+     * @param  string  $countryCode
+     * @param  array  $country
+     * @param  bool  $defaultChoice
      * @return array
      */
     public function countryChoice(string $countryCode, array $country, bool $defaultChoice = false): array
@@ -56,9 +55,9 @@ class CountryCodeViewComposer
     /**
      * Get the country-code options by looping the countries in the config, while also adding the flag emojis.
      *
-     * @throws \InvalidArgumentException
-     *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     private function countryCodeOptions(): string
     {
@@ -97,11 +96,10 @@ class CountryCodeViewComposer
     /**
      * Get a country label.
      *
-     * @param string   $countryCode
-     * @param string   $countryName
-     * @param int|null $diallingCode
-     * @param bool     $defaultChoice
-     *
+     * @param  string  $countryCode
+     * @param  string  $countryName
+     * @param  int|null  $diallingCode
+     * @param  bool  $defaultChoice
      * @return string
      */
     private function countryLabel(string $countryCode, string $countryName, $diallingCode, bool $defaultChoice = false): string
@@ -116,9 +114,8 @@ class CountryCodeViewComposer
     /**
      * Get a country name markup.
      *
-     * @param string $name
-     * @param bool   $defaultChoice
-     *
+     * @param  string  $name
+     * @param  bool  $defaultChoice
      * @return string
      */
     private function countryNameMarkup(string $name, bool $defaultChoice = false): string
@@ -129,9 +126,8 @@ class CountryCodeViewComposer
     /**
      * Get a dialling code markup.
      *
-     * @param int|null $diallingCode
-     * @param bool     $defaultChoice
-     *
+     * @param  int|null  $diallingCode
+     * @param  bool  $defaultChoice
      * @return string
      */
     private function dialingCodeMarkup(?int $diallingCode = null, bool $defaultChoice = false): string
@@ -146,8 +142,7 @@ class CountryCodeViewComposer
     /**
      * Get the emoji flag for a given country code.
      *
-     * @param string $countryCode
-     *
+     * @param  string  $countryCode
      * @return string
      */
     private function emojiFlag(string $countryCode): string
@@ -164,8 +159,7 @@ class CountryCodeViewComposer
     /**
      * Get the unicode character for a given letter.
      *
-     * @param string $letter
-     *
+     * @param  string  $letter
      * @return string
      */
     private function unicodeCharacter(string $letter): string

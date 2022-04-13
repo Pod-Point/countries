@@ -83,8 +83,7 @@ class CountriesServiceProvider extends ServiceProvider
     /**
      * Adds ISO country information to our existing country configuration.
      *
-     * @param Collection $countries
-     *
+     * @param  Collection  $countries
      * @return Collection
      */
     protected function addIsoInfoToCountryConfig(Collection $countries): Collection
@@ -98,9 +97,8 @@ class CountriesServiceProvider extends ServiceProvider
      * Adds miscellaneous country information, like the Laravel locale for each country for example,
      * to our existing country configuration.
      *
-     * @param Collection $countries
-     * @param Collection $partialCountries
-     *
+     * @param  Collection  $countries
+     * @param  Collection  $partialCountries
      * @return Collection
      */
     protected function addPartialInfoToCountryConfig(Collection $countries, Collection $partialCountries): Collection
