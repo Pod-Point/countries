@@ -14,9 +14,8 @@ class CountryHelper extends Helper
     /**
      * Returns the first country matching the given property/value pair.
      *
-     * @param string $property
-     * @param mixed $value
-     *
+     * @param  string  $property
+     * @param  mixed  $value
      * @return array|null
      */
     public function findBy(string $property, $value): ?array
@@ -35,7 +34,7 @@ class CountryHelper extends Helper
     /**
      * Returns the first country matching the given locale.
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return array|null
      */
     public function findByLocale(string $locale): ?array
@@ -46,7 +45,7 @@ class CountryHelper extends Helper
     /**
      * Returns the country code matching the given locale.
      *
-     * @param string $locale
+     * @param  string  $locale
      * @return string|null
      */
     public function getCountryCodeFromLocale(string $locale): ?string
@@ -62,8 +61,8 @@ class CountryHelper extends Helper
     /**
      * Generate a string formed of the property and value for the results cache.
      *
-     * @param string $property
-     * @param string $value
+     * @param  string  $property
+     * @param  string  $value
      * @return string
      */
     protected function generateResultsKey(string $property, string $value): string
