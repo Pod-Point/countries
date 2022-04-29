@@ -2,7 +2,6 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\NumberHelper;
 use PodPoint\I18n\Tests\TestCase;
 
