@@ -111,8 +111,8 @@ abstract class LocalizedHelper extends Helper
     /**
      * Get the formatter cache key.
      *
-     * @param string $method
-     * @param array $params
+     * @param  string  $method
+     * @param  array  $params
      * @return string
      */
     protected function getFormatterCacheKey(string $method, array $params): string
@@ -147,9 +147,9 @@ abstract class LocalizedHelper extends Helper
      * Create the default formatter for the given locale. The precision can be variable based on the max and min values.
      * If no precision is specified, the default one for the locale and NumberFormatter style will be used.
      *
-     * @param string $locale
-     * @param int|null $maxPrecision
-     * @param int|null $minPrecision
+     * @param  string  $locale
+     * @param  int|null  $maxPrecision
+     * @param  int|null  $minPrecision
      * @return NumberFormatter
      */
     protected function getDefaultFormatter(

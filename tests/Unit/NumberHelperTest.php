@@ -62,10 +62,10 @@ class NumberHelperTest extends TestCase
      *
      * @dataProvider providerTestToFormat
      *
-     * @param float $value
-     * @param string $locale
-     * @param int|null $precision
-     * @param string $expected
+     * @param  float  $value
+     * @param  string  $locale
+     * @param  int|null  $precision
+     * @param  string  $expected
      */
     public function testToFormat(float $value, string $locale, ?int $precision, string $expected)
     {
