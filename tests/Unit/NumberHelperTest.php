@@ -2,7 +2,6 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\NumberHelper;
 use PodPoint\I18n\Tests\TestCase;
 
@@ -72,7 +71,6 @@ class NumberHelperTest extends TestCase
         $this->loadConfiguration()->loadServiceProvider();
 
         $numberHelper = new NumberHelper($this->app->config);
-        $currencyHelper = new CurrencyHelper($this->app->config);
 
         $actual = $numberHelper->toFormat($value, $locale, $precision);
 
