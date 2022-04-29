@@ -124,6 +124,10 @@ class CountriesServiceProvider extends ServiceProvider
         $this->app->singleton('country.helper', function ($app) {
             return new CountryHelper($app->config);
         });
+
+        $this->app->singleton('number.helper', function ($app) {
+            return new NumberHelper($app->config);
+        });
     }
 
     /**
@@ -137,6 +141,7 @@ class CountriesServiceProvider extends ServiceProvider
             $this->app->alias('currency.helper', CurrencyHelper::class);
             $this->app->alias('i18n.taxrate', TaxRate::class);
             $this->app->alias('country.helper', CountryHelper::class);
+            $this->app->alias('number.helper', NumberHelper::class);
         });
     }
 }
