@@ -16,7 +16,7 @@ abstract class Helper
     /**
      * CountryHelper constructor.
      *
-     * @param Repository $config
+     * @param  Repository  $config
      */
     public function __construct(Repository $config)
     {

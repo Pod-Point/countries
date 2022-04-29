@@ -17,7 +17,7 @@ class CountryLocaleViewComposer
     /**
      * CountryLocaleViewComposer constructor.
      *
-     * @param Repository $config
+     * @param  Repository  $config
      */
     public function __construct(Repository $config)
     {
@@ -28,7 +28,7 @@ class CountryLocaleViewComposer
      * Fetches the supported application locales for Laravel and their "Display names" from the
      * enhanced configuration array and binds the data to the view.
      *
-     * @param View $view
+     * @param  View  $view
      *
      * @see \PodPoint\I18n\CountriesServiceProvider::addIsoInfoToCountryConfig()
      */
