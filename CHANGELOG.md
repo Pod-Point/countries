@@ -2,6 +2,9 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
+## 5.0.2 - 2022-04-29
+* Fix the memoization and the `getSymbol` method in the CurrencyHelper ([#55](https://github.com/Pod-Point/countries/pull/55)).
+
 ## 5.0.1 - 2021-05-19
 
 * [SWP-2788](https://podpoint.atlassian.net/browse/SWP-2788) Introduce memoization for efficiency during use on mass
