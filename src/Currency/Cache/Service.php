@@ -23,8 +23,8 @@ class Service implements CurrencyService
     private $service;
 
     /**
-     * @param Cache $cache
-     * @param ServiceInterface $service
+     * @param  Cache  $cache
+     * @param  ServiceInterface  $service
      */
     public function __construct(Cache $cache, ServiceInterface $service)
     {
@@ -35,11 +35,11 @@ class Service implements CurrencyService
     /**
      * Fetches the exchange rates from another service if they don't already exist in cache.
      *
-     * @param string $base
-     * @param string[] $currencies
-     * @param Carbon|null $timestamp
-     *
+     * @param  string  $base
+     * @param  string[]  $currencies
+     * @param  Carbon|null  $timestamp
      * @return Collection|ExchangeRate[]
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function getExchangeRates(string $base = CurrencyCode::POUND_STERLING, array $currencies = [], ?Carbon $timestamp = null): Collection
@@ -80,11 +80,11 @@ class Service implements CurrencyService
     /**
      * Builds the key used to access/store this rate in cache.
      *
-     * @param string $base
-     * @param string $currency
-     * @param Carbon $timestamp
-     *
+     * @param  string  $base
+     * @param  string  $currency
+     * @param  Carbon  $timestamp
      * @return string
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     private function getCacheKey(string $base, string $currency, Carbon $timestamp): string
