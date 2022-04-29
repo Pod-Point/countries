@@ -2,7 +2,6 @@
 
 namespace PodPoint\I18n\Tests\Unit;
 
-use PodPoint\I18n\CurrencyHelper;
 use PodPoint\I18n\NumberHelper;
 use PodPoint\I18n\Tests\TestCase;
 
@@ -51,7 +50,8 @@ class NumberHelperTest extends TestCase
             'number in norwegian format with fixed precision' => [
                 1500.51254567890,
                 'no',
-                '1 500,513',
+                7,
+                "1{$nonBreakingSpace}500,5125457",
             ],
         ];
     }
