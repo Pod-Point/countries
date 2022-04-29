@@ -12,20 +12,46 @@ class NumberHelperTest extends TestCase
      *
      * @return array
      */
-    public function providerTestToFormat()
+    public function providerTestToFormat(): array
     {
-        $value = 1500.51254567890;
+        $nonBreakingSpace = "\xC2\xA0";
 
         return [
-            'number in english format' => [
-                $value,
+            'number in english format with default precision' => [
+                2456.3487283384,
                 'en',
-                '1,500.513',
+                null,
+                '2,456.349',
             ],
-            'number in norwegian format' => [
-                $value,
+            'number in english format with fixed precision' => [
+                2456.3487283384,
+                'en',
+                5,
+                '2,456.34873',
+            ],
+            'number in english (IE) format with default precision' => [
+                1569.7834745,
+                'ie',
+                null,
+                '1,569.783',
+            ],
+            'number in english (IE) format with fixed precision' => [
+                1569.7834745,
+                'ie',
+                0,
+                '1,570',
+            ],
+            'number in norwegian format with default precision' => [
+                1500.51254567890,
                 'no',
-                '1 500,513',
+                null,
+                "1{$nonBreakingSpace}500,513",
+            ],
+            'number in norwegian format with fixed precision' => [
+                1500.51254567890,
+                'no',
+                7,
+                "1{$nonBreakingSpace}500,5125457",
             ],
         ];
     }
@@ -37,16 +63,17 @@ class NumberHelperTest extends TestCase
      *
      * @param  float  $value
      * @param  string  $locale
+     * @param  int|null  $precision
      * @param  string  $expected
      */
-    public function testToFormat(float $value, string $locale, string $expected)
+    public function testToFormat(float $value, string $locale, ?int $precision, string $expected)
     {
         $this->loadConfiguration()->loadServiceProvider();
 
-        $currencyHelper = new NumberHelper($this->app->config);
+        $numberHelper = new NumberHelper($this->app->config);
 
-        $actual = $currencyHelper->toFormat($value, $locale);
+        $actual = $numberHelper->toFormat($value, $locale, $precision);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 }
