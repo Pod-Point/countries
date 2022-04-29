@@ -22,7 +22,6 @@ class CurrencyHelper extends LocalizedHelper
         string $locale = 'en'
     ): string {
         /*
-         * NumberFormatter will round up with 2 decimals only by default.
          * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
          */
         return $this
