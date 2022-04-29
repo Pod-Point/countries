@@ -2,10 +2,6 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
-#### Breaking changes:
-
-* This package can no longer support PHP7.2 - if using PHP7.2 please use version 4.*.
-
 ## 4.0.3 - 2022-04-29
 * Fix the memoization and the `getSymbol` method in the CurrencyHelper ([#54](https://github.com/Pod-Point/countries/pull/54)).
 
