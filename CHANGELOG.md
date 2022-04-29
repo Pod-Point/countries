@@ -2,6 +2,11 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
+## 3.2.0 - 2022-04-29
+
+*  Adds precision to the `NumberHelper` and implements `NumberHelper` Facade ([#57](https://github.com/Pod-Point/countries/pull/57)).
+
+
 ## 3.1.4 - 2022-04-13
 
 *  Fix the memoization and the `getSymbol` method in the CurrencyHelper ([#51](https://github.com/Pod-Point/countries/pull/51)).
