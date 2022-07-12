@@ -7,13 +7,6 @@ use NumberFormatter;
 class CurrencyHelper extends LocalizedHelper
 {
     /**
-     * Number Formatters created per locale.
-     *
-     * @var array
-     */
-    protected $localizedFormatters = [];
-
-    /**
      * Return a value in the given currency formatted for the given locale.
      *
      * @param  float|int  $value
@@ -28,15 +21,12 @@ class CurrencyHelper extends LocalizedHelper
         string $currencyCode = CurrencyCode::POUND_STERLING,
         string $locale = 'en'
     ): string {
-        $formatter = $this->getFormatter($locale);
-
         /*
-         * NumberFormatter will round up with 2 decimals only by default.
          * Sometimes we can display up to 6 decimals of the monetary unit (ex: £0.106544) for energy prices.
          */
-        $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 6);
-
-        return $formatter->formatCurrency($value, $currencyCode);
+        return $this
+            ->getDefaultFormatter($locale, 6)
+            ->formatCurrency($value, $currencyCode);
     }
 
     /**
@@ -73,11 +63,9 @@ class CurrencyHelper extends LocalizedHelper
         $pattern = $this->getMinorUnitPattern($locale);
 
         if ($value <= $this->getMinorUnitEnd($locale) && $pattern) {
-            $formatter = $this->getFormatter($locale);
-
-            $formatter->setPattern($pattern);
-
-            return $formatter->formatCurrency($value, $currencyCode);
+            return $this
+                ->getPatternedFormatter($locale, $pattern)
+                ->formatCurrency($value, $currencyCode);
         }
 
         return $this->toFormatFromInt($value, $currencyCode, $locale);
@@ -92,9 +80,9 @@ class CurrencyHelper extends LocalizedHelper
      */
     public function getSymbol(string $currencyCode = CurrencyCode::POUND_STERLING, string $locale = 'en'): string
     {
-        $formatter = $this->getFormatter($locale);
-
-        return $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+        return $this
+            ->getSymbolFormatter($locale, $currencyCode)
+            ->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
     }
 
     /**
@@ -109,44 +97,45 @@ class CurrencyHelper extends LocalizedHelper
      */
     public function toStandardFormat(
         float $value,
-        $currencyCode = CurrencyCode::POUND_STERLING,
+        string $currencyCode = CurrencyCode::POUND_STERLING,
         string $locale = 'en',
-        $precision = null
+        int $precision = null
     ): string {
-        $formatter = $this->getFormatter($locale);
-
-        if (is_int($precision)) {
-            $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $precision);
-            $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, $precision);
+        if (is_null($precision)) {
+            return $this->getDefaultFormatter($locale)->formatCurrency($value, $currencyCode);
         }
 
-        return $formatter->formatCurrency($value, $currencyCode);
+        return $this
+            ->getFixedPrecisionFormatter($locale, $precision)
+            ->formatCurrency($value, $currencyCode);
     }
 
     /**
-     * Get an instance of a localized Formatter.
+     * Create a number formatter for retrieving symbols.
      *
      * @param  string  $locale
+     * @param  string  $currencyCode
      * @return NumberFormatter
      */
-    protected function getFormatter(string $locale): NumberFormatter
+    protected function getSymbolFormatter(string $locale, string $currencyCode): NumberFormatter
     {
-        return $this->localizedFormatters[$locale]
-            ?? $this->setFormatter(
-                $locale,
-                new NumberFormatter($this->getSystemLocale($locale), NumberFormatter::CURRENCY)
-            );
+        return $this->getFormatter(
+            $this->getFormatterCacheKey(__FUNCTION__, func_get_args()),
+            function () use ($locale, $currencyCode) {
+                return $this->getBaseFormatter(
+                    $this->getSystemLocale($locale) . "@currency=$currencyCode"
+                );
+            }
+        );
     }
 
     /**
-     * Set an instance of a localized Formatter.
+     * Return the formatter style used by the number formatter.
      *
-     * @param  string  $locale
-     * @param  NumberFormatter  $formatter
-     * @return NumberFormatter
+     * @return int
      */
-    public function setFormatter(string $locale, NumberFormatter $formatter): NumberFormatter
+    protected function getFormatterStyle(): int
     {
-        return $this->localizedFormatters[$locale] = $formatter;
+        return NumberFormatter::CURRENCY;
     }
 }
