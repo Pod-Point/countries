@@ -237,7 +237,7 @@ class CurrencyHelperTest extends TestCase
     /**
      * Tests that it returns formatted value with minor unit symbol from fractional monetary values.
      *
-     * @dataProvider providerTestFormatToMinorUnitWhenApplicable
+     * @dataProvider  providerTestFormatToMinorUnitWhenApplicable
      *
      * @param  int  $value
      * @param  string  $currencyCode
