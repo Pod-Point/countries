@@ -17,7 +17,7 @@
         "illuminate/support": "^6.0",
         "illuminate/view": "^6.0",
         "league/iso3166": "^2.1",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^6.0|^7.0",
         "mpociot/vat-calculator": "^2.4"
     },
     "require-dev": {
