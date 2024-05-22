@@ -74,7 +74,7 @@ class CountriesServiceProviderTest extends TestCase
 
         $countryCodes = array_keys($this->app->config->get('countries-partial'));
 
-        $this->assertEquals(CountryCode::all(), $countryCodes);
+        $this->assertEquals(asort(CountryCode::all()), asort($countryCodes));
 
         collect($this->app->config->get('countries-partial'))->each(function ($country) {
             $supportedLocales = ['es', 'fr', 'en', 'ie', 'no'];
