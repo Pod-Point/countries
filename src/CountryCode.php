@@ -10,6 +10,8 @@ class CountryCode
     const UNITED_KINGDOM = 'GB';
     const IRELAND = 'IE';
     const NORWAY = 'NO';
+    const SPAIN = 'ES';
+    const FRANCE = 'FR';
 
     /**
      * Retrieves all supported country codes.
@@ -22,6 +24,8 @@ class CountryCode
             self::UNITED_KINGDOM,
             self::IRELAND,
             self::NORWAY,
+            self::SPAIN,
+            self::FRANCE,
         ];
     }
 }
