@@ -31,6 +31,8 @@ class CountryLocaleViewComposerTest extends TestCase
                     'en' => 'ENG',
                     'no' => 'NOR',
                     'ie' => 'ENG',
+                    'es' => 'SPA',
+                    'fr' => 'FRA',
                 ],
             ]);
 
