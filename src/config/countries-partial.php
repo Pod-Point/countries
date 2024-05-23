@@ -40,4 +40,18 @@ return [
         'tld' => 'no',
         'timezone' => 'Europe/Oslo',
     ],
+    CountryCode::SPAIN => [
+        'locale' => 'es',
+        'systemLocale' => 'es_ES.UTF-8',
+        'language' => 'SPA',
+        'tld' => 'es',
+        'timezone' => 'Europe/Madrid',
+    ],
+    CountryCode::FRANCE => [
+        'locale' => 'fr',
+        'systemLocale' => 'fr_FR.UTF-8',
+        'language' => 'FRA',
+        'tld' => 'fr',
+        'timezone' => 'Europe/Paris',
+    ],
 ];

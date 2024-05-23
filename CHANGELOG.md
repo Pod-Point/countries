@@ -2,6 +2,10 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
+## 3.2.2 - 2024-05-23
+
+*  Adds Spain and France as locales for present and future expansion (target 3.2 base for API3)
+
 ## 3.2.0 - 2022-04-29
 
 *  Adds precision to the `NumberHelper` and implements `NumberHelper` Facade ([#57](https://github.com/Pod-Point/countries/pull/57)).
