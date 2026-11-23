@@ -2,6 +2,16 @@
 
 All notable changes to `pod-point/countries` will be documented in this file.
 
+## 3.4.0 - 2026-11-23
+
+* Allows Laravel 6 (`illuminate/config`, `support` and `view` `5.*|^6.0`) ([#73](https://github.com/Pod-Point/countries/pull/73)).
+* Adds Spain and France as supported countries ([#70](https://github.com/Pod-Point/countries/pull/70)).
+* CI: adds a Laravel 6 job and moves to `ubuntu-22.04`.
+
+## 3.3.0
+
+* Fixes Laravel auto-discovery ([#63](https://github.com/Pod-Point/countries/pull/63)).
+
 ## 3.2.0 - 2022-04-29
 
 *  Adds precision to the `NumberHelper` and implements `NumberHelper` Facade ([#57](https://github.com/Pod-Point/countries/pull/57)).
