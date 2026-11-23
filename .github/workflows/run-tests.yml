@@ -4,23 +4,24 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         php: [ 7.1, 7.4 ]
         laravel: [ 5.* ]
         include:
-          - laravel: 5.*
+          - php: 7.4
+            laravel: 6.*
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       -   name: Checkout code
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
 
       -   name: Cache dependencies
-          uses: actions/cache@v2
+          uses: actions/cache@v4
           with:
             path: ~/.composer/cache/files
             key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -29,13 +30,16 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ matrix.php }}
-            extensions: dom, curl, libxml, mbstring, zip
+            extensions: dom, curl, libxml, mbstring, zip, intl, soap
             coverage: none
 
       -   name: Install dependencies
           run: |
             composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-            composer update --prefer-dist --no-interaction --no-progress
+            # Composer 2.9+ refuses Laravel 5/6 releases with security advisories; older Composer lacks the flag
+            FLAGS=""
+            if composer update --help | grep -q -- "--no-security-blocking"; then FLAGS="--no-security-blocking"; fi
+            composer update --prefer-dist --no-interaction --no-progress $FLAGS
 
       -   name: Execute tests
           run: vendor/bin/phpunit
