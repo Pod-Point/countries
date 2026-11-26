@@ -8,11 +8,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ 7.1, 7.4 ]
-        laravel: [ 5.* ]
-        include:
-          - php: 7.4
-            laravel: 6.*
+        php: [ "7.4" ]
+        laravel: [ 7.* ]
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
@@ -36,7 +33,7 @@ jobs:
       -   name: Install dependencies
           run: |
             composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-            # Composer 2.9+ refuses Laravel 5/6 releases with security advisories; older Composer lacks the flag
+            # Composer 2.9+ refuses Laravel 7 releases with security advisories; older Composer lacks the flag
             FLAGS=""
             if composer update --help | grep -q -- "--no-security-blocking"; then FLAGS="--no-security-blocking"; fi
             composer update --prefer-dist --no-interaction --no-progress $FLAGS
