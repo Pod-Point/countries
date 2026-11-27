@@ -4,7 +4,7 @@ All notable changes to `pod-point/countries` will be documented in this file.
 
 ## 3.5.0
 
-* Requires Laravel 7 (`illuminate/config`, `support` and `view` `^7.0`) and PHP >= 7.2.5. Apps on Laravel 6 or older stay on 3.4.0.
+* Requires Laravel 7 (`illuminate/config`, `support` and `view` `^7.0`) and PHP >= 7.2.5. Apps on Laravel 6 or older stay on 3.4.0 ([#74](https://github.com/Pod-Point/countries/pull/74)).
 * Removes the unused `satooshi/php-coveralls` dev dependency, which can't install alongside Laravel 7.
 * CI: runs Laravel 7 on PHP 7.4.
 
