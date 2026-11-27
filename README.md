@@ -21,6 +21,8 @@ For Laravel 5.x and PHP <= 7.1
 composer require pod-point/countries:^3.0
 ```
 
+3.4 also supports Laravel 6, and 3.5 and later need Laravel 7 and PHP >= 7.2.5. Unlike 4.x and 5.x, the 3.x line keeps the `NumberHelper` facade (and, unlike 4.x, Guzzle 6).
+
 For Laravel 6.x and PHP >= 7.2
 ```bash
 composer require pod-point/countries:^4.0
